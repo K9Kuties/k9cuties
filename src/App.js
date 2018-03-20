@@ -11,13 +11,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <HashRouter>
+        
           <Switch>
             <Route exact path='/' component={Login}/>
             <Route path='/adddoginfo' component={AddDogInfo} />
-            <Route path='/photos' component={Photo}/>
+            <Route path='/photos' component={Photos}/>
           </Switch>
-        </HashRouter>
+       
       </div>
     )
   }
