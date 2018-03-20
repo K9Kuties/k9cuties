@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
+import {Route, Switch} from 'react-router-dom';
+import Photos from './photos'
+import './photos.css'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to DogTinder</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>This is the most amazing app ever</p>
+      <Switch>
+        <Route exact path='/photos' component={Photos}/>
+      </Switch>
       </div>
     );
   }

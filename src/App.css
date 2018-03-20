@@ -26,3 +26,23 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.file-upload-container {
+  height: 30px;
+  width: 500px;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  /* font-size: 1px; */
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 3px;
+  padding-bottom: 4px;
+  margin-left: -25px;
+  margin-top: 10px;
+}
+.dogPics{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  width: auto;
+}
