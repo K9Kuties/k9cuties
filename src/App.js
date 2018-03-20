@@ -4,15 +4,22 @@ import {Route, Switch} from 'react-router-dom';
 import Photos from './photos'
 import './photos.css'
 
+import Login from './components/Login/Login';
+import AddDogInfo from './components/AddDogInfo/AddDogInfo';
+
 class App extends Component {
   render() {
     return (
       <div className="App">
-      <Switch>
-        <Route exact path='/photos' component={Photos}/>
-      </Switch>
+        <HashRouter>
+          <Switch>
+            <Route exact path='/' component={Login}/>
+            <Route path='/adddoginfo' component={AddDogInfo} />
+            <Route path='/photos' component={Photo}/>
+          </Switch>
+        </HashRouter>
       </div>
-    );
+    )
   }
 }
 
