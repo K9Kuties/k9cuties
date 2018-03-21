@@ -22,6 +22,7 @@ class App extends Component {
             <Route path='/photospage' component={Photospage}/>
             <Route path='/swiping' component={Swiping} />
             <Route path='/uploadimage' component={UploadImage} />
+            <Route path='/message/:userOne/:userTwo' component={Message} />
           </Switch>
        
       </div>

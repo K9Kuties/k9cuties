@@ -68,6 +68,14 @@ app.get('/logout', (req, res) => {
     req.logOut();
     res.redirect('http://localhost:3000/')
 })
+app.get('/messages/:userOne/:userTwo', (req, res) => {
+    let { userOne, userTwo } = req.params;
+    const db = app.get('db');
+    db.get_messages([userOne, userTwo]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
 app.listen(SERVER_PORT, () => {
     console.log(`Listening on port: ${SERVER_PORT}`);
 })
