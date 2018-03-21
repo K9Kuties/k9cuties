@@ -16,6 +16,7 @@ class App extends Component {
             <Route path='/adddoginfo' component={AddDogInfo} />
             <Route path='/swiping' component={Swiping} />
             <Route path='/uploadimage' component={UploadImage} />
+            <Route path='/message/:userOne/:userTwo' component={Message} />
           </Switch>
         </HashRouter>
       </div>
