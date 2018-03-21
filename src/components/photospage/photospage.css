@@ -1,0 +1,47 @@
+.dogPics1 {
+    height: 85px;
+    width: 85px;
+}
+.dogPics2 {
+    height: 85px;
+    width: 85px;
+}
+.dogPics3 {
+    height: 85px;
+    width: 85px;
+}
+.dogPics4 {
+    height: 85px;
+    width: 85px;
+}
+.dogPics5 {
+    height: 85px;
+    width: 85px;
+}
+.dogPics6 {
+    height: 85px;
+    width: 85px;
+}
+.logo{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    margin-left: 30%;
+    margin-top: 15px;
+}
+.textToDisplay{
+grid-column-start: 1;
+grid-column-end: 4;
+}
+.textToDisplay2{
+grid-column-start: 1;
+grid-column-end: 4;
+}
+.biggy {
+    display: grid;
+    grid-template-columns:115px 115px 115px;
+    grid-template-rows: 145px 25px 25px 95px 95px 200px 150px 150px;
+    /* margin-top: 250px; */
+    margin-left: 30.5px;
+}
+
+
