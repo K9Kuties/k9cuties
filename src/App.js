@@ -3,6 +3,7 @@ import './App.css';
 import {Route, Switch} from 'react-router-dom';
 import Photos from './photos'
 import './photos.css'
+import Photospage from './components/photospage/photospage'
 
 import Login from './components/Login/Login';
 import AddDogInfo from './components/AddDogInfo/AddDogInfo';
@@ -18,6 +19,7 @@ class App extends Component {
             <Route exact path='/' component={Login}/>
             <Route path='/adddoginfo' component={AddDogInfo} />
             <Route path='/photos' component={Photos}/>
+            <Route path='/photospage' component={Photospage}/>
             <Route path='/swiping' component={Swiping} />
             <Route path='/uploadimage' component={UploadImage} />
           </Switch>
