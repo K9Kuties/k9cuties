@@ -78,3 +78,23 @@
     grid-column-start: 1;
     grid-column-end: 3;
 }
+
+.name_input {
+    border: 1px solid black;
+}
+
+.breed_input {
+    border: 1px solid black;
+}
+
+.age_input {
+    border: 1px solid black;
+}
+
+.gender_input {
+    border: 1px solid black;
+}
+
+.description_input {
+    border: 1px solid black;
+}
