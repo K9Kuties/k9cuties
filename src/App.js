@@ -4,11 +4,13 @@ import {Route, Switch} from 'react-router-dom';
 import Photos from './photos'
 import './photos.css'
 import Photospage from './components/photospage/photospage'
-
+import Profile from './components/Profile/Profile'
+import Message from './components/Message/Message'
 import Login from './components/Login/Login';
 import AddDogInfo from './components/AddDogInfo/AddDogInfo';
 import Swiping from './components/Swiping/Swiping';
 import UploadImage from './components/UploadImage/UploadImage';
+import EditInfo from './components/EditInfo/EditInfo'
 
 class App extends Component {
   render() {
@@ -23,6 +25,8 @@ class App extends Component {
             <Route path='/swiping' component={Swiping} />
             <Route path='/uploadimage' component={UploadImage} />
             <Route path='/message/:userOne/:userTwo' component={Message} />
+            <Route path='/profile' component={Profile}/>
+            <Route path='/editinfo' component={EditInfo}/>
           </Switch>
        
       </div>
