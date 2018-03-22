@@ -37,7 +37,22 @@
 .imageUpload {
   position: relative;
 }
+
 .file-upload-container {
+  height: 20px !important;
+  width: 20px !important;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  font-size: 15px;
+  margin-left: -22px;
+  position: absolute;
+  border: 2px solid white;
+
+  
+
+}
+.file-upload-container1 {
   height: 20px !important;
   width: 20px !important;
   background-color: black;
