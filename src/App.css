@@ -26,24 +26,68 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-/* .file-upload-container {
-  height: 30px;
-  width: 500px;
-  background-color: black;
-  color: white;
-  border-radius: 50%;
-  font-size: 1px;
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 3px;
-  padding-bottom: 4px;
-  margin-left: -25px;
-  margin-top: 10px;
-} */
+
 /* .dogPics{
   height: 210px;
   width: 210px;
   border-radius: 50%;
   border: solid black 10px;
   padding: 5px;
+} */
+.imageUpload {
+  position: relative;
+}
+.file-upload-container {
+  height: 20px !important;
+  width: 20px !important;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  font-size: 15px;
+  margin-left: -22px;
+  margin-top: 48%;
+  position: absolute;
+  border: 2px solid white;
+
+  
+
+}
+.file-upload-container2 {
+  margin-left: -14vw;
+   height: 20px !important;
+  width: 20px !important; 
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  font-size: 15px;
+  /* padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px; */
+  
+  margin-top: 9.5vh;
+
+  border: 2px solid white;
+  position: absolute;
+} 
+.file-upload-container3 {
+  margin-right: 3vw;
+   height: 20px !important;
+  width: 20px !important; 
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  font-size: 15px;
+  /* padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px; */
+  margin-left: -22px;
+  margin-top: 9.5vh;
+  margin-right: 7vw;
+  border: 2px solid white;
+  position: absolute;
+} 
+/* .plusSign{
+  margin-right: 5px;
 } */

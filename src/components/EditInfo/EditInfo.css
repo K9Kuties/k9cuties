@@ -29,52 +29,39 @@
     margin-left: 4vw;
 }
 .dogPics2{
-    height: 80%;
-    width: 65%;
+    height: 91.8%;
+    width: 70%;
     border-radius: 7px;
+    margin-right: 8vw;
    
 }
 .dogPics3{
-    height: 80%;
-    width: 65%;
+    height: 91.78%;
+    width: 70%;
     border-radius: 7px;
+    margin-right: 8vw;
     
 }
 .dogPics4{
-    height: 80%;
-    width: 65%;
+    height: 85%;
+    width: 70%;
     border-radius: 7px;
     margin-left: 8vw;
 }
 .dogPics5{
-    height: 80%;
-    width: 65%;
+    height: 85%;
+    width: 70%;
     border-radius: 7px;
     /* margin-right: 7vw; */
 }
 .dogPics6{
-    height: 80%;
-    width: 65%;
+    height: 85%;
+    width: 70%;
     border-radius: 7px;
+    margin-right: 8vw;
     
 }
-.file-upload-container2 {
-    /* margin-right: 3vw; */
-    height: 30px;
-    width: 500px;
-    background-color: black;
-    color: white;
-    border-radius: 50%;
-    /* font-size: 1px; */
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 3px;
-    padding-bottom: 4px;
-    margin-left: -25px;
-    margin-top: 10px;
-    margin-right: 7vw;
-    border: 2px solid white;
-} 
+
 .nameInput {
     grid-column-start: 1;
     grid-column-end: 3;
