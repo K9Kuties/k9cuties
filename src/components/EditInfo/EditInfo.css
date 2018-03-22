@@ -1,0 +1,93 @@
+.editInfo1{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 65px;
+    grid-row-gap: 2vh;
+    
+}
+.editInfo2{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 65px;
+    grid-row-gap: 2vh;
+    
+}
+.image1{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+   
+    
+    
+}
+.dogPics1{
+    height: 95%;
+    width: 80%;
+    margin-top: 0px;
+    border-radius: 7px;
+    margin-left: 4vw;
+}
+.dogPics2{
+    height: 80%;
+    width: 65%;
+    border-radius: 7px;
+   
+}
+.dogPics3{
+    height: 80%;
+    width: 65%;
+    border-radius: 7px;
+    
+}
+.dogPics4{
+    height: 80%;
+    width: 65%;
+    border-radius: 7px;
+    margin-left: 8vw;
+}
+.dogPics5{
+    height: 80%;
+    width: 65%;
+    border-radius: 7px;
+    /* margin-right: 7vw; */
+}
+.dogPics6{
+    height: 80%;
+    width: 65%;
+    border-radius: 7px;
+    
+}
+.file-upload-container2 {
+    /* margin-right: 3vw; */
+    height: 30px;
+    width: 500px;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    /* font-size: 1px; */
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    margin-left: -25px;
+    margin-top: 10px;
+    margin-right: 7vw;
+    border: 2px solid white;
+} 
+.nameInput {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.breedInput {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.ageInput {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.genderInput {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
