@@ -10,8 +10,11 @@ import Login from './components/Login/Login';
 import AddDogInfo from './components/AddDogInfo/AddDogInfo';
 import Swiping from './components/Swiping/Swiping';
 import UploadImage from './components/UploadImage/UploadImage';
+
+
 import Matches from './components/Matches/Matches';
 import Settings from './components/Settings/Settings';
+
 
 
 
