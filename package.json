@@ -2,7 +2,8 @@
   "name": "k9cuties",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
+  "main": "server/index.js",
+    "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "dotenv": "^5.0.1",
@@ -22,10 +23,12 @@
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^5.0.0"
   },
+  "main": "server/index.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "proxy": "http://localhost:3005"
 }
