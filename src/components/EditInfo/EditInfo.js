@@ -82,7 +82,7 @@ export default class EditInfo extends Component {
 
             <div>
             <img  src={this.state.url4} id='img-preview' className='dogPics4'/> 
-            <label htmlFor='file-upload4' className='file-upload-container'>
+            <label htmlFor='file-upload4' className='file-upload-container3'>
             +
                 <input type='file'onChange={(event)=>this.fileSelectedHandler(4, event)} style={{display:'none'}} id='file-upload4'/>
             </label>
@@ -93,7 +93,7 @@ export default class EditInfo extends Component {
 
             <div>
             <img  src={this.state.url5} id='img-preview' className='dogPics5'/> 
-            <label htmlFor='file-upload5' className='file-upload-container'>
+            <label htmlFor='file-upload5' className='file-upload-container3'>
             +
                 <input type='file'onChange={(event)=>this.fileSelectedHandler(5, event)} style={{display:'none'}} id='file-upload5'/>
             </label>
