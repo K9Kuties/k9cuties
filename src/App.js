@@ -30,10 +30,8 @@ class App extends Component {
             <Route path='/photospage' component={Photospage}/>
             <Route path='/swiping' component={Swiping} />
             <Route path='/uploadimage' component={UploadImage} />
-
             <Route path='/matches' component={Matches} />
             <Route path='/settings' component={Settings} />
-
             <Route path='/message/:userOne/:userTwo' component={Message} />
             <Route path='/profile' component={Profile}/>
             <Route path='/editinfo' component={EditInfo}/>
