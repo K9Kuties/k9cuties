@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 import AddDogInfo from './components/AddDogInfo/AddDogInfo';
 import Swiping from './components/Swiping/Swiping';
 import UploadImage from './components/UploadImage/UploadImage';
+import Message from './components/Message/Message.js';
 
 class App extends Component {
   render() {

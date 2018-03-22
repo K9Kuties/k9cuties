@@ -3,7 +3,8 @@ const express = require('express'),
     session = require('express-session'),
     passport = require('passport'),
     Auth0Strategy = require('passport-auth0'),
-    massive = require('massive');
+    massive = require('massive'),
+    bodyParser = require('body-parser');
 const {
     SERVER_PORT,
     SESSION_SECRET,
@@ -14,6 +15,7 @@ const {
     CONNECTION_STRING
 } = process.env;
 const app = express();
+app.use(bodyParser.json());
 app.use(session({
     secret: SESSION_SECRET,
     resave: false,
@@ -68,10 +70,21 @@ app.get('/logout', (req, res) => {
     req.logOut();
     res.redirect('http://localhost:3000/')
 })
+
 app.get('/messages/:userOne/:userTwo', (req, res) => {
     let { userOne, userTwo } = req.params;
-    const db = app.get('db');
+    const db = req.app.get('db');
     db.get_messages([userOne, userTwo]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
+app.post('/messages/:userOne/:userTwo', (req, res) => {
+    let { userOne, userTwo } = req.params;
+    let { messageText } = req.body;
+    let date = new Date()
+    const db = req.app.get('db');
+    db.submit_message([userOne, userTwo, messageText, date]).then(response => {
         res.status(200).send(response)
     })
 })
