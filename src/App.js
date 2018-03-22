@@ -10,7 +10,11 @@ import Login from './components/Login/Login';
 import AddDogInfo from './components/AddDogInfo/AddDogInfo';
 import Swiping from './components/Swiping/Swiping';
 import UploadImage from './components/UploadImage/UploadImage';
+
+import Message from './components/Message/Message.js';
+
 import EditInfo from './components/EditInfo/EditInfo'
+
 
 class App extends Component {
   render() {
