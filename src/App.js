@@ -10,6 +10,14 @@ import Login from './components/Login/Login';
 import AddDogInfo from './components/AddDogInfo/AddDogInfo';
 import Swiping from './components/Swiping/Swiping';
 import UploadImage from './components/UploadImage/UploadImage';
+
+
+import Matches from './components/Matches/Matches';
+import Settings from './components/Settings/Settings';
+
+
+
+
 import EditInfo from './components/EditInfo/EditInfo'
 
 
@@ -25,6 +33,10 @@ class App extends Component {
             <Route path='/photospage' component={Photospage}/>
             <Route path='/swiping' component={Swiping} />
             <Route path='/uploadimage' component={UploadImage} />
+
+            <Route path='/matches' component={Matches} />
+            <Route path='/settings' component={Settings} />
+
             <Route path='/message/:userOne/:userTwo' component={Message} />
             <Route path='/profile' component={Profile}/>
             <Route path='/editinfo' component={EditInfo}/>

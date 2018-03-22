@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500');
+
+.Login {
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+
+.logo_container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding-top: 13vh;
+}
+
+.pooch_pals_title {
+    margin: auto;
+    width: 80vw;
+    margin-bottom: .75vh;
+}
+
+.connect_your_pooches {
+    color: #000000;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4.20vw;
+    font-weight: 500;
+}
+
+.login_container {
+    margin: auto;
+    margin-top: 19vh;
+    margin-bottom: 35vh;
+}
+
+.login_button {
+    height: 54px;
+    width: 87vw;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5.2vw;
+    font-weight: 500;
+    color: #FFFFFF;
+    border-radius: 35px;
+    background-color: #3D00E3;
+    box-shadow: 0 1px 6px 0 rgba(61,0,227,0.7), 0 2px 10px 0 rgba(0, 0, 0, 0.385);
+}
+
+.login_button:active {
+    background-color: rgb(45, 2, 161);
+}
+
+.forgot_your_password {
+    margin-top: 2.5vh;
+	color: #000000;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+	font-size: 3.3vw;
+    text-align: center;
+}
+
+.already_have_an_account {
+    margin-bottom: 10px;
+    color: #000000;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.7vw;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button {
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+}
