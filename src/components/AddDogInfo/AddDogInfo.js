@@ -1,23 +1,38 @@
 import React, { Component } from 'react';
 import './AddDogInfo.css'
 import {connect} from 'react-redux';
-import {getUser} from './../../ducks/users';
+import { Link } from 'react-router-dom';
+import { getUser, submitNewDog } from './../../ducks/users';
 
 class AddDogInfo extends Component {
+    constructor() {
+        super()
+        this.state = {
+            dogName: '',
+            dogBreed: '',
+            dogAge: 0,
+            dogGender: ''
+        }
+        this.submitNewDog = this.submitNewDog.bind(this);
+    }
 
     componentDidMount() {
        this.props.getUser();
     }
 
+    submitNewDog() {
+        this.props.submitNewDog({userId: this.props.userData.id, dogName: this.state.dogName, dogBreed: this.state.dogBreed, dogAge: this.state.dogAge, dogGender: this.state.dogGender})
+    }
+
     render() {
-        console.log('got to page');
+
         return (
             <div>
                 <h2>Add Dog Info</h2>
-                <h5>Dogs Name: <input type='text'/></h5>
-                <h5>Breed: <input type='text'/></h5>
-                <h5>Age: <select>
-                    <option></option>
+                <h5>Dogs Name: <input type='text' value={this.state.dogName} onChange={(e) => {this.setState({dogName: e.target.value})}} required /></h5>
+                <h5>Breed: <input type='text' value={this.state.dogBreed} onChange={(e) => {this.setState({dogBreed: e.target.value})}} required /></h5>
+                <h5>Age: <select value={this.state.dogAge} onChange={(e) => {this.setState({dogAge: e.target.value})}} required>
+                    <option default hidden>Select</option>
                     <option value='1'>1</option>
                     <option value='2'>2</option>
                     <option value='3'>3</option>
@@ -39,13 +54,12 @@ class AddDogInfo extends Component {
                     <option value='19'>19</option>
                     <option value='20'>20</option>
                 </select></h5>
-                <h5>Sex: <select>
-                    <option></option>
+                <h5>Sex: <select value={this.state.dogGender} onChange={(e) => {this.setState({dogGender: e.target.value})}} required>
+                    <option default hidden>Select</option>
                     <option value='male'>Male</option>
                     <option value='female'>Female</option>
                 </select></h5>
-                <button>Next</button>
-                
+                <Link to='/uploadimage'><button onClick={this.submitNewDog}>Next</button></Link>
             </div> 
         )
     }
@@ -57,7 +71,7 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {getUser})(AddDogInfo);
+export default connect(mapStateToProps, { getUser, submitNewDog })(AddDogInfo);
 
 
 

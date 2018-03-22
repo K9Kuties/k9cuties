@@ -71,7 +71,7 @@ app.get('/logout', (req, res) => {
     res.redirect('http://localhost:3000/')
 })
 
-app.get('/messages/:userOne/:userTwo', (req, res) => {
+app.get('/api/messages/:userOne/:userTwo', (req, res) => {
     let { userOne, userTwo } = req.params;
     const db = req.app.get('db');
     db.get_messages([userOne, userTwo]).then(response => {
@@ -79,12 +79,20 @@ app.get('/messages/:userOne/:userTwo', (req, res) => {
     })
 })
 
-app.post('/messages/:userOne/:userTwo', (req, res) => {
+app.post('/api/messages/:userOne/:userTwo', (req, res) => {
     let { userOne, userTwo } = req.params;
     let { messageText } = req.body;
     let date = new Date()
     const db = req.app.get('db');
     db.submit_message([userOne, userTwo, messageText, date]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
+app.post('/api/submitNewDog', (req, res) => {
+    let { userId, dogName, dogBreed, dogAge, dogGender } = req.body;
+    const db = req.app.get('db');
+    db.submit_new_dog([userId, dogName, dogBreed, dogAge, dogGender]).then(response => {
         res.status(200).send(response)
     })
 })
