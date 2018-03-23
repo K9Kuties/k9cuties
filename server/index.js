@@ -97,6 +97,16 @@ app.post('/api/submitNewDog', (req, res) => {
     })
 })
 
+app.put('/api/profileImage/:id', (req, res) => {
+    let { url } = req.body;
+    let { id } = req.params;
+    console.log(id, url)
+    const db = req.app.get('db');
+    db.add_profile_image([id, url]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
 app.listen(SERVER_PORT, () => {
     console.log(`Listening on port: ${SERVER_PORT}`);
 })
