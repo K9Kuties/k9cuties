@@ -4,7 +4,6 @@ import './Message.css';
 import {connect} from 'react-redux';
 import { getMessages, submitMessage } from './../../ducks/users';
 
-
 class Message extends Component {
     constructor() {
       super()

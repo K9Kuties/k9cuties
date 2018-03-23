@@ -11,6 +11,7 @@ const GET_USER = 'GET_USER';
 const GET_MESSAGES = 'GET_MESSAGES';
 const SUBMIT_MESSAGE = 'SUBMIT_MESSAGE';
 const SUBMIT_NEW_DOG = 'SUBMIT_NEW_DOG';
+const ADD_PROFILE_IMAGE = 'ADD_PROFILE_IMAGE';
 
 export function getUser() {
     const user = axios.get('/auth/me').then(res => {
@@ -46,14 +47,24 @@ export function submitMessage(userOne, userTwo, messageText) {
 }
 
 export function submitNewDog(obj) {
-    console.log(obj)
     const dog = axios.post('/api/submitNewDog', obj).then(res => {
-        console.log(res.data)
-        return res.data
+        return res.data[0]
     })
 
     return {
         type: SUBMIT_NEW_DOG,
+        payload: dog
+    }
+}
+
+export function addProfileImage(id, url) {
+    console.log(id, url)
+    const dog = axios.put(`/api/profileImage/${id}`, { url }).then(res => {
+        return res.data[0]
+    })
+
+    return {
+        type: ADD_PROFILE_IMAGE,
         payload: dog
     }
 }
@@ -67,7 +78,9 @@ export default function reducer(state = initialState, action) {
         case SUBMIT_MESSAGE + '_FULFILLED':
             return Object.assign({}, state, { messages: action.payload });
         case SUBMIT_NEW_DOG + '_FULFILLED':
-            return Object.assign({}, state, { dog: action.payload })
+            return Object.assign({}, state, { dog: action.payload });
+        case ADD_PROFILE_IMAGE + '_FULFILLED':
+            return Object.assign({}, state, { dog: action.payload });
         default:
         return state;
     }
