@@ -1,0 +1,9 @@
+.pooch_pals_header {
+    height: 60px;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.250);
+}
+
+.poochpals_svg_header {
+    width: 190px;
+    margin-top: 16px;
+}
