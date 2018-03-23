@@ -100,9 +100,48 @@ app.post('/api/submitNewDog', (req, res) => {
 app.put('/api/profileImage/:id', (req, res) => {
     let { url } = req.body;
     let { id } = req.params;
-    console.log(id, url)
     const db = req.app.get('db');
     db.add_profile_image([id, url]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
+app.put('/api/image/:id', (req, res) => {
+    let { id } = req.params;
+    let { number, url } = req.body;
+    const db = req.app.get('db');
+    if (number === 1){
+        db.add_profile_image([id, url]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 2) {
+        db.add_image_two([id, url]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 3) {
+        db.add_image_three([id, url]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 4) {
+        db.add_image_four([id, url]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 5) {
+        db.add_image_five([id, url]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 6) {
+        db.add_image_six([id, url]).then(response => {
+            res.status(200).send(response)
+        })
+    }
+})
+
+app.put('/api/description/:id', (req, res) => {
+    let { id } = req.params;
+    let { desc } = req.body;
+    const db = req.app.get('db');
+    db.add_description([id, desc]).then(response => {
         res.status(200).send(response)
     })
 })
