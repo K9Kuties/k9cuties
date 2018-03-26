@@ -15,7 +15,7 @@ class Photos extends Component {
         super()
         this.state = {
             selectedFile: null,
-            url: 'https://st.depositphotos.com/1798678/3986/v/950/depositphotos_39864187-stock-illustration-dog-silhouette-vector.jpg'
+            url: 'http://i67.tinypic.com/nd4dnl.jpg'
         }
     }
 
@@ -55,10 +55,10 @@ class Photos extends Component {
                 <h1 className='upload_image_h1' >Add a profile photo for your dog</h1>
                 <h3 className='upload_image_h3' >(This will be their main photo)</h3>
 
-                <img src={this.state.url} id='img-preview' className='dogPics' />
+
                 <label htmlFor='file-upload' className='file-upload-container'>
-                +
-                <input type='file' onChange={this.fileSelectedHandler} style={{ display: 'none' }} id='file-upload' />
+                    <img src={this.state.url} id='img-preview' className='dogPics' />
+                    <input type='file' onChange={this.fileSelectedHandler} style={{ display: 'none' }} id='file-upload' />
                 </label>
                 <Link to='/photospage'><button className='upload_image_next_button' >Next</button></Link>
                 <Link to='/adddoginfo'><h5 className='upload_image_back_button' >Back</h5></Link>
