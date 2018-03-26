@@ -146,6 +146,49 @@ app.put('/api/description/:id', (req, res) => {
     })
 })
 
+app.put('/api/updateRadius/:id', (req, res) => {
+    let { id } = req.params;
+    let { radius } = req.body;
+    const db = req.app.get('db');
+    db.update_radius([id, radius]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
+app.put('/api/updateInterestedIn/:id', (req, res) => {
+    let { id } = req.params;
+    let { selectedType } = req.body;
+    const db = req.app.get('db');
+    db.update_interested_in([id, selectedType]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
+app.put('/api/updateReason/:id', (req, res) => {
+    let { id } = req.params;
+    let { reason } = req.body;
+    const db = req.app.get('db');
+    db.update_reason([id, reason]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
+app.get('/api/getDog/:id', (req, res) => {
+    let { id } = req.params;
+    const db = req.app.get('db');
+    db.get_dog([id]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
+app.delete('/api/deleteAccount/:id', (req, res) => {
+    let { id } = req.params;
+    const db = req.app.get('db');
+    db.delete_account([id]).then(response => {
+        res.status(200).send('Dog Account has been deleted')
+    })
+})
+
 app.listen(SERVER_PORT, () => {
     console.log(`Listening on port: ${SERVER_PORT}`);
 })
