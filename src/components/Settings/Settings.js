@@ -98,6 +98,7 @@ class Settings extends Component {
 
                 <div className='settings_header' >
                     <a><img className='back_arrow_svg' src={BackArrow} alt='back arrow logo' /></a>
+                    <h1 className='settings_header_h1' >Settings</h1>
                 </div>
 
 
@@ -107,6 +108,8 @@ class Settings extends Component {
 
 
                 <div className='radius' >
+                <h2 className='radius_h2' >Search radius</h2>
+                <div className='radiusRange'>within {radiusRange} miles</div>
                     <Slider
                         min={0}
                         max={100}
@@ -118,20 +121,20 @@ class Settings extends Component {
                         onChange={this.handleChange}
                         onChangeComplete={this.handleChangeComplete}
                     />
-                    <div className='radiusRange'>{radiusRange}</div>
                 </div>
 
 
                 <div className='male_or_female' >
-                    <form>
                         <h2 className='male_or_female_h2' >Male</h2><input type='radio' name='male' value={this.state.male} onChange={() => this.changeToMale()} />
                         <h2 className='male_or_female_h2'>Female</h2><input type='radio' name='female' value={this.state.female} onChange={() => this.changeToFemale()} />
                         <h2 className='male_or_female_h2'>Both</h2><input type='radio' name='both' value={this.state.both} onChange={() => this.changeToBoth()} />
-                    </form>
                 </div>
 
 
                 <div className='age_range' >
+                <h2 className='age_range_h2' >Age range </h2>
+                <div className='agerange'>0</div>
+                <div className='ageRange'>{ageRange}</div>
                     <Slider
                         min={0}
                         max={20}
@@ -143,7 +146,7 @@ class Settings extends Component {
                         onChange={this.handleChangeAge}
                         onChangeComplete={this.handleChangeCompleteAge}
                     />
-                    <div className='ageRange'>{ageRange}</div>
+                    
                 </div>
 
 
@@ -153,7 +156,7 @@ class Settings extends Component {
                 </div>
 
                 <div className='delete_account_container' >
-                    <button className='delete_account_button' >Delete Account</button>
+                    <button className='delete_account_button' >Delete my account</button>
                 </div>
 
             </div>

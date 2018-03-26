@@ -39,9 +39,9 @@ class AddDogInfo extends Component {
                 <div className='add_dog_info_input_container' >
                     <input className='add_dog_info_dog_name_input' type='text' placeholder=' Name' value={this.state.dogName} onChange={(e) => { this.setState({ dogName: e.target.value }) }} required />
                     <hr />
-                    <input className='add_dog_info_dog_breed_input'  type='text' placeholder=' Breed' value={this.state.dogBreed} onChange={(e) => { this.setState({ dogBreed: e.target.value }) }} required />
+                    <input className='add_dog_info_dog_breed_input' type='text' placeholder=' Breed' value={this.state.dogBreed} onChange={(e) => { this.setState({ dogBreed: e.target.value }) }} required />
                     <hr />
-                    <select className='add_dog_info_dog_age_select'  value={this.state.dogAge} onChange={(e) => { this.setState({ dogAge: e.target.value }) }} required>
+                    <select className='add_dog_info_dog_age_select' value={this.state.dogAge} onChange={(e) => { this.setState({ dogAge: e.target.value }) }} required>
                         <option default hidden >Age</option>
                         <option value='1'>1</option>
                         <option value='2'>2</option>
@@ -65,7 +65,7 @@ class AddDogInfo extends Component {
                         <option value='20'>20</option>
                     </select>
                     <hr />
-                    <select className='add_dog_info_dog_gender_select'  value={this.state.dogGender} onChange={(e) => { this.setState({ dogGender: e.target.value }) }} required>
+                    <select className='add_dog_info_dog_gender_select' value={this.state.dogGender} onChange={(e) => { this.setState({ dogGender: e.target.value }) }} required>
                         <option default hidden>Gender</option>
                         <option value='male'>Male</option>
                         <option value='female'>Female</option>
@@ -74,6 +74,13 @@ class AddDogInfo extends Component {
                 </div>
 
                 <Link to='/uploadimage'><button className='add_dog_info_next_button' onClick={this.submitNewDog}>Next</button></Link>
+
+                <div className='add_dog_info_dots' >
+                    <div className='add_dog_info_dot_blue'></div>
+                    <div className='add_dog_info_dot_grey'></div>
+                    <div className='add_dog_info_dot_grey'></div>
+                    <div className='add_dog_info_dot_grey'></div>
+                </div>
             </div>
         )
     }

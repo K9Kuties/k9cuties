@@ -117,6 +117,14 @@ class Photospage extends Component {
                 Description<input type='text' className='description_input' value={this.state.description} onChange={(e) => this.setState({description: e.target.value})} />
                 <Link to='/swiping'><button onClick={this.submitDescription}>Next</button></Link>
                 <Link to='/uploadimage'><h5>Back</h5></Link>
+
+                <div className='add_dog_info_dots' >
+                    <div className='add_dog_info_dot_blue'></div>
+                    <div className='add_dog_info_dot_grey'></div>
+                    <div className='add_dog_info_dot_grey'></div>
+                    <div className='add_dog_info_dot_grey'></div>
+                </div>
+
             </div>
         )
     }
