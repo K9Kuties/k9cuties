@@ -1,9 +1,76 @@
-.dogPics  {
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-  }
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500');
 
-  .description_input {
-    border: 1px solid black;
-  }
+.upload_image {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.upload_image_h1 {
+    color: #000000;
+    font-size: 4vw;
+    text-align: center;
+    margin-top: 15vh;
+    margin-bottom: 1px;
+    
+}
+
+.upload_image_h3 {
+    color: rgba(74,74,74,0.7);
+    font-size: 3.2vw;
+    text-align: center;
+    margin-top: 1px;
+    font-weight: 400;
+}
+
+.dogPics {
+    background-color: #F2F4FC;
+    margin: auto;
+    margin-top: 5vh;
+    width: 72vw !important;
+    height: 52vw !important;
+    border-radius: 1px !important;
+}
+
+.upload_image_next_button {
+    letter-spacing: 1px;
+    height: 54px;
+    width: 80vw;
+    font-size: 18px;
+    margin-top: 8vh;
+    background-color: #4014EC;
+    color: #FFFFFF;
+    border-radius: 35px;
+    border: none;
+    font-weight: 500;
+    box-shadow: 0 1px 6px 0 #4014EC, 0 2px 10px 0 rgba(0, 0, 0, 0.385);
+    cursor: pointer;
+}
+
+.upload_image_back_button {
+    color: rgba(0,0,0,0.3);
+    margin: auto;
+    margin-top: 2vh;
+}
+
+  .add_dog_info_dots {
+    position: absolute;
+    display: flex;
+    bottom: 5vh;
+}
+
+.add_dog_info_dot_blue {
+    height: 10px;
+    width: 10px;
+    background-color: #4014EC;
+    border-radius: 50%;
+    border: none;
+    margin: 7px;
+}
+
+.add_dog_info_dot_grey {
+    height: 10px;
+    width: 10px;
+    background-color: #7D61EC;
+    border-radius: 50%;
+    border: none;
+    margin: 7px;
+}

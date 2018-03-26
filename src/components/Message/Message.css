@@ -65,12 +65,16 @@
     max-width: 60%;
     padding: 10px 20px;
     color: white;
-    background:#0B93F6;
-    border-radius: 25px;
+    background: rgb(71, 25, 255);
+    border-radius: 22px;
     margin: 20px 20px 0 0;
     align-self: flex-end;
     position: relative;
     text-align: left;
+}
+
+.chat_entry_me p {
+    max-width: 60%;
 }
 
 .chat_entry_me:before {
@@ -80,7 +84,7 @@
     bottom:-2px;
     right:-7px;
     height:20px;
-    border-right:20px solid #0B93F6;
+    border-right:20px solid rgb(71, 25, 255);
     border-bottom-left-radius: 16px 14px;
     -webkit-transform:translate(0, -2px);
 }

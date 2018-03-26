@@ -19,10 +19,12 @@ class Message extends Component {
 
 
   submitMessage() {
+    if (this.state.message) {
     this.props.submitMessage(this.props.match.params.userOne, this.props.match.params.userTwo, this.state.message)
     this.setState({
       message: ''
     })
+  }
   }
 
   handleKeyPress(e) {

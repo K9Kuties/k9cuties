@@ -123,6 +123,14 @@ export default class Photospage extends Component {
                 </form>
                 <button>Next</button>
                 <Link to='/uploadimage'><h5>Back</h5></Link>
+
+                <div className='add_dog_info_dots' >
+                    <div className='add_dog_info_dot_blue'></div>
+                    <div className='add_dog_info_dot_grey'></div>
+                    <div className='add_dog_info_dot_grey'></div>
+                    <div className='add_dog_info_dot_grey'></div>
+                </div>
+
             </div>
         )
     }
