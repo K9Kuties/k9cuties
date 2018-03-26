@@ -14,6 +14,11 @@ const SUBMIT_NEW_DOG = 'SUBMIT_NEW_DOG';
 const ADD_PROFILE_IMAGE = 'ADD_PROFILE_IMAGE';
 const ADD_IMAGE = 'ADD_IMAGE';
 const SUBMIT_DESCRIPTION = 'SUBMIT_DESCRIPTION';
+const UPDATE_RADIUS = 'UPDATE_RADIUS';
+const GET_DOG = 'GET_DOG';
+const UPDATE_AGE = 'UPDATE_AGE';
+const UPDATE_INTERESTED_IN = 'UPDATE_INTERESTED_IN';
+const UPDATE_REASON = 'UPDATE_REASON';
 
 export function getUser() {
     const user = axios.get('/auth/me').then(res => {
@@ -92,6 +97,58 @@ export function submitDescription(id, desc) {
     }
 }
 
+export function updateRadius(id, radius) {
+    const dog = axios.put(`/api/updateRadius/${id}`, { radius }).then(res => {
+        return res.data[0]
+    })
+
+    return {
+        type: UPDATE_RADIUS,
+        payload: dog
+    }
+}
+
+export function getDog(dog) {
+    console.log(dog)
+    return {
+        type: GET_DOG,
+        payload: dog
+    }
+}
+
+export function updateAge(id, age) {
+    // const dog = axios.put(`/api/updateAge${id}`, { age }).then(res => {
+    //     return res.data[0]
+    // })
+
+    // return {
+    //     type: UPDATE_AGE,
+    //     payload: dog
+    // }
+}
+
+export function updateInterestedIn(id, selectedType) {
+    const dog = axios.put(`/api/updateInterestedIn/${id}`, { selectedType }).then(res => {
+        return res.data[0]
+    })
+
+    return {
+        type: UPDATE_INTERESTED_IN,
+        payload: dog
+    }
+}
+
+export function updateReason(id, reason) {
+    const dog = axios.put(`/api/updateReason/${id}`, { reason }).then(res => {
+        return res.data[0]
+    })
+
+    return {
+        type: UPDATE_REASON,
+        payload: dog
+    }
+}
+
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_USER + '_FULFILLED':
@@ -107,6 +164,14 @@ export default function reducer(state = initialState, action) {
         case ADD_IMAGE + '_FULFILLED':
             return Object.assign({}, state, { dog: action.payload });
         case SUBMIT_DESCRIPTION + '_FULFILLED':
+            return Object.assign({}, state, { dog: action.payload });
+        case UPDATE_RADIUS + '_FULFILLED':
+            return Object.assign({}, state, { dog: action.payload });
+        case UPDATE_AGE + '_FULFILLED':
+            return Object.assign({}, state, { dog: action.payload });
+        case UPDATE_REASON + '_FULFILLED':
+            return Object.assign({}, state, { dog: action.payload });
+        case GET_DOG:
             return Object.assign({}, state, { dog: action.payload });
         default:
         return state;
