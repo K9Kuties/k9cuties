@@ -45,9 +45,11 @@ grid-column-end: 4;
 }
 
 .add_dog_info_dots {
-    position: absolute;
+    width: auto;
+    margin: 8vh auto auto auto;
     display: flex;
-    bottom: 5vh;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .add_dog_info_dot_blue {
