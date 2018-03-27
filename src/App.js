@@ -14,6 +14,7 @@ import Matches from './components/Matches/Matches';
 import Settings from './components/Settings/Settings';
 import EditInfo from './components/EditInfo/EditInfo';
 import DogCreated from './components/DogCreated/DogCreated'
+import AddDescription from './components/AddDescription/AddDescription'
 
 
 class App extends Component {
@@ -34,6 +35,7 @@ class App extends Component {
             <Route path='/profile' component={Profile}/>
             <Route path='/editinfo' component={EditInfo}/>
             <Route path='/dogcreated' component={DogCreated}/>
+            <Route path='/adddescription' component={AddDescription}/>
           </Switch>
        
       </div>
