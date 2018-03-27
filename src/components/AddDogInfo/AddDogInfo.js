@@ -21,7 +21,7 @@ class AddDogInfo extends Component {
     }
 
     componentDidMount() {
-        this.props.getUser();
+        this.props.getUser(this.props.history);
         this.getMyLocation();
     }
     

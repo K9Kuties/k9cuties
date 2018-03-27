@@ -4,7 +4,7 @@ import axios from 'axios';
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css';
 import { connect } from 'react-redux';
-import { getDog, updateRadius, updateAge, updateInterestedIn, updateReason } from './../../ducks/users';
+import { getDog, updateRadius, updateInterestedIn, updateReason, updateRange } from './../../ducks/users';
 import BackArrow from '../../back-arrow.svg';
 import InputRange from 'react-input-range';
 import '../../react-input-range.css';
@@ -16,7 +16,7 @@ class Settings extends Component {
 
         this.state = {
             radiusRange: this.props.dog.radius,
-            value: { min: 0, max: 10 },
+            value: { min: this.props.dog.age_begin, max: this.props.dog.age_end },
             reason: this.props.dog.reason,
             selectedType: this.props.dog.interested_in
         }
@@ -31,7 +31,7 @@ class Settings extends Component {
             this.setState({
                 selectedType: res.data[0].interested_in,
                 reason: res.data[0].reason,
-                // ageRange: res.data[0].,
+                value: { min: res.data[0].age_begin, max: res.data[0].age_end },
                 radiusRange: res.data[0].radius
             })
             this.props.getDog(res.data[0])
@@ -39,9 +39,6 @@ class Settings extends Component {
     }
 
     //These are functions for the Radius Slider
-    handleChangeStart = () => {
-        console.log('Change event started')
-    };
 
     handleChange = radiusRange => {
         this.setState({
@@ -50,16 +47,11 @@ class Settings extends Component {
     };
 
     handleChangeComplete = () => {
-        console.log('Change event completed')
-        console.log(this.state.radiusRange)
         this.props.updateRadius(this.props.dog.dog_id, this.state.radiusRange)
     };
     //End of Radius Slider functions
 
     //These are functions for the Age Slider
-    hangleChangeAgeStart = () => {
-        console.log('Change Age Started')
-    }
 
     handleChangeAge = (value) => {
         this.setState({
@@ -70,9 +62,9 @@ class Settings extends Component {
     handleChangeAgeComplete = () => {
         console.log('Change Age Finished')
         console.log(this.state.value)
+        this.props.updateRange(this.props.dog.dog_id, this.state.value)
     }
     //End of Age Slider functions
-
 
     //These are functions for the genders
     handleInterestedInChange(e) {
@@ -159,4 +151,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getDog, updateRadius, updateAge, updateInterestedIn, updateReason })(Settings);
+export default connect(mapStateToProps, { getDog, updateRadius, updateInterestedIn, updateReason, updateRange })(Settings);
