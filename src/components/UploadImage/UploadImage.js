@@ -64,7 +64,7 @@ class Photos extends Component {
                 <div className='add_dog_info_dots' >
                     <div className='add_dog_info_dot_blue'></div>
                     <div className='add_dog_info_dot_blue'></div>
-                    <div className='add_dog_info_dot_blue'></div>
+                    <div className='add_dog_info_dot_grey'></div>
                     <div className='add_dog_info_dot_grey'></div>
                 </div>
 

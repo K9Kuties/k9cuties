@@ -27,22 +27,19 @@ class AddDogInfo extends Component {
     
     getMyLocation() {
     const location = window.navigator && window.navigator.geolocation
-    
-    if (location) {
-        location.getCurrentPosition((position) => {
-        this.setState({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-        })
-        }, (error) => {
-        this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
-        })
-    }
-
+        if (location) {
+            location.getCurrentPosition((position) => {
+            this.setState({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+            })
+            }, (error) => {
+            this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
+            })
+        }
     }
 
     submitNewDog() {
-        console.log(this.state.latitude, this.state.longitude)
         this.props.submitNewDog({ userId: this.props.userData.id, dogName: this.state.dogName, dogBreed: this.state.dogBreed, dogAge: this.state.dogAge, dogGender: this.state.dogGender, latitude: this.state.latitude, longitude: this.state.longitude })
     }
 

@@ -4,7 +4,8 @@ const initialState = {
     user: {},
     messages: [],
     matches: [],
-    dog: {}
+    dog: {},
+    dogsToDisplay: []
 }
 
 const GET_USER = 'GET_USER';
