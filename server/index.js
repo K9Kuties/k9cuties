@@ -64,7 +64,6 @@ app.get('/auth/me', (req, res) => {
         res.status(404).send('Not There Bruh')
     } else {
         const db = app.get('db');
-        console.log(req.user.id)
         db.get_dog([req.user.id]).then(response => {
             res.status(200).send({user: req.user, response});
         })
@@ -191,6 +190,14 @@ app.get('/api/getDog/:id', (req, res) => {
     let { id } = req.params;
     const db = req.app.get('db');
     db.get_dog([id]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
+app.get('/api/getSwipeArray/:id/:latitude/:longitude/:radius', (req, res) => {
+    let { id, latitude, longitude, radius } = req.params;
+    const db = req.app.get('db');
+    db.get_swipe_array([id, latitude, longitude, radius]).then(response => {
         res.status(200).send(response)
     })
 })

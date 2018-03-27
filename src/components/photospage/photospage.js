@@ -115,13 +115,13 @@ class Photospage extends Component {
                 </div>
 
 
-                <Link to='/swiping'><button onClick={this.submitDescription} className='photospage_next_button' >Next</button></Link>
+                <Link to='/adddescription'><button onClick={this.submitDescription} className='photospage_next_button' >Next</button></Link>
                 <Link to='/uploadimage'><h5 className='upload_image_back_button' >Back</h5></Link>
 
                 <div className='add_dog_info_dots' >
                     <div className='add_dog_info_dot_blue'></div>
-                    <div className='add_dog_info_dot_grey'></div>
-                    <div className='add_dog_info_dot_grey'></div>
+                    <div className='add_dog_info_dot_blue'></div>
+                    <div className='add_dog_info_dot_blue'></div>
                     <div className='add_dog_info_dot_grey'></div>
                 </div>
 

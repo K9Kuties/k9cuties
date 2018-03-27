@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import Header from '../Header/Header'
-import './DogCreated.css'
-import axios from 'axios'
+import Header from '../Header/Header';
+import './DogCreated.css';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const CLOUDINARYURL = 'https://api.cloudinary.com/v1_1/gexcloud/image/upload'
 const CLOUDINARY_UPLOAD_PRESET = 'yltloitx'
@@ -53,8 +54,8 @@ export default class DogCreated extends Component {
                 <div className='dogDescContainer'>
                     <div className='dogDesc'>This is my dog description and it is all about my dawg!! My dog is awesome and he is a very good boy!! I just love my dog and YOU WILL TOO! Trust me! I know! If not you kind of blow hard man</div>
                 </div>
-                <button className='dogCreatedFinish'>Finish</button>
-                <button className='dogCreatedBack'>Back</button>
+                <Link to='/swiping'><button className='dogCreatedFinish'>Finish</button></Link>
+                <Link to='/adddescription'><button className='dogCreatedBack'>Back</button></Link>
             </div>
         )
     }
