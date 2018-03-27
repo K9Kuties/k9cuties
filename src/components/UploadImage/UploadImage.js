@@ -45,8 +45,6 @@ class Photos extends Component {
 
     render() {
 
-        console.log(this.props.dog)
-
         return (
             <div className='upload_image' >
 
@@ -77,7 +75,7 @@ class Photos extends Component {
 
 function mapStateToProps(state) {
     return {
-        dog: state.dog,
+        dog: state.dog
     }
 }
 

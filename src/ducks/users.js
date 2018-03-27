@@ -19,6 +19,7 @@ const GET_DOG = 'GET_DOG';
 const UPDATE_AGE = 'UPDATE_AGE';
 const UPDATE_INTERESTED_IN = 'UPDATE_INTERESTED_IN';
 const UPDATE_REASON = 'UPDATE_REASON';
+// const GET_LOCATION = 'GET_LOCATION';
 
 export function getUser() {
     const user = axios.get('/auth/me').then(res => {
@@ -64,8 +65,8 @@ export function submitNewDog(obj) {
     }
 }
 
-export function addProfileImage(id, url) {
-    const dog = axios.put(`/api/profileImage/${id}`, { url }).then(res => {
+export function addProfileImage(id, url, location) {
+    const dog = axios.put(`/api/profileImage/${id}`, { url, location }).then(res => {
         return res.data[0]
     })
 
@@ -149,6 +150,27 @@ export function updateReason(id, reason) {
     }
 }
 
+// export function getLocation() {
+//     const geolocation = navigator.geolocation;
+
+//     const location = new Promise((resolve, reject) => {
+//         if (!geolocation) {
+//             reject(new Error('Not Supported'));
+//         }
+
+//         geolocation.getCurrentPosition((position) => {
+//             resolve(position);
+//         }, () => {
+//             reject(new Error('Permission denied'));
+//         });
+//     });
+
+//     return {
+//         type: GET_LOCATION,
+//         payload: location
+//     }
+// }
+
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_USER + '_FULFILLED':
@@ -173,6 +195,8 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { dog: action.payload });
         case GET_DOG:
             return Object.assign({}, state, { dog: action.payload });
+        // case GET_LOCATION:
+        //     return Object.assign({}, state, { location: action.payload });
         default:
         return state;
     }
