@@ -24,9 +24,8 @@
 .dogPics {
     background-color: #F2F4FC;
     margin: auto;
-    margin-top: 5vh;
-    width: 72vw !important;
-    height: 52vw !important;
+    margin-top: 3vh;
+    width: 75vw !important;
     border-radius: 1px !important;
 }
 
@@ -35,7 +34,7 @@
     height: 54px;
     width: 80vw;
     font-size: 18px;
-    margin-top: 8vh;
+    margin-top: 5vh;
     background-color: #4014EC;
     color: #FFFFFF;
     border-radius: 35px;
@@ -49,6 +48,7 @@
     color: rgba(0,0,0,0.3);
     margin: auto;
     margin-top: 2vh;
+    font-size: 16px;
 }
 
   .add_dog_info_dots {
