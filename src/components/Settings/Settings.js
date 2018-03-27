@@ -6,6 +6,8 @@ import 'react-rangeslider/lib/index.css';
 import { connect } from 'react-redux';
 import { getDog, updateRadius, updateAge, updateInterestedIn, updateReason } from './../../ducks/users';
 import BackArrow from '../../back-arrow.svg';
+import InputRange from 'react-input-range';
+import '../../react-input-range.css';
 
 
 class Settings extends Component {
@@ -14,7 +16,7 @@ class Settings extends Component {
 
         this.state = {
             radiusRange: this.props.dog.radius,
-            ageRange: 1,
+            value: { min: 0, max: 10 },
             reason: this.props.dog.reason,
             selectedType: this.props.dog.interested_in
         }
@@ -55,21 +57,20 @@ class Settings extends Component {
     //End of Radius Slider functions
 
     //These are functions for the Age Slider
-    handleChangeStartAge = () => {
-        console.log('Change event started')
-    };
+    hangleChangeAgeStart = () => {
+        console.log('Change Age Started')
+    }
 
-    handleChangeAge = ageRange => {
+    handleChangeAge = (value) => {
         this.setState({
-            ageRange: ageRange
+            value
         })
-        console.log(this.state.ageRange);
-    };
+    }
 
-    handleChangeCompleteAge = () => {
-        console.log('Change event completed')
-        this.props.updateAge()
-    };
+    handleChangeAgeComplete = () => {
+        console.log('Change Age Finished')
+        console.log(this.state.value)
+    }
     //End of Age Slider functions
 
 
@@ -77,14 +78,14 @@ class Settings extends Component {
     handleInterestedInChange(e) {
         this.setState({
             selectedType: e.target.value
-        }, () => {this.props.updateInterestedIn(this.props.dog.dog_id, this.state.selectedType)})
+        }, () => { this.props.updateInterestedIn(this.props.dog.dog_id, this.state.selectedType) })
     }
     //End of gender functions
 
     handleReasonChange(e) {
         this.setState({
             reason: e.target.value
-        }, () => {this.props.updateReason(this.props.dog.dog_id, this.state.reason)})
+        }, () => { this.props.updateReason(this.props.dog.dog_id, this.state.reason) })
     }
 
     deleteAccount() {
@@ -110,8 +111,8 @@ class Settings extends Component {
                     <div className='my_location_title' >My Location</div>
                 </div>
                 <div className='radius' >
-                <h2 className='radius_h2' >Search radius</h2>
-                <div className='radiusRange'>within {radiusRange} miles</div>
+                    <h2 className='radius_h2' >Search radius</h2>
+                    <div className='radiusRange'>within {radiusRange} miles</div>
                     <Slider
                         min={0}
                         max={100}
@@ -125,32 +126,26 @@ class Settings extends Component {
                     />
                 </div>
                 <form className='male_or_female'>
-                        <h2 className='male_or_female_h2' >Male</h2><input type='radio' value='Male' checked={this.state.selectedType === 'Male'} onChange={this.handleInterestedInChange} />
-                        <h2 className='male_or_female_h2'>Female</h2><input type='radio' value='Female' checked={this.state.selectedType === 'Female'} onChange={this.handleInterestedInChange} />
-                        <h2 className='male_or_female_h2'>Both</h2><input type='radio' value='Both' checked={this.state.selectedType === 'Both'} onChange={this.handleInterestedInChange} />
+                    <label className='male_or_female_label' >Male</label><input className='radio_button' type='radio' value='Male' checked={this.state.selectedType === 'Male'} onChange={this.handleInterestedInChange} />
+                    <label className='male_or_female_label'>Female</label><input className='radio_button' type='radio' value='Female' checked={this.state.selectedType === 'Female'} onChange={this.handleInterestedInChange} />
+                    <label className='male_or_female_label'>Both</label><input className='radio_button' type='radio' value='Both' checked={this.state.selectedType === 'Both'} onChange={this.handleInterestedInChange} />
                 </form>
                 <div className='age_range' >
-                <h2 className='age_range_h2' >Age range </h2>
-                <div className='agerange'>0</div>
-                <div className='ageRange'>{ageRange}</div>
-                    <Slider
-                        min={0}
-                        max={20}
-                        value={ageRange}
-                        step={1}
-                        orientation={'horizontal'}
-                        tooltip={true}
-                        onChangeStart={this.handleChangeStartAge}
-                        onChange={this.handleChangeAge}
-                        onChangeComplete={this.handleChangeCompleteAge}
-                    />                  
+                    <h2 className='age_range_h2' >Age range </h2>
+                    <InputRange
+                        maxValue={20}
+                        minValue={0}
+                        value={this.state.value}
+                        onChangeStart={this.handleChangeAgeStart}
+                        onChange={this.handleChangeAge} 
+                        onChangeComplete={this.handleChangeAgeComplete} />
                 </div>
                 <form className='reason' >
-                    <h2 className='reason_h2' >Play Dates</h2><input type='radio' value='Play dates' checked={this.state.reason === 'Play dates'} onChange={this.handleReasonChange} />
-                    <h2 className='reason_h2'>Breeding</h2><input type='radio' value='Breeding' checked={this.state.reason === 'Breeding'} onChange={this.handleReasonChange} />
+                    <label className='reason_label' >Play Dates</label><input className='radio_button' type='radio' value='Play dates' checked={this.state.reason === 'Play dates'} onChange={this.handleReasonChange} />
+                    <label className='reason_label'>Breeding</label><input className='radio_button' type='radio' value='Breeding' checked={this.state.reason === 'Breeding'} onChange={this.handleReasonChange} />
                 </form>
                 <div className='delete_account_container' >
-                    <button className='delete_account_button' onClick={() => {this.deleteAccount(this.props.dog.dog_id)}}>Delete my account</button>
+                    <button className='delete_account_button' onClick={() => { this.deleteAccount(this.props.dog.dog_id) }}>Delete my account</button>
                 </div>
             </div>
         );

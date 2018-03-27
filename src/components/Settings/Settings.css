@@ -65,11 +65,13 @@
     display: flex;
     flex-direction: row;
     background: #FFFFFF;
-    margin-bottom: 6.5%;;;
+    margin-bottom: 6.5%;
+    height: 9vh;
 }
 
-.male_or_female_h2 {
+.male_or_female_label {
     font-size: 17px;
+    margin-left: 3%;
 }
 
 .age_range {
@@ -96,8 +98,9 @@
     margin-bottom: 6.5%;;
 }
 
-.reason_h2 {
+.reason_label {
     font-size: 17px;
+    margin-left: 3%;
 }
 
 .delete_account_container {
@@ -119,11 +122,11 @@
 
 .radiusRange {
     position: absolute;
-    right: 8%;
+    right: 10%;
     color: #75798C;
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
-    margin-top: -1.75%;
+    margin-top: 0;
 }
 
 .ageRange {
@@ -143,3 +146,4 @@
     font-size: 13px;
     margin-top: -2%;
 }
+
