@@ -17,6 +17,8 @@ import DogCreated from './components/DogCreated/DogCreated'
 import AddDescription from './components/AddDescription/AddDescription'
 
 
+import Geonames from './geonames'
+
 class App extends Component {
   render() {
     return (
@@ -36,6 +38,7 @@ class App extends Component {
             <Route path='/editinfo' component={EditInfo}/>
             <Route path='/dogcreated' component={DogCreated}/>
             <Route path='/adddescription' component={AddDescription}/>
+            <Route path='/geonames' component={Geonames}/>
           </Switch>
        
       </div>
