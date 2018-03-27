@@ -1,18 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-// var Geonames = require('geonames.js')
-
-// const geonames = new Geonames({
-//     username: 'sgueck9',
-//     lan: 'en',
-//     encoding: 'JSON'
-//    });
-
-
-
-
-
 export default class Geonames extends Component{
     constructor() {
         super()
@@ -21,7 +9,7 @@ export default class Geonames extends Component{
           city: ''
         }
     }
-    
+
     componentDidMount(){
         axios.get('http://api.geonames.org/findNearbyPlaceNameJSON?lat=40.2338&lng=-111.6585&username=sgueck9').then(response =>{
             console.log(response)
@@ -32,7 +20,6 @@ export default class Geonames extends Component{
         console.log('this is the component did mount')
 
     }
-    
     
     render(){
         return(
