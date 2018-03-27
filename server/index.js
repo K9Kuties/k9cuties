@@ -63,7 +63,11 @@ app.get('/auth/me', (req, res) => {
     if (!req.user) {
         res.status(404).send('Not There Bruh')
     } else {
-        res.status(200).send(req.user);
+        const db = app.get('db');
+        console.log(req.user.id)
+        db.get_dog([req.user.id]).then(response => {
+            res.status(200).send({user: req.user, response});
+        })
     }
 })
 app.get('/logout', (req, res) => {
@@ -92,9 +96,8 @@ app.post('/api/messages/:userOne/:userTwo', (req, res) => {
 app.post('/api/submitNewDog', (req, res) => {
     let { userId, dogName, dogBreed, dogAge, dogGender, latitude, longitude } = req.body;
     let location =`SRID=4326;POINT(${longitude} ${latitude})`;
-    console.log(location)
     const db = req.app.get('db');
-    db.submit_new_dog([userId, dogName, dogBreed, dogAge, dogGender, location]).then(response => {
+    db.submit_new_dog([userId, dogName, dogBreed, dogAge, dogGender, location, latitude, longitude]).then(response => {
         res.status(200).send(response)
     })
 })
@@ -175,6 +178,15 @@ app.put('/api/updateReason/:id', (req, res) => {
     })
 })
 
+app.put('/api/updateRange/:id', (req, res) => {
+    let { id } = req.params;
+    let { min, max } = req.body.range;
+    const db = req.app.get('db');
+    db.update_range([id, min, max]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
 app.get('/api/getDog/:id', (req, res) => {
     let { id } = req.params;
     const db = req.app.get('db');
@@ -182,16 +194,6 @@ app.get('/api/getDog/:id', (req, res) => {
         res.status(200).send(response)
     })
 })
-
-// app.put('/api/getLocation/:id', (req, res) => {
-//     let { id } = req.params;
-//     let { latitude, longitude } = req.body.location.coords;
-//     console.log(id, latitude, longitude);
-//     const db = req.app.get('db');
-//     db.get_location([id, latitude, longitude]).then(response => {
-//         res.status(200).send(response)
-//     })
-// })
 
 app.delete('/api/deleteAccount/:id', (req, res) => {
     let { id } = req.params;
