@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './Swiping.css';
 import Swipeable from 'react-swipeable';
+import { connect } from 'react-redux';
+import { getUser, getDog } from './../../ducks/users';
+import axios from 'axios';
 
 class Swiping extends Component {
   constructor() {
@@ -16,7 +19,15 @@ class Swiping extends Component {
   }
 
   componentDidMount() {
-
+    axios.get('/auth/me').then(res => {
+      this.props.getUser(res.data.user);
+      axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
+          this.props.getDog(res.data[0])
+          let swipeArray = axios.get(`/api/getSwipeArray/${res.data[0].dog_id}/${res.data[0].latitude}/${res.data[0].longitude}/${res.data[0].radius}`).then(res => {
+              console.log(res)
+          })
+      })
+    })
   }
 
   swiping(e, deltaX, deltaY, absX, absY, velocity) {
@@ -67,7 +78,6 @@ class Swiping extends Component {
           </Swipeable>)
       })
 
-console.log(this.cardStack)
     return (
       <div className="Swiping">
         <header className="Swiping-header">
@@ -84,4 +94,12 @@ console.log(this.cardStack)
   }
 }
 
-export default Swiping;
+function mapStateToProps(state) {
+  return {
+    dogsToDisplay: state.dogsToDisplay,
+    user: state.user,
+    dog: state.dog
+  }
+}
+
+export default connect(mapStateToProps, { getUser, getDog })(Swiping);

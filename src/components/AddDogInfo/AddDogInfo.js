@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './AddDogInfo.css'
+import './AddDogInfo.css';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getUser, submitNewDog } from './../../ducks/users';
@@ -21,28 +22,33 @@ class AddDogInfo extends Component {
     }
 
     componentDidMount() {
-        this.props.getUser(this.props.history);
+        axios.get('/auth/me').then(res => {
+            if (res.data.response[0]) {
+                this.props.history.push('/swiping');
+                this.props.getUser(res.data.user)
+            } else {
+                this.props.getUser(res.data.user);
+            }
+        })
         this.getMyLocation();
     }
     
     getMyLocation() {
     const location = window.navigator && window.navigator.geolocation
-    
-    if (location) {
-        location.getCurrentPosition((position) => {
-        this.setState({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-        })
-        }, (error) => {
-        this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
-        })
-    }
-
+        if (location) {
+            location.getCurrentPosition((position) => {
+            this.setState({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+            })
+            }, (error) => {
+            this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
+            })
+        }
     }
 
     submitNewDog() {
-        console.log(this.state.latitude, this.state.longitude)
+        console.log(this.props.userData.id)
         this.props.submitNewDog({ userId: this.props.userData.id, dogName: this.state.dogName, dogBreed: this.state.dogBreed, dogAge: this.state.dogAge, dogGender: this.state.dogGender, latitude: this.state.latitude, longitude: this.state.longitude })
     }
 

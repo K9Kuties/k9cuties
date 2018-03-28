@@ -1,10 +1,5 @@
 require('dotenv').config();
-const express = require('express'),
-    session = require('express-session'),
-    passport = require('passport'),
-    Auth0Strategy = require('passport-auth0'),
-    massive = require('massive'),
-    bodyParser = require('body-parser');
+
 const {
     SERVER_PORT,
     SESSION_SECRET,
@@ -14,18 +9,33 @@ const {
     CALLBACK_URL,
     CONNECTION_STRING
 } = process.env;
-const app = express();
+
+const express = require('express'),
+    session = require('express-session'),
+    passport = require('passport'),
+    Auth0Strategy = require('passport-auth0'),
+    massive = require('massive'),
+    bodyParser = require('body-parser'),
+    socket = require('socket.io'),
+    app = express(),
+    io = socket(app.listen(SERVER_PORT, () => { console.log(`Listening on port: ${SERVER_PORT}`);}));
+
 app.use(bodyParser.json());
+
 app.use(session({
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true
-}))
+}));
+
 app.use(passport.initialize());
+
 app.use(passport.session());
+
 massive(CONNECTION_STRING).then( db => {
     app.set('db', db);
-})
+});
+
 passport.use(new Auth0Strategy({
     domain: DOMAIN,
     clientID: CLIENT_ID,
@@ -46,34 +56,58 @@ passport.use(new Auth0Strategy({
    })
    
 }));
+
 passport.serializeUser((id, done) => {
     done(null, id);
-})
+});
+
 passport.deserializeUser((id, done) => {
     const db = app.get('db');
     db.find_logged_in_user([id]).then( res => {
         done(null, res[0])
     })
-})
+});
+
 app.get('/auth', passport.authenticate('auth0'));
+
 app.get('/auth/callback', passport.authenticate('auth0', {
     successRedirect: 'http://localhost:3000/#/adddoginfo'
 }));
+
 app.get('/auth/me', (req, res) => {
     if (!req.user) {
         res.status(404).send('Not There Bruh')
     } else {
         const db = app.get('db');
-        console.log(req.user.id)
         db.get_dog([req.user.id]).then(response => {
             res.status(200).send({user: req.user, response});
         })
     }
-})
+});
+
 app.get('/logout', (req, res) => {
     req.logOut();
     res.redirect('http://localhost:3000/')
-})
+});
+
+io.on('connection', socket => {
+    socket.on('join room', data => {
+        socket.join(data.room)
+    })
+
+    socket.on('message sent', function(data) {
+        let { userOne, userTwo, message } = data;
+        let date = new Date()
+        const db = app.get('db');
+        db.submit_message([userOne, userTwo, message, date]).then(response => {
+            io.to(data.room).emit('message dispatched', response)
+        })
+    })
+
+    socket.on('disconnect', () => {
+        
+    })
+});
 
 app.get('/api/messages/:userOne/:userTwo', (req, res) => {
     let { userOne, userTwo } = req.params;
@@ -81,17 +115,7 @@ app.get('/api/messages/:userOne/:userTwo', (req, res) => {
     db.get_messages([userOne, userTwo]).then(response => {
         res.status(200).send(response)
     })
-})
-
-app.post('/api/messages/:userOne/:userTwo', (req, res) => {
-    let { userOne, userTwo } = req.params;
-    let { messageText } = req.body;
-    let date = new Date()
-    const db = req.app.get('db');
-    db.submit_message([userOne, userTwo, messageText, date]).then(response => {
-        res.status(200).send(response)
-    })
-})
+});
 
 app.post('/api/submitNewDog', (req, res) => {
     let { userId, dogName, dogBreed, dogAge, dogGender, latitude, longitude } = req.body;
@@ -100,7 +124,7 @@ app.post('/api/submitNewDog', (req, res) => {
     db.submit_new_dog([userId, dogName, dogBreed, dogAge, dogGender, location, latitude, longitude]).then(response => {
         res.status(200).send(response)
     })
-})
+});
 
 app.put('/api/profileImage/:id', (req, res) => {
     let { url } = req.body;
@@ -109,7 +133,7 @@ app.put('/api/profileImage/:id', (req, res) => {
     db.add_profile_image([id, url]).then(response => {
         res.status(200).send(response)
     })
-})
+});
 
 app.put('/api/image/:id', (req, res) => {
     let { id } = req.params;
@@ -140,7 +164,7 @@ app.put('/api/image/:id', (req, res) => {
             res.status(200).send(response)
         })
     }
-})
+});
 
 app.put('/api/description/:id', (req, res) => {
     let { id } = req.params;
@@ -149,7 +173,7 @@ app.put('/api/description/:id', (req, res) => {
     db.add_description([id, desc]).then(response => {
         res.status(200).send(response)
     })
-})
+});
 
 app.put('/api/updateRadius/:id', (req, res) => {
     let { id } = req.params;
@@ -158,7 +182,7 @@ app.put('/api/updateRadius/:id', (req, res) => {
     db.update_radius([id, radius]).then(response => {
         res.status(200).send(response)
     })
-})
+});
 
 app.put('/api/updateInterestedIn/:id', (req, res) => {
     let { id } = req.params;
@@ -167,7 +191,7 @@ app.put('/api/updateInterestedIn/:id', (req, res) => {
     db.update_interested_in([id, selectedType]).then(response => {
         res.status(200).send(response)
     })
-})
+});
 
 app.put('/api/updateReason/:id', (req, res) => {
     let { id } = req.params;
@@ -176,7 +200,7 @@ app.put('/api/updateReason/:id', (req, res) => {
     db.update_reason([id, reason]).then(response => {
         res.status(200).send(response)
     })
-})
+});
 
 app.put('/api/updateRange/:id', (req, res) => {
     let { id } = req.params;
@@ -185,7 +209,7 @@ app.put('/api/updateRange/:id', (req, res) => {
     db.update_range([id, min, max]).then(response => {
         res.status(200).send(response)
     })
-})
+});
 
 app.get('/api/getDog/:id', (req, res) => {
     let { id } = req.params;
@@ -193,7 +217,15 @@ app.get('/api/getDog/:id', (req, res) => {
     db.get_dog([id]).then(response => {
         res.status(200).send(response)
     })
-})
+});
+
+app.get('/api/getSwipeArray/:id/:latitude/:longitude/:radius', (req, res) => {
+    let { id, latitude, longitude, radius } = req.params;
+    const db = req.app.get('db');
+    db.get_swipe_array([id, latitude, longitude, radius]).then(response => {
+        res.status(200).send(response)
+    })
+});
 
 app.delete('/api/deleteAccount/:id', (req, res) => {
     let { id } = req.params;
@@ -201,9 +233,7 @@ app.delete('/api/deleteAccount/:id', (req, res) => {
     db.delete_account([id]).then(response => {
         res.status(200).send('Dog Account has been deleted')
     })
-})
+});
 
-app.listen(SERVER_PORT, () => {
-    console.log(`Listening on port: ${SERVER_PORT}`);
-})
+
 
