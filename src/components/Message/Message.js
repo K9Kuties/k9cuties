@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Message.css';
 import {connect} from 'react-redux';
-import { getMessages, submitMessage } from './../../ducks/users';
+import { getMessages, updateMessages } from './../../ducks/users';
+import io from 'socket.io-client';
 
 class Message extends Component {
     constructor() {
@@ -12,19 +13,51 @@ class Message extends Component {
       }
       this.submitMessage = this.submitMessage.bind(this)
       this.handleKeyPress = this.handleKeyPress.bind(this)
-    }
-    componentDidMount() {
-      this.props.getMessages(this.props.match.params.userOne, this.props.match.params.userTwo)
+      this.updateMessages = this.updateMessages.bind(this)
+      this.joinRoom = this.joinRoom.bind(this)
     }
 
+  componentDidMount() {
+    this.props.getMessages(this.props.match.params.userOne, this.props.match.params.userTwo)
+    this.socket = io('/');
+    this.socket.on('message dispatched', this.updateMessages);
+    this.joinRoom();
+  }
+
+  updateMessages(messages) {
+    this.props.updateMessages(messages)
+  }
 
   submitMessage() {
-    if (this.state.message) {
-    this.props.submitMessage(this.props.match.params.userOne, this.props.match.params.userTwo, this.state.message)
+    var room;
+    if (+this.props.match.params.userOne > +this.props.match.params.userTwo) {
+      room = `user${this.props.match.params.userOne}chattingwith${this.props.match.params.userTwo}`
+    } else {
+      room = `user${this.props.match.params.userTwo}chattingwith${this.props.match.params.userOne}`
+    }
+    console.log('message sent', this.state.message)
+    this.socket.emit('message sent', {
+      room: room,
+      userOne: this.props.match.params.userOne,
+      userTwo: this.props.match.params.userTwo,
+      message: this.state.message
+    })
+
     this.setState({
       message: ''
     })
   }
+
+  joinRoom() {
+    var room;
+    if (+this.props.match.params.userOne > +this.props.match.params.userTwo) {
+      room = `user${this.props.match.params.userOne}chattingwith${this.props.match.params.userTwo}`
+    } else {
+      room = `user${this.props.match.params.userTwo}chattingwith${this.props.match.params.userOne}`
+    }
+    this.socket.emit('join room', {
+      room: room
+    })
   }
 
   handleKeyPress(e) {
@@ -76,4 +109,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getMessages, submitMessage })(Message);
+export default connect(mapStateToProps, { getMessages, updateMessages })(Message);

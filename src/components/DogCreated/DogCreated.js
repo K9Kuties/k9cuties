@@ -2,57 +2,102 @@ import React, {Component} from 'react';
 import Header from '../Header/Header';
 import './DogCreated.css';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const CLOUDINARYURL = 'https://api.cloudinary.com/v1_1/gexcloud/image/upload'
 const CLOUDINARY_UPLOAD_PRESET = 'yltloitx'
 
-export default class DogCreated extends Component {
-    state ={
-        url1: 'http://cdn.skim.gs/images/c_fill,dpr_1.0,f_auto,fl_lossy,h_391,q_auto,w_695/fajkx3pdvvt9ax6btssg/20-of-the-cutest-small-dog-breeds-on-the-planet'
+class DogCreated extends Component {
+    constructor () {
+        super()
+        this.state = {
+            mainPicture: ''
+        }
+        this.changePictureLeft = this.changePictureLeft.bind(this)
+        this.changePictureRight = this.changePictureRight.bind(this)
     }
-    fileSelectedHandler = event => {
+
+    componentDidMount() {
         this.setState({
-            selectedFile: event.target.files[0]
+            mainPicture: this.props.dog.img1
         })
-        setTimeout(() => {
-            const fd = new FormData()
-            fd.append('file', this.state.selectedFile)
-            fd.append('upload_preset', CLOUDINARY_UPLOAD_PRESET )
-            axios({
-                url: CLOUDINARYURL,
-                method: 'POST',
-                headers:{
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                data: fd
-            }).then((res)=>{
-                console.log(res)
-                this.setState({
-                    url1: res.data.secure_url
-                })
-              
-            })  
-        }, 1);
-    
     }
+
+    changePictureLeft() {
+        if (this.state.mainPicture === this.props.dog.img1) {
+            this.setState({
+                mainPicture: this.props.dog.img1
+            })
+        } else if (this.state.mainPicture === this.props.dog.img2) {
+            this.setState({
+                mainPicture: this.props.dog.img1
+            })
+        } else if (this.state.mainPicture === this.props.dog.img3) {
+            this.setState({
+                mainPicture: this.props.dog.img2
+            })
+        } else if (this.state.mainPicture === this.props.dog.img4) {
+            this.setState({
+                mainPicture: this.props.dog.img3
+            })
+        } else if (this.state.mainPicture === this.props.dog.img5) {
+            this.setState({
+                mainPicture: this.props.dog.img4
+            })
+        } else if (this.state.mainPicture === this.props.dog.img6) {
+            this.setState({
+                mainPicture: this.props.dog.img5
+            })
+        }
+    }
+
+    changePictureRight() {
+        if (this.state.mainPicture === this.props.dog.img1) {
+            this.setState({
+                mainPicture: this.props.dog.img2
+            })
+        } else if (this.state.mainPicture === this.props.dog.img2) {
+            this.setState({
+                mainPicture: this.props.dog.img3
+            })
+        } else if (this.state.mainPicture === this.props.dog.img3) {
+            this.setState({
+                mainPicture: this.props.dog.img4
+            })
+        } else if (this.state.mainPicture === this.props.dog.img4) {
+            this.setState({
+                mainPicture: this.props.dog.img5
+            })
+        } else if (this.state.mainPicture === this.props.dog.img5) {
+            this.setState({
+                mainPicture: this.props.dog.img6
+            })
+        } else if (this.state.mainPicture === this.props.dog.img6) {
+            this.setState({
+                mainPicture: this.props.dog.img6
+            })
+        }
+    }
+
     render(){
         return(
             <div className='dogCreatedMain'>
                 <Header/>   
                 <div className='awesome'>AWESOME! Your dog is all set up :)</div>
                 <div className='photoContainer'>
-                    <img className='dogImage' src={this.state.url1}></img>
+                    <img className='dogImage' src={this.state.mainPicture}></img>
+                    <div className='left_picture' onClick={this.changePictureLeft} >Left</div>
+                    <div className='right_picture' onClick={this.changePictureRight} >Right</div>
                     <div className='nameAndSettings'>
-                            <div className='dogCreatedName'>DogName, Age</div>
-                        <label htmlFor='file-upload' className='dogCreatedUploadContainer1'>
-                        i
-                            <input type='file'onChange={this.fileSelectedHandler} style={{display:'none'}} id='file-upload'/>
-                        </label>
+                            <div className='dogCreatedName'>{this.props.dog.name}</div>
+                            <div className='dogCreateBreed'>{this.props.dog.breed}</div> 
+                            <div className='dogCreatedGender'>{this.props.dog.gender}</div> 
+                            <div className='dogCreatedAge'>{this.props.dog.age}</div>
                     </div>
                 </div>
                 <div className='dogDescContainer'>
-                    <div className='dogDesc'>This is my dog description and it is all about my dawg!! My dog is awesome and he is a very good boy!! I just love my dog and YOU WILL TOO! Trust me! I know! If not you kind of blow hard man</div>
+                    <div className='dogDesc'>{this.props.dog.description}</div>
                 </div>
                 <Link to='/swiping'><button className='dogCreatedFinish'>Finish</button></Link>
                 <Link to='/adddescription'><button className='dogCreatedBack'>Back</button></Link>
@@ -60,3 +105,11 @@ export default class DogCreated extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        dog: state.dog
+    }
+}
+
+export default connect(mapStateToProps)(DogCreated);

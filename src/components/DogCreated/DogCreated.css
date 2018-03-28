@@ -125,3 +125,15 @@
     display: flex;
     flex-direction: row;
 }
+
+.left_picture {
+    position: absolute;
+    left: 8vw;
+    top: 38%;
+}
+
+.right_picture {
+    position: absolute;
+    right: 8vw;
+    top: 38%;
+}
