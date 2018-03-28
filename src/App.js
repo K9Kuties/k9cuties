@@ -20,6 +20,7 @@ import AddDescription from './components/AddDescription/AddDescription'
 import Geonames from './geonames'
 
 class App extends Component {
+  
   render() {
     return (
       <div className="App">
