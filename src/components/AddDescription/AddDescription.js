@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import Header from '../Header/Header';
+import axios from 'axios';
 import './AddDescription.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { submitDescription } from './../../ducks/users';
+import { submitDescription, getUser, getDog } from './../../ducks/users';
 
 class AddDescription extends Component {
     constructor() {
@@ -12,6 +13,15 @@ class AddDescription extends Component {
             description: ''
         }
         this.submitDescription = this.submitDescription.bind(this);
+    }
+
+    componentDidMount() {
+        axios.get('/auth/me').then(res => {
+            this.props.getUser(res.data.user);
+            axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
+                this.props.getDog(res.data[0])
+            })
+        })
     }
 
     submitDescription() {
@@ -52,4 +62,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { submitDescription })(AddDescription);
+export default connect(mapStateToProps, { submitDescription, getUser, getDog })(AddDescription);

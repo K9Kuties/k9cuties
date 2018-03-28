@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Swiping.css';
 import Swipeable from 'react-swipeable';
 import { connect } from 'react-redux';
+import { getUser, getDog } from './../../ducks/users';
 import axios from 'axios';
 
 class Swiping extends Component {
@@ -17,11 +18,14 @@ class Swiping extends Component {
     this.swiped = this.swiped.bind(this)
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps.user.id)
-    axios.get(`/api/getDog/${nextProps.user.id}`).then(res => {
-      let swipeArray = axios.get(`/api/getSwipeArray/${res.data[0].dog_id}/${res.data[0].latitude}/${res.data[0].longitude}/${res.data[0].radius}`).then(res => {
-        console.log(res)
+  componentDidMount() {
+    axios.get('/auth/me').then(res => {
+      this.props.getUser(res.data.user);
+      axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
+          this.props.getDog(res.data[0])
+          let swipeArray = axios.get(`/api/getSwipeArray/${res.data[0].dog_id}/${res.data[0].latitude}/${res.data[0].longitude}/${res.data[0].radius}`).then(res => {
+              console.log(res)
+          })
       })
     })
   }
@@ -74,7 +78,6 @@ class Swiping extends Component {
           </Swipeable>)
       })
 
-console.log(this.cardStack)
     return (
       <div className="Swiping">
         <header className="Swiping-header">
@@ -99,4 +102,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Swiping);
+export default connect(mapStateToProps, { getUser, getDog })(Swiping);
