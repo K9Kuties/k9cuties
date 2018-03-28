@@ -4,6 +4,7 @@ import './DogCreated.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getUser, getDog } from './../../ducks/users';
 
 const CLOUDINARYURL = 'https://api.cloudinary.com/v1_1/gexcloud/image/upload'
 const CLOUDINARY_UPLOAD_PRESET = 'yltloitx'
@@ -19,8 +20,14 @@ class DogCreated extends Component {
     }
 
     componentDidMount() {
-        this.setState({
-            mainPicture: this.props.dog.img1
+        axios.get('/auth/me').then(res => {
+            this.props.getUser(res.data.user);
+            axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
+                this.props.getDog(res.data[0])
+                this.setState({
+                    mainPicture: res.data[0].img1
+                })
+            })
         })
     }
 
@@ -112,4 +119,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(DogCreated);
+export default connect(mapStateToProps, { getUser, getDog })(DogCreated);

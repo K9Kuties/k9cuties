@@ -4,14 +4,13 @@ import { Link } from 'react-router-dom';
 import './photospage.css';
 import poochpals from '../../@0.5xpoochpals.svg';
 import { connect } from 'react-redux';
-import { addImage, submitDescription } from './../../ducks/users';
+import { addImage, submitDescription, getUser, getDog } from './../../ducks/users';
 import Header from '../Header/Header';
 
 
 const CLOUDINARYURL = 'https://api.cloudinary.com/v1_1/gexcloud/image/upload'
     , CLOUDINARY_UPLOAD_PRESET = 'yltloitx'
     , imgPreview = document.getElementById('img-preview');
-
 
 class Photospage extends Component {
     constructor() {
@@ -28,8 +27,14 @@ class Photospage extends Component {
     }
 
     componentDidMount() {
-        this.setState({
-            url1: this.props.dog.img1
+        axios.get('/auth/me').then(res => {
+            this.props.getUser(res.data.user);
+            axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
+                this.props.getDog(res.data[0])
+                this.setState({
+                    url1: this.props.dog.img1
+                })
+            })
         })
     }
 
@@ -136,4 +141,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { addImage, submitDescription })(Photospage);
+export default connect(mapStateToProps, { addImage, submitDescription, getUser, getDog })(Photospage);

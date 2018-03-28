@@ -4,21 +4,20 @@ import axios from 'axios';
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css';
 import { connect } from 'react-redux';
-import { getDog, updateRadius, updateInterestedIn, updateReason, updateRange } from './../../ducks/users';
+import { updateRadius, updateInterestedIn, updateReason, updateRange, getUser, getDog } from './../../ducks/users';
 import BackArrow from '../../back-arrow.svg';
 import InputRange from 'react-input-range';
 import '../../react-input-range.css';
-
 
 class Settings extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            radiusRange: this.props.dog.radius,
-            value: { min: this.props.dog.age_begin, max: this.props.dog.age_end },
-            reason: this.props.dog.reason,
-            selectedType: this.props.dog.interested_in
+            radiusRange: 0,
+            value: { min: 0, max: 0 },
+            reason: '',
+            selectedType: ''
         }
 
         this.handleInterestedInChange = this.handleInterestedInChange.bind(this);
@@ -27,14 +26,18 @@ class Settings extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/api/getDog/${this.props.user.id}`).then(res => {
-            this.setState({
-                selectedType: res.data[0].interested_in,
-                reason: res.data[0].reason,
-                value: { min: res.data[0].age_begin, max: res.data[0].age_end },
-                radiusRange: res.data[0].radius
+        axios.get('/auth/me').then(res => {
+            this.props.getUser(res.data.user);
+            axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
+                this.props.getDog(res.data[0])
+                this.setState({
+                    selectedType: res.data[0].interested_in,
+                    reason: res.data[0].reason,
+                    value: { min: res.data[0].age_begin, max: res.data[0].age_end },
+                    radiusRange: res.data[0].radius
+                })
+                this.props.getDog(res.data[0])
             })
-            this.props.getDog(res.data[0])
         })
     }
 
@@ -90,9 +93,6 @@ class Settings extends Component {
 
     render() {
 
-        const { radiusRange } = this.state;
-        const { ageRange } = this.state;
-
         return (
             <div className="Settings">
                 <div className='settings_header' >
@@ -104,11 +104,11 @@ class Settings extends Component {
                 </div>
                 <div className='radius' >
                     <h2 className='radius_h2' >Search radius</h2>
-                    <div className='radiusRange'>within {radiusRange} miles</div>
+                    <div className='radiusRange'>within {this.state.radiusRange} miles</div>
                     <Slider
                         min={0}
                         max={100}
-                        value={radiusRange}
+                        value={this.state.radiusRange}
                         step={1}
                         orientation={'horizontal'}
                         tooltip={true}
@@ -133,10 +133,10 @@ class Settings extends Component {
                         onChangeComplete={this.handleChangeAgeComplete} />
                 </div>
                 <form className='reason' >
-                    <label className='reason_label' >Play Dates</label><input className='radio_button' type='radio' value='Play dates' checked={this.state.reason === 'Play dates'} onChange={this.handleReasonChange} />
+                    <label className='reason_label'>Play Dates</label><input className='radio_button' type='radio' value='Play dates' checked={this.state.reason === 'Play dates'} onChange={this.handleReasonChange} />
                     <label className='reason_label'>Breeding</label><input className='radio_button' type='radio' value='Breeding' checked={this.state.reason === 'Breeding'} onChange={this.handleReasonChange} />
                 </form>
-                <div className='delete_account_container' >
+                <div className='delete_account_container'>
                     <button className='delete_account_button' onClick={() => { this.deleteAccount(this.props.dog.dog_id) }}>Delete my account</button>
                 </div>
             </div>
@@ -151,4 +151,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getDog, updateRadius, updateInterestedIn, updateReason, updateRange })(Settings);
+export default connect(mapStateToProps, { updateRadius, updateInterestedIn, updateReason, updateRange, getUser, getDog })(Settings);

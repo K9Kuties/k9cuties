@@ -22,16 +22,8 @@ const UPDATE_INTERESTED_IN = 'UPDATE_INTERESTED_IN';
 const UPDATE_REASON = 'UPDATE_REASON';
 const UPDATE_RANGE = 'UPDATE_RANGE';
 
-export function getUser(history) {
-    const user = axios.get('/auth/me').then(res => {
-        if (res.data.response[0]) {
-            history.push('/swiping');
-            return res.data.user;
-        } else {
-            return res.data.user;
-        }
-    })
-
+export function getUser(user) {
+    console.log(user)
     return {
         type: GET_USER,
         payload: user
@@ -112,6 +104,7 @@ export function updateRadius(id, radius) {
 }
 
 export function getDog(dog) {
+    console.log(dog)
     return {
         type: GET_DOG,
         payload: dog
@@ -153,8 +146,6 @@ export function updateReason(id, reason) {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case GET_USER + '_FULFILLED':
-            return Object.assign({}, state, { user: action.payload });
         case GET_MESSAGES + '_FULFILLED':
             return Object.assign({}, state, { messages: action.payload });
         case SUBMIT_NEW_DOG + '_FULFILLED':
@@ -172,7 +163,9 @@ export default function reducer(state = initialState, action) {
         case UPDATE_REASON + '_FULFILLED':
             return Object.assign({}, state, { dog: action.payload });
         case UPDATE_MESSAGES:
-            return Object.assign({}, state, { messages: action.payload })
+            return Object.assign({}, state, { messages: action.payload });
+        case GET_USER:
+            return Object.assign({}, state, { user: action.payload });
         case GET_DOG:
             return Object.assign({}, state, { dog: action.payload });
         default:
