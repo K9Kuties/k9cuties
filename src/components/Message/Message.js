@@ -24,8 +24,6 @@ class Message extends Component {
     this.joinRoom();
   }
 
-<<<<<<< HEAD
-=======
   scrollToBottom() {
     const scrollHeight = this.messageList.scrollHeight;
     const height = this.messageList.clientHeight;
@@ -37,7 +35,6 @@ class Message extends Component {
     this.scrollToBottom()
   }
 
->>>>>>> master
   updateMessages(messages) {
     this.props.updateMessages(messages)
   }
@@ -49,10 +46,6 @@ class Message extends Component {
     } else {
       room = `user${this.props.match.params.userTwo}chattingwith${this.props.match.params.userOne}`
     }
-<<<<<<< HEAD
-    console.log('message sent', this.state.message)
-=======
->>>>>>> master
     this.socket.emit('message sent', {
       room: room,
       userOne: this.props.match.params.userOne,
