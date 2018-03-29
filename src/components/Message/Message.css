@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500');
 
-
 .message {
     width: 100vw;
     height: 100vh;
@@ -31,7 +30,10 @@
     height: 80%;
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
+    overflow-y: auto;
+    overflow-x: hidden;
+    top: 10%;
 }
 
 .chat_input {
@@ -67,14 +69,10 @@
     color: white;
     background: rgb(71, 25, 255);
     border-radius: 22px;
-    margin: 20px 20px 0 0;
+    margin: 10px 20px 10px 0;
     align-self: flex-end;
     position: relative;
     text-align: left;
-}
-
-.chat_entry_me p {
-    max-width: 60%;
 }
 
 .chat_entry_me:before {
@@ -108,7 +106,7 @@
     background:#E5E5EA;
     border-radius: 25px;
     color: black;
-    margin: 20px 0 0 20px;
+    margin: 10px 0 10px 20px;
     align-self: flex-start;
     position: relative;
     text-align: left;
