@@ -3,7 +3,7 @@ import axios from 'axios';
 import './UploadImage.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addProfileImage } from './../../ducks/users';
+import { addProfileImage, getUser, getDog } from './../../ducks/users';
 import Header from '../Header/Header';
 
 const CLOUDINARYURL = 'https://api.cloudinary.com/v1_1/gexcloud/image/upload'
@@ -17,6 +17,15 @@ class Photos extends Component {
             selectedFile: null,
             url: 'http://i67.tinypic.com/nd4dnl.jpg'
         }
+    }
+
+    componentDidMount() {
+        axios.get('/auth/me').then(res => {
+            this.props.getUser(res.data.user);
+            axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
+                this.props.getDog(res.data[0])
+            })
+        })
     }
 
     fileSelectedHandler = event => {
@@ -64,7 +73,7 @@ class Photos extends Component {
                 <div className='add_dog_info_dots' >
                     <div className='add_dog_info_dot_blue'></div>
                     <div className='add_dog_info_dot_blue'></div>
-                    <div className='add_dog_info_dot_blue'></div>
+                    <div className='add_dog_info_dot_grey'></div>
                     <div className='add_dog_info_dot_grey'></div>
                 </div>
 
@@ -79,4 +88,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { addProfileImage })(Photos);
+export default connect(mapStateToProps, { addProfileImage, getUser, getDog })(Photos);

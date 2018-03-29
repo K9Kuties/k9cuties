@@ -4,12 +4,13 @@ const initialState = {
     user: {},
     messages: [],
     matches: [],
-    dog: {}
+    dog: {},
+    dogsToDisplay: []
 }
 
 const GET_USER = 'GET_USER';
 const GET_MESSAGES = 'GET_MESSAGES';
-const SUBMIT_MESSAGE = 'SUBMIT_MESSAGE';
+const UPDATE_MESSAGES = 'UPDATE_MESSAGES';
 const SUBMIT_NEW_DOG = 'SUBMIT_NEW_DOG';
 const ADD_PROFILE_IMAGE = 'ADD_PROFILE_IMAGE';
 const ADD_IMAGE = 'ADD_IMAGE';
@@ -19,13 +20,10 @@ const GET_DOG = 'GET_DOG';
 const UPDATE_AGE = 'UPDATE_AGE';
 const UPDATE_INTERESTED_IN = 'UPDATE_INTERESTED_IN';
 const UPDATE_REASON = 'UPDATE_REASON';
-// const GET_LOCATION = 'GET_LOCATION';
+const UPDATE_RANGE = 'UPDATE_RANGE';
 
-export function getUser() {
-    const user = axios.get('/auth/me').then(res => {
-        return res.data;
-    })
-
+export function getUser(user) {
+    console.log(user)
     return {
         type: GET_USER,
         payload: user
@@ -43,14 +41,10 @@ export function getMessages(userOne, userTwo) {
     }
 }
 
-export function submitMessage(userOne, userTwo, messageText) {
-    const messages = axios.post('/api/messages/' + userOne + '/' + userTwo, { messageText: messageText }).then(res => {
-        return res.data;
-    })
-
+export function updateMessages(updatedMessages) {
     return {
-        type: SUBMIT_MESSAGE,
-        payload: messages
+        type: UPDATE_MESSAGES,
+        payload: updatedMessages
     }
 }
 
@@ -117,15 +111,15 @@ export function getDog(dog) {
     }
 }
 
-export function updateAge(id, age) {
-    // const dog = axios.put(`/api/updateAge${id}`, { age }).then(res => {
-    //     return res.data[0]
-    // })
+export function updateRange(id, range) {
+    const dog = axios.put(`/api/updateRange/${id}`, { range }).then(res => {
+        return res.data[0]
+    })
 
-    // return {
-    //     type: UPDATE_AGE,
-    //     payload: dog
-    // }
+    return {
+        type: UPDATE_RANGE,
+        payload: dog
+    }
 }
 
 export function updateInterestedIn(id, selectedType) {
@@ -150,34 +144,9 @@ export function updateReason(id, reason) {
     }
 }
 
-// export function getLocation() {
-//     const geolocation = navigator.geolocation;
-
-//     const location = new Promise((resolve, reject) => {
-//         if (!geolocation) {
-//             reject(new Error('Not Supported'));
-//         }
-
-//         geolocation.getCurrentPosition((position) => {
-//             resolve(position);
-//         }, () => {
-//             reject(new Error('Permission denied'));
-//         });
-//     });
-
-//     return {
-//         type: GET_LOCATION,
-//         payload: location
-//     }
-// }
-
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case GET_USER + '_FULFILLED':
-            return Object.assign({}, state, { user: action.payload });
         case GET_MESSAGES + '_FULFILLED':
-            return Object.assign({}, state, { messages: action.payload });
-        case SUBMIT_MESSAGE + '_FULFILLED':
             return Object.assign({}, state, { messages: action.payload });
         case SUBMIT_NEW_DOG + '_FULFILLED':
             return Object.assign({}, state, { dog: action.payload });
@@ -189,14 +158,16 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { dog: action.payload });
         case UPDATE_RADIUS + '_FULFILLED':
             return Object.assign({}, state, { dog: action.payload });
-        case UPDATE_AGE + '_FULFILLED':
+        case UPDATE_RANGE + '_FULFILLED':
             return Object.assign({}, state, { dog: action.payload });
         case UPDATE_REASON + '_FULFILLED':
             return Object.assign({}, state, { dog: action.payload });
+        case UPDATE_MESSAGES:
+            return Object.assign({}, state, { messages: action.payload });
+        case GET_USER:
+            return Object.assign({}, state, { user: action.payload });
         case GET_DOG:
             return Object.assign({}, state, { dog: action.payload });
-        // case GET_LOCATION:
-        //     return Object.assign({}, state, { location: action.payload });
         default:
         return state;
     }
