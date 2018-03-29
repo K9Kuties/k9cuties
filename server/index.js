@@ -92,7 +92,6 @@ app.post('/api/messages/:userOne/:userTwo', (req, res) => {
 app.post('/api/submitNewDog', (req, res) => {
     let { userId, dogName, dogBreed, dogAge, dogGender, latitude, longitude } = req.body;
     let location =`SRID=4326;POINT(${longitude} ${latitude})`;
-    console.log(location)
     const db = req.app.get('db');
     db.submit_new_dog([userId, dogName, dogBreed, dogAge, dogGender, location]).then(response => {
         res.status(200).send(response)
@@ -182,16 +181,6 @@ app.get('/api/getDog/:id', (req, res) => {
         res.status(200).send(response)
     })
 })
-
-// app.put('/api/getLocation/:id', (req, res) => {
-//     let { id } = req.params;
-//     let { latitude, longitude } = req.body.location.coords;
-//     console.log(id, latitude, longitude);
-//     const db = req.app.get('db');
-//     db.get_location([id, latitude, longitude]).then(response => {
-//         res.status(200).send(response)
-//     })
-// })
 
 app.delete('/api/deleteAccount/:id', (req, res) => {
     let { id } = req.params;

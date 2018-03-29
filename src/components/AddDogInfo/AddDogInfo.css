@@ -79,6 +79,7 @@
 
 
 .add_dog_info_next_button {
+    outline: none;
     letter-spacing: 1px;
     height: 54px;
     width: 80vw;

@@ -33,6 +33,7 @@
 }
 
 .login_button {
+    outline: none;
     height: 54px;
     width: 87vw;
     border: none;
