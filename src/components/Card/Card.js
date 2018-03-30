@@ -36,6 +36,7 @@ export default class Card extends Component {
      var x = (parseFloat(this.state.x) || 0) + event.dx,
          y = (parseFloat(this.state.y) || 0) + event.dy;
      // update the posiion attributes
+     console.log(x, y)
      this.setState({x, y})
    }
 
@@ -48,12 +49,12 @@ export default class Card extends Component {
     console.log('card', card)
     let leftBound = window.innerWidth/4.65
     //window.innerWidth = width of screen
-    let rightBound = window.innerWidth/1.3
+    let rightBound = window.innerWidth/1.4
     console.log('rightBound', rightBound)
-
 
     //did not swipe
     if (positionX < rightBound && positionX > leftBound) {
+      console.log(positionX, rightBound, positionX, leftBound)
         var coords = {x: this.state.x, y: this.state.y }
         var tween = new TWEEN.Tween(coords)
         tween.to({ x: 0, y: 0 }, 250)
@@ -79,6 +80,7 @@ export default class Card extends Component {
     let {x, y} = this.state
     let cardStyle = {
         transform: 'translate(' + x + 'px, ' + y + 'px)',
+        touchAction: 'none'
     }
 
     return <div id={"poop"+ this.props.idx} className="Card" style={cardStyle} >
