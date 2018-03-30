@@ -11,7 +11,7 @@ export default class Profile extends Component {
                 <button className='settingsBut'>Settings</button>
                 <button className='editBut'>Edit</button>
               </div>
-              <button className='logBut'>Logout</button>
+              <a href='http://localhost:3005/logout' ><button className='logBut' >Logout</button></a>
 
           </div>
       )
