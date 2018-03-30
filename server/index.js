@@ -87,7 +87,7 @@ app.get('/auth/me', (req, res) => {
 
 app.get('/logout', (req, res) => {
     req.logOut();
-    res.redirect('http://localhost:3000/')
+    res.redirect('http://localhost:3000/#/')
 });
 
 io.on('connection', socket => {
@@ -226,6 +226,14 @@ app.get('/api/getSwipeArray/:id/:latitude/:longitude/:radius', (req, res) => {
         res.status(200).send(response)
     })
 });
+
+app.get('/api/getMatches/:id', (req, res) => {
+    let { id } = req.params;
+    const db = req.app.get('db');
+    db.get_matches([id]).then(response => {
+        res.status(200).send(response)
+    })
+})
 
 app.delete('/api/deleteAccount/:id', (req, res) => {
     let { id } = req.params;

@@ -1,138 +1,66 @@
 import React, { Component } from 'react';
 import './Matches.css';
+import axios from 'axios';
 import ChatLogo from '../../chat.svg';
 import PawLogo from '../../paw.svg';
 import NoDogs from '../../no-dogs.svg';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getMatches, getUser, getDog } from './../../ducks/users';
 
 
 class Matches extends Component {
-    // constructor(props) {
-    //     super(props);
+    constructor(props) {
+        super(props);
 
-    //     this.state = {
+        this.state = {
 
-    //     }
-    // }
+        }
+    }
 
-
-    //functionality
-
+    componentDidMount() {
+        axios.get('/auth/me').then(res => {
+            this.props.getUser(res.data.user);
+            axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
+                this.props.getDog(res.data[0])
+                this.props.getMatches(res.data[0].dog_id)
+            })
+        })
+    }
 
     render() {
-
-        // var something = this.state.something_else.map( (val, i) => {
-        //     return (
-        //         <div key={i} className='matches_container' >
-        //             <div className='user_image' >{val.user_image}</div>
-        //             <div className='user_name' >{val.user_name}</div>
-        //         </div>
-        //     )
-        // })
+        
+        var matches = this.props.matches.map( (val, i) => {
+            return (
+                <Link key={i} to={`/message/${this.props.dog.dog_id}/${val.dog_id}`}><div className='matches_container' >
+                    <img className='user_image' src={val.img1}></img>
+                    <div className='user_name' >{val.name}</div>
+                </div></Link>
+            )
+        })
 
         return (
-            'return'
-            //   <div className="Matches">
+           
+            <div className="Matches">
 
-            //     {this.state.something_else.length ? something : 
+                <div className='header' >
+                        <Link to='/swiping'><img className='paw_svg' src={PawLogo} alt='paw logo' /></Link>
+                        <img className='chat_svg' src={ChatLogo} alt='chat logo' />
+                </div>
 
-            //     <div className='header' >
-            //         <a><img className='paw_svg' src={PawLogo} alt='paw logo' /></a>
-            //         <img className='chat_svg' src={ChatLogo} alt='chat logo' />
-            //     </div>
-
-            //     <div className='no_matches' >
-            //         <h1 className='no_matches_h1' >Looks like you don't have any matches yet :( </h1>
-            //         <img className='no_dogs' src={NoDogs} alt='no dogs' />
-            //     </div>
-            //     }
-
-            //   </div>
-
-
-
-            //Hardcoded sample JSX
-
-            // <div className='Matches' >
-            //     <div className='header' >
-            //         <a><img className='paw_svg' src={PawLogo} alt='paw logo' /></a>
-            //         <img className='chat_svg' src={ChatLogo} alt='chat logo' />
-            //     </div>
-            //     <div className='matches_container' >
-            //         <div className='user_image' ></div>
-            //         <div className='user_name' >Tannnnnner</div>
-            //     </div>
-            //     <hr />
-            //     <div className='matches_container' >
-            //         <div className='user_image' ></div>
-            //         <div className='user_name' >Matt</div>
-            //     </div>
-            //     <hr />
-            //     <div className='matches_container' >
-            //         <div className='user_image' ></div>
-            //         <div className='user_name' >Steven</div>
-            //     </div>
-            //     <hr />
-            //     <div className='matches_container' >
-            //         <div className='user_image' ></div>
-            //         <div className='user_name' >Alan</div>
-            //     </div>
-            //     <hr />
-            //     <div className='matches_container' >
-            //         <div className='user_image' ></div>
-            //         <div className='user_name' >Tanner</div>
-            //     </div>
-            //     <hr />
-            //     <div className='matches_container' >
-            //         <div className='user_image' ></div>
-            //         <div className='user_name' >Matt</div>
-            //     </div>
-            //     <hr />
-            //     <div className='matches_container' >
-            //         <div className='user_image' ></div>
-            //         <div className='user_name' >Steven</div>
-            //     </div>
-            //     <hr />
-            //     <div className='matches_container' >
-            //         <div className='user_image' ></div>
-            //         <div className='user_name' >Alan</div>
-            //     </div>
-            //     <hr />
-            //     <div className='matches_container' >
-            //         <div className='user_image' ></div>
-            //         <div className='user_name' >Tanner</div>
-            //     </div>
-            //     <hr />
-            //     <div className='matches_container' >
-            //         <div className='user_image' ></div>
-            //         <div className='user_name' >Matt</div>
-            //     </div>
-            //     <hr />
-            //     <div className='matches_container' >
-            //         <div className='user_image' ></div>
-            //         <div className='user_name' >Steven</div>
-            //     </div>
-            //     <hr />
-            //     <div className='matches_container' >
-            //         <div className='user_image' ></div>
-            //         <div className='user_name' >Alannnnn</div>
-            //     </div>
-            //     <hr />
-            // </div>
-            
-
-            // <div className='Matches' >
-            //     <div className='header' >
-            //         <a><img className='paw_svg' src={PawLogo} alt='paw logo' /></a>
-            //         <img className='chat_svg' src={ChatLogo} alt='chat logo' />
-            //     </div>
-            //     <div className='no_matches' >
-            //         <h1 className='no_matches_h1' >Looks like you don't have any matches yet :( </h1>
-            //         <img className='no_dogs' src={NoDogs} alt='no dogs' />
-            //     </div>
-            // </div>
+                <div>{matches}</div>
+            </div>
 
         )
     }
 }
 
-export default Matches;
+function mapStateToProps(state) {
+    return {
+        dog: state.dog,
+        user: state.user,
+        matches: state.matches
+    }
+}
+
+export default connect(mapStateToProps, { getMatches, getUser, getDog })(Matches);

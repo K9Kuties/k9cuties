@@ -107,7 +107,6 @@ class DogCreated extends Component {
                     <div className='dogDesc'>{this.props.dog.description}</div>
                 </div>
                 <Link to='/swiping'><button className='dogCreatedFinish'>Finish</button></Link>
-                <Link to='/adddescription'><button className='dogCreatedBack'>Back</button></Link>
             </div>
         )
     }

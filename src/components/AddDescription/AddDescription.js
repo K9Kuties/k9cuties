@@ -42,7 +42,6 @@ class AddDescription extends Component {
                     <div className='descDesc'>Add a description of your dog</div>
                     <textarea name='text' className='descriptInput' placeholder='Example: Spike loves playing at the park and he loves long walks on the beach' value={this.state.description} onChange={(e) => { this.setState({ description: e.target.value }) }} />
                     <Link to='/dogcreated'><button className='nextBut' onClick={this.submitDescription} >Next</button></Link>
-                    <Link to='/photospage'><button className='backBut'>Back</button></Link>
                 </div>
 
                 <div className='add_dog_info_dots' >
