@@ -5,7 +5,8 @@ const initialState = {
     messages: [],
     matches: [],
     dog: {},
-    dogsToDisplay: []
+    dogsToDisplay: [],
+    matches: []
 }
 
 const GET_USER = 'GET_USER';
@@ -21,6 +22,7 @@ const UPDATE_AGE = 'UPDATE_AGE';
 const UPDATE_INTERESTED_IN = 'UPDATE_INTERESTED_IN';
 const UPDATE_REASON = 'UPDATE_REASON';
 const UPDATE_RANGE = 'UPDATE_RANGE';
+const GET_MATCHES = 'GET_MATCHES';
 
 export function getUser(user) {
     console.log(user)
@@ -144,6 +146,18 @@ export function updateReason(id, reason) {
     }
 }
 
+export function getMatches(id) {
+    const matches = axios.get(`/api/getMatches/${id}`).then(res => {
+        console.log(res.data)
+        return res.data
+    })
+
+    return {
+        type: GET_MATCHES,
+        payload: matches
+    }
+}
+
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_MESSAGES + '_FULFILLED':
@@ -162,6 +176,8 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { dog: action.payload });
         case UPDATE_REASON + '_FULFILLED':
             return Object.assign({}, state, { dog: action.payload });
+        case GET_MATCHES + '_FULFILLED':
+            return Object.assign({}, state, { matches: action.payload })
         case UPDATE_MESSAGES:
             return Object.assign({}, state, { messages: action.payload });
         case GET_USER:
