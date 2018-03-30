@@ -51,6 +51,10 @@ class Swiping extends Component {
         <div className="slide_container">
           <CardDeck cards={this.state.swipeArray} shiftCard={this.shiftCard.bind(this)} />
         </div>
+        <div className='swiping_buttons_container' >
+          <button>X</button>
+          <button>Y</button>
+        </div>
       </div>
     );
   }
