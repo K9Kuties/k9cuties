@@ -217,7 +217,7 @@ app.get('/api/getDog/:id', (req, res) => {
     db.get_dog([id]).then(response => {
         res.status(200).send(response)
     })
-});
+})
 
 app.get('/api/getSwipeArray/:id/:latitude/:longitude/:radius', (req, res) => {
     let { id, latitude, longitude, radius } = req.params;

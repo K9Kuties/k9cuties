@@ -4,18 +4,16 @@ import Swipeable from 'react-swipeable';
 import { connect } from 'react-redux';
 import { getUser, getDog } from './../../ducks/users';
 import axios from 'axios';
+import CardDeck from '../CardDeck/CardDeck';
+
 
 class Swiping extends Component {
   constructor() {
     super()
     this.state = {
-      swipeArray: ['Matt', 'Tanner', "Steven", "Dick", "Jane", "Gertrude", "Billy"],
-      currentSlide: 0
+      swipeArray: [],
+      currentSlide: 0,
     }
-    this.swiping = this.swiping.bind(this)
-    this.swipingRight = this.swipingRight.bind(this)
-    this.swipingLeft = this.swipingLeft.bind(this)
-    this.swiped = this.swiped.bind(this)
   }
 
   componentDidMount() {
@@ -24,70 +22,34 @@ class Swiping extends Component {
       axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
           this.props.getDog(res.data[0])
           let swipeArray = axios.get(`/api/getSwipeArray/${res.data[0].dog_id}/${res.data[0].latitude}/${res.data[0].longitude}/${res.data[0].radius}`).then(res => {
-              console.log(res)
+              console.log(res.data)
+              this.setState({
+                swipeArray: res.data
+              })
           })
       })
     })
   }
 
-  swiping(e, deltaX, deltaY, absX, absY, velocity) {
-  
-  }
- 
-  swipingLeft(e, absX) {
-    // e.target.className = 'swipe-left';  
-  }
-
-  swipingRight(e, absX) {
-    // e.target.className = 'swipe-right';   
-  }
- 
-  swiped(e, deltaX, deltaY, isFlick, velocity) {
-    // if (isFlick) {
-      if (deltaX > 0) {
-        e.target.className = 'swipe-left';
-      } else if (deltaX < 0) {
-        e.target.className = 'swipe-right'; 
-      }
-      let id = e.target.id
-      console.log("You Swiped...", e, deltaX, deltaY, isFlick, velocity)
-      var tempArray = this.state.swipeArray.slice()
-      tempArray.splice(id, 1)
-      setTimeout(() => {
-        this.setState({
-          swipeArray: tempArray
-        })
-      }, 1000)
-    // }
+  shiftCard() {
+    let cards = this.state.swipeArray.slice()
+    cards.splice(0,1)
+    this.setState({
+      swipeArray: cards
+    })
   }
   
   render() {
 
-    this.cardStack = this.state.swipeArray.map((slide, index) => {
-          return (<Swipeable
-            className="card"
-            key={index}
-            id={index}
-            style={{zIndex: index}}
-            onSwiping={this.swiping}
-            onSwipingLeft={this.swipingLeft}
-            onSwipingRight={this.swipingRight}
-            onSwiped={this.swiped}
-            onSwipedUp={this.swipedRight} >
-              {slide}
-          </Swipeable>)
-      })
+    // console.log('this.state.swipearray', this.state.swipeArray)
+    // const cardStack = this.state.swipeArray.map((slide, index) => {
+    //       return 
+    //   })
 
     return (
       <div className="Swiping">
-        <header className="Swiping-header">
-          <h1 className="Swiping-title">Welcome to React</h1>
-        </header>
-        <p className="Swiping-intro">
-          To get started, edit <code>src/Swiping.js</code> and save to reload.
-        </p>
         <div className="slide_container">
-          {this.cardStack}
+          <CardDeck cards={this.state.swipeArray} shiftCard={this.shiftCard.bind(this)} />
         </div>
       </div>
     );
