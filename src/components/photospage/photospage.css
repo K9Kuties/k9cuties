@@ -24,8 +24,8 @@
 }
 
 .dogPics1_container {
-    height: 28vw;
-    width: 28vw;
+    height: 30vw;
+    width: 30vw;
     margin: 1vw;
 }
 .dogPics2_container {
@@ -55,34 +55,28 @@
 }
 
 .dogPics1 {
-    height: 30vw;
-    width: auto;
-    margin: none;
+    max-height: 100%;
+    max-width: 100%;
 }
 .dogPics2 {
-    height: 30vw;
-    width: auto;
-    margin: none;
+    max-height: 100%;
+    max-width: 100%;
 }
 .dogPics3 {
-    height: 30vw;
-    width: auto;
-    margin: none;
+    max-height: 100%;
+    max-width: 100%;
 }
 .dogPics4 {
-    height: 30vw;
-    width: auto;
-    margin: none;
+    hmax-height: 100%;
+    max-width: 100%;
 }
 .dogPics5 {
-    height: 30vw;
-    width: auto;
-    margin: none;
+    max-height: 100%;
+    max-width: 100%;
 }
 .dogPics6 {
-    height: 30vw;
-    width: auto;
-    margin: none;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 
