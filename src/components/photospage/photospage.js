@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import { addImage, submitDescription, getUser, getDog } from './../../ducks/users';
 import Header from '../Header/Header';
 
-
 const CLOUDINARYURL = 'https://api.cloudinary.com/v1_1/gexcloud/image/upload'
     , CLOUDINARY_UPLOAD_PRESET = 'yltloitx'
     , imgPreview = document.getElementById('img-preview');
@@ -119,9 +118,7 @@ class Photospage extends Component {
 
                 </div>
 
-
                 <Link to='/adddescription'><button onClick={this.submitDescription} className='photospage_next_button' >Next</button></Link>
-                <Link to='/uploadimage'><h5 className='upload_image_back_button' >Back</h5></Link>
 
                 <div className='add_dog_info_dots' >
                     <div className='add_dog_info_dot_blue'></div>

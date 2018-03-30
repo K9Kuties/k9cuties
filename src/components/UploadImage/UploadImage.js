@@ -62,13 +62,12 @@ class Photos extends Component {
                 <h1 className='upload_image_h1' >Add a profile photo for your dog</h1>
                 <h3 className='upload_image_h3' >(This will be their main photo)</h3>
 
-
                 <label htmlFor='file-upload' className='file-upload-container'>
                     <img src={this.state.url} id='img-preview' className='dogPics' />
                     <input type='file' onChange={this.fileSelectedHandler} style={{ display: 'none' }} id='file-upload' />
                 </label>
+                
                 <Link to='/photospage'><button className='upload_image_next_button' >Next</button></Link>
-                <Link to='/adddoginfo'><h5 className='upload_image_back_button' >Back</h5></Link>
 
                 <div className='add_dog_info_dots' >
                     <div className='add_dog_info_dot_blue'></div>
