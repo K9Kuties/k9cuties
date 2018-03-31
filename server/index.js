@@ -126,6 +126,15 @@ app.post('/api/submitNewDog', (req, res) => {
     })
 });
 
+app.post('/api/addDogDeets/:id', (req, res) => {
+    let { id } = req.params;
+    let { name, breed, age, gender, description } = req.body;
+    const db = req.app.get('db');
+    db.edit_dog_deets([id, name, breed, age, gender, description]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
 app.put('/api/profileImage/:id', (req, res) => {
     let { url } = req.body;
     let { id } = req.params;
