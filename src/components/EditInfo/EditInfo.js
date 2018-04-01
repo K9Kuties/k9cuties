@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import poochpals from '../../@0.5xpoochpals.svg'
 import './EditInfo.css'
 const CLOUDINARYURL = 'https://api.cloudinary.com/v1_1/gexcloud/image/upload'
     , CLOUDINARY_UPLOAD_PRESET = 'yltloitx'
@@ -48,69 +47,51 @@ export default class EditInfo extends Component {
             <div>
                 <div className='editInfo1'>
                     <div className='image1'>
-                        <img src={this.state.url1} id='img-preview' className='dogPics1' />
-                        <label htmlFor='file-upload1' className='file-upload-container1'>
+                        <img src={this.state.url1} id='img-preview' className='dogPics1' alt='profile pics' />
+                        <label htmlFor='file-upload1' className='file-upload-container1' >
                             +
                             <input type='file' onChange={(event) => this.fileSelectedHandler(1, event)} style={{ display: 'none' }} id='file-upload1' />
                         </label>
-                        {/* <input type='file'  onChange={this.fileSelectedHandler}/> */}
-
-                        {/* <button onClick={this.fileUploadHandler}>Upload</button> */}
                     </div>
 
                     <div>
-                        <img src={this.state.url2} id='img-preview' className='dogPics2' />
-                        <label htmlFor='file-upload2' className='file-upload-container2'>
+                        <img src={this.state.url2} id='img-preview' className='dogPics2' alt='profile pics' />
+                        <label htmlFor='file-upload2' className='file-upload-container2' >
                             +
                         <input type='file' onChange={(event) => this.fileSelectedHandler(2, event)} style={{ display: 'none' }} id='file-upload2' />
                         </label>
-                        {/* <input type='file'  onChange={this.fileSelectedHandler}/> */}
-
-                        {/* <button onClick={this.fileUploadHandler}>Upload</button> */}
                     </div>
 
                     <div>
-                        <img src={this.state.url3} id='img-preview' className='dogPics3' />
-                        <label htmlFor='file-upload3' className='file-upload-container2'>
+                        <img src={this.state.url3} id='img-preview' className='dogPics3' alt='profile pics' />
+                        <label htmlFor='file-upload3' className='file-upload-container2' >
                             +
                     <input type='file' onChange={(event) => this.fileSelectedHandler(3, event)} style={{ display: 'none' }} id='file-upload3' />
                         </label>
-                        {/* <input type='file'  onChange={this.fileSelectedHandler}/> */}
-
-                        {/* <button onClick={this.fileUploadHandler}>Upload</button> */}
                     </div>
 
                     <div>
-                        <img src={this.state.url4} id='img-preview' className='dogPics4' />
-                        <label htmlFor='file-upload4' className='file-upload-container3'>
+                        <img src={this.state.url4} id='img-preview' className='dogPics4' alt='profile pics' />
+                        <label htmlFor='file-upload4' className='file-upload-container3' >
                             +
                 <input type='file' onChange={(event) => this.fileSelectedHandler(4, event)} style={{ display: 'none' }} id='file-upload4' />
                         </label>
-                        {/* <input type='file'  onChange={this.fileSelectedHandler}/> */}
-
-                        {/* <button onClick={this.fileUploadHandler}>Upload</button> */}
                     </div>
 
                     <div>
-                        <img src={this.state.url5} id='img-preview' className='dogPics5' />
-                        <label htmlFor='file-upload5' className='file-upload-container3'>
+                        <img src={this.state.url5} id='img-preview' className='dogPics5' alt='profile pics' />
+                        <label htmlFor='file-upload5' className='file-upload-container3' >
                             +
                 <input type='file' onChange={(event) => this.fileSelectedHandler(5, event)} style={{ display: 'none' }} id='file-upload5' />
                         </label>
-                        {/* <input type='file'  onChange={this.fileSelectedHandler}/> */}
-
-                        {/* <button onClick={this.fileUploadHandler}>Upload</button> */}
                     </div>
 
                     <div>
-                        <img src={this.state.url6} id='img-preview' className='dogPics6' />
-                        <label htmlFor='file-upload6' className='file-upload-container2'>
+                        <img src={this.state.url6} id='img-preview' className='dogPics6' alt='profile pics' />
+                        <label htmlFor='file-upload6' className='file-upload-container2' >
                             +
                 <input type='file' onChange={(event) => this.fileSelectedHandler(6, event)} style={{ display: 'none' }} id='file-upload6' />
                         </label>
-                        {/* <input type='file'  onChange={this.fileSelectedHandler}/> */}
-
-                        {/* <button onClick={this.fileUploadHandler}>Upload</button> */}
                     </div>
                 </div>
                 <div className='editInfo2'>

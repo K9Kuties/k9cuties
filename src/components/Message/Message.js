@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './Message.css';
 import {connect} from 'react-redux';
 import { getMessages, updateMessages } from './../../ducks/users';

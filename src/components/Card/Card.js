@@ -54,22 +54,22 @@ export default class Card extends Component {
 
     //did not swipe
     if (positionX < rightBound && positionX > leftBound) {
-      var coords = { x: this.state.x, y: this.state.y }
-      var tween = new TWEEN.Tween(coords)
+      var coords2 = { x: this.state.x, y: this.state.y }
+      var tween = new TWEEN.Tween(coords2)
       tween.to({ x: 0, y: 0 }, 250)
       tween.onUpdate(function () {
-        card.setState({ x: coords.x, y: coords.y })
+        card.setState({ x: coords2.x, y: coords2.y })
       })
       tween.start();
       console.log('did not swipe')
 
       //swiping right
     } else if (positionX > rightBound) {
-      var coords = { x: this.state.x, y: this.state.y }
-      var tween = new TWEEN.Tween(coords)
-      tween.to({ x: window.innerWidth+1000, y: 500 }, 2500)
-      tween.onUpdate(function () {
-        card.setState({ x: coords.x, y: coords.y })
+      var coords3 = { x: this.state.x, y: this.state.y }
+      var tween2 = new TWEEN.Tween(coords3)
+      tween2.to({ x: window.innerWidth+1000, y: 500 }, 2500)
+      tween2.onUpdate(function () {
+        card.setState({ x: coords3.x, y: coords3.y })
       })
       tween.start();
       setTimeout(() => {
@@ -80,9 +80,9 @@ export default class Card extends Component {
       //swiping left
     } else if (positionX < leftBound) {
       var coords = { x: this.state.x, y: this.state.y }
-      var tween = new TWEEN.Tween(coords)
-      tween.to({ x: (window.innerWidth-window.innerWidth)-1000, y: 500 }, 2500)
-      tween.onUpdate(function () {
+      var tween3 = new TWEEN.Tween(coords)
+      tween3.to({ x: (window.innerWidth-window.innerWidth)-1000, y: 500 }, 2500)
+      tween3.onUpdate(function () {
         card.setState({ x: coords.x, y: coords.y })
       })
       tween.start();

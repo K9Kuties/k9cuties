@@ -94,13 +94,14 @@ class DogCreated extends Component {
                 <div className='awesome'>AWESOME! Your dog is all set up :)</div>
                 <div className='photoContainer'>
                     <img className='dogImage' src={this.state.mainPicture}></img>
-                    <div className='left_picture' onClick={this.changePictureLeft} >Left</div>
-                    <div className='right_picture' onClick={this.changePictureRight} >Right</div>
+                    <div className='left_picture' onClick={this.changePictureLeft} ></div>
+                    <div className='right_picture' onClick={this.changePictureRight} ></div>
                     <div className='nameAndSettings'>
                             <div className='dogCreatedName'>{this.props.dog.name}</div>
-                            <div className='dogCreateBreed'>{this.props.dog.breed}</div> 
-                            <div className='dogCreatedGender'>{this.props.dog.gender}</div> 
                             <div className='dogCreatedAge'>{this.props.dog.age}</div>
+                            <div className='dogCreatedBreed'>{this.props.dog.breed}</div> 
+                            <div className='dogCreatedGender'>{this.props.dog.gender}</div>
+                            
                     </div>
                 </div>
                 <div className='dogDescContainer'>
