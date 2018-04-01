@@ -190,6 +190,9 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { matches: action.payload })
         case UPDATE_MESSAGES:
             return Object.assign({}, state, { messages: action.payload });
+        case EDIT_DOG_DEETS + '_FULFILLED':
+        console.log(action.payload)
+            return Object.assign({}, state, { dog: action.payload });
         case GET_USER:
             return Object.assign({}, state, { user: action.payload });
         case GET_DOG:

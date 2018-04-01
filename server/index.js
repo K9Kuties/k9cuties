@@ -126,7 +126,7 @@ app.post('/api/submitNewDog', (req, res) => {
     })
 });
 
-app.post('/api/addDogDeets/:id', (req, res) => {
+app.post('/api/editDogDeets/:id', (req, res) => {
     let { id } = req.params;
     let { name, breed, age, gender, description } = req.body;
     const db = req.app.get('db');

@@ -31,6 +31,7 @@ class EditInfo extends Component {
             newDescription: ''
         }
         this.toggleEdit = this.toggleEdit.bind(this)
+        this.save = this.save.bind(this)
     }
 
     componentDidMount() {
@@ -88,11 +89,21 @@ class EditInfo extends Component {
     }
 
     save() {
-        console.log(this.props.dog.dog_id, this.state.newName, this.state.newBreed, this.state.newAge, this.state.newGender, this.state.newDescription)
         this.props.editDogDeets(this.props.dog.dog_id, this.state.newName, this.state.newBreed, this.state.newAge, this.state.newGender, this.state.newDescription)
+        this.setState({
+            edit: false,
+            name: this.state.newName,
+            breed: this.state.newBreed,
+            age: this.state.newAge,
+            gender: this.state.newGender,
+            description: this.state.newDescription
+        })
     }
 
     render() {
+
+        console.log(this.props.dog.name)
+
         return (
             <div>
                 <div className='editInfo1'>
@@ -163,6 +174,7 @@ class EditInfo extends Component {
                     <div>
                         Description: <input type='text' className='description_input' value={this.state.newDescription} onChange={(e) => this.setState({ newDescription: e.target.value })} />
                     </div>
+                    <button onClick={this.save}>Save</button>
                 </div>
                 :
                 <div className='editInfo2'>
@@ -184,7 +196,6 @@ class EditInfo extends Component {
                 </div>
                 }
                 <button onClick={this.toggleEdit}>{(!this.state.edit) ? 'Edit' : 'Cancel'}</button>
-                <button onClick={this.save}>Save</button>
             </div>
         )
     }
@@ -197,4 +208,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { addImage, editDogDeets, getUser, getDog })(EditInfo)
+export default connect(mapStateToProps, { addImage, editDogDeets, getUser, getDog })(EditInfo);
