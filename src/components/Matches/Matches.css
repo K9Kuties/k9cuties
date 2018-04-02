@@ -8,7 +8,7 @@
     flex-wrap: wrap;
 }
 
-.header {
+.matches_header {
     position: sticky;
     top: 0;
     width: 100vw;

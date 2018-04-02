@@ -43,7 +43,7 @@ class Matches extends Component {
            
             <div className="Matches">
 
-                <div className='header' >
+                <div className='matches_header' >
                         <Link to='/swiping'><img className='paw_svg' src={PawLogo} alt='paw logo' /></Link>
                         <img className='chat_svg' src={ChatLogo} alt='chat logo' />
                 </div>

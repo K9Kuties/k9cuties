@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Swiping.css';
-import Swipeable from 'react-swipeable';
 import { connect } from 'react-redux';
 import { getUser, getDog } from './../../ducks/users';
 import { Link } from 'react-router-dom';

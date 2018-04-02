@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './Message.css';
+import axios from 'axios';
 import {connect} from 'react-redux';
 import { getMessages, updateMessages, getUser, getDog } from './../../ducks/users';
 import io from 'socket.io-client';
 
 class Message extends Component {
-    constructor() {
-      super()
+    constructor(props) {
+      super(props)
       this.state = {
         message: ''
       }

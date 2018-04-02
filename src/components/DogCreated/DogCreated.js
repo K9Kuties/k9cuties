@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Header from '../Header/Header';
 import './DogCreated.css';
 import axios from 'axios';
@@ -6,11 +6,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getUser, getDog } from './../../ducks/users';
 
-const CLOUDINARYURL = 'https://api.cloudinary.com/v1_1/gexcloud/image/upload'
-const CLOUDINARY_UPLOAD_PRESET = 'yltloitx'
 
 class DogCreated extends Component {
-    constructor () {
+    constructor() {
         super()
         this.state = {
             mainPicture: ''
@@ -87,20 +85,20 @@ class DogCreated extends Component {
         }
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div className='dogCreatedMain'>
-                <Header/>   
+                <Header />
                 <div className='awesome'>AWESOME! Your dog is all set up :)</div>
                 <div className='photoContainer'>
-                    <img className='dogImage' src={this.state.mainPicture}></img>
-                    <div className='left_picture' onClick={this.changePictureLeft} >Left</div>
-                    <div className='right_picture' onClick={this.changePictureRight} >Right</div>
+                    <img className='dogImage' src={this.state.mainPicture} alt='Main Picture' ></img>
+                    <div className='left_picture' onClick={this.changePictureLeft} ></div>
+                    <div className='right_picture' onClick={this.changePictureRight} ></div>
                     <div className='nameAndSettings'>
-                            <div className='dogCreatedName'>{this.props.dog.name}</div>
-                            <div className='dogCreateBreed'>{this.props.dog.breed}</div> 
-                            <div className='dogCreatedGender'>{this.props.dog.gender}</div> 
-                            <div className='dogCreatedAge'>{this.props.dog.age}</div>
+                        <div className='dogCreatedName'>{this.props.dog.name}</div>
+                        <div className='dogCreatedAge'>{this.props.dog.age}</div>
+                        <div className='dogCreatedBreed'>{this.props.dog.breed}</div>
+                        <div className='dogCreatedGender'>{this.props.dog.gender}</div>
                     </div>
                 </div>
                 <div className='dogDescContainer'>
