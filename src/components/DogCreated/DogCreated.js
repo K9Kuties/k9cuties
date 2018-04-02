@@ -32,27 +32,27 @@ class DogCreated extends Component {
     }
 
     changePictureLeft() {
-        if (this.state.mainPicture === this.props.dog.img1) {
+        if (this.state.mainPicture === this.props.dog.img1 && this.props.dog.img1) {
             this.setState({
                 mainPicture: this.props.dog.img1
             })
-        } else if (this.state.mainPicture === this.props.dog.img2) {
+        } else if (this.state.mainPicture === this.props.dog.img2 && this.props.dog.img1) {
             this.setState({
                 mainPicture: this.props.dog.img1
             })
-        } else if (this.state.mainPicture === this.props.dog.img3) {
+        } else if (this.state.mainPicture === this.props.dog.img3 && this.props.dog.img2) {
             this.setState({
                 mainPicture: this.props.dog.img2
             })
-        } else if (this.state.mainPicture === this.props.dog.img4) {
+        } else if (this.state.mainPicture === this.props.dog.img4 && this.props.dog.img3) {
             this.setState({
                 mainPicture: this.props.dog.img3
             })
-        } else if (this.state.mainPicture === this.props.dog.img5) {
+        } else if (this.state.mainPicture === this.props.dog.img5 && this.props.dog.img4) {
             this.setState({
                 mainPicture: this.props.dog.img4
             })
-        } else if (this.state.mainPicture === this.props.dog.img6) {
+        } else if (this.state.mainPicture === this.props.dog.img6 && this.props.dog.img5) {
             this.setState({
                 mainPicture: this.props.dog.img5
             })
@@ -60,27 +60,27 @@ class DogCreated extends Component {
     }
 
     changePictureRight() {
-        if (this.state.mainPicture === this.props.dog.img1) {
+        if (this.state.mainPicture === this.props.dog.img1 && this.props.dog.img2) {
             this.setState({
                 mainPicture: this.props.dog.img2
             })
-        } else if (this.state.mainPicture === this.props.dog.img2) {
+        } else if (this.state.mainPicture === this.props.dog.img2 && this.props.dog.img3) {
             this.setState({
                 mainPicture: this.props.dog.img3
             })
-        } else if (this.state.mainPicture === this.props.dog.img3) {
+        } else if (this.state.mainPicture === this.props.dog.img3 && this.props.dog.img4) {
             this.setState({
                 mainPicture: this.props.dog.img4
             })
-        } else if (this.state.mainPicture === this.props.dog.img4) {
+        } else if (this.state.mainPicture === this.props.dog.img4 && this.props.dog.img5) {
             this.setState({
                 mainPicture: this.props.dog.img5
             })
-        } else if (this.state.mainPicture === this.props.dog.img5) {
+        } else if (this.state.mainPicture === this.props.dog.img5 && this.props.dog.img6) {
             this.setState({
                 mainPicture: this.props.dog.img6
             })
-        } else if (this.state.mainPicture === this.props.dog.img6) {
+        } else if (this.state.mainPicture === this.props.dog.img6 && this.props.dog.img6) {
             this.setState({
                 mainPicture: this.props.dog.img6
             })
