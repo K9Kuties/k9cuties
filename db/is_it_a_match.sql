@@ -1,0 +1,1 @@
+select exists (select 1 from liked where dog_being_liked = $1 and dog_liking = $2);

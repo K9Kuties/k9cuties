@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 import interact from 'interactjs'
 import TWEEN from '@tweenjs/tween.js'
 import { connect } from 'react-redux';
@@ -58,23 +59,29 @@ class Card extends Component {
 
     //did not swipe
     if (positionX < rightBound && positionX > leftBound) {
-      var coords2 = { x: this.state.x, y: this.state.y }
-      var tween = new TWEEN.Tween(coords2)
+      var coords = { x: this.state.x, y: this.state.y }
+      var tween = new TWEEN.Tween(coords)
       tween.to({ x: 0, y: 0 }, 250)
       tween.onUpdate(function () {
-        card.setState({ x: coords2.x, y: coords2.y })
+        card.setState({ x: coords.x, y: coords.y })
       })
       tween.start();
 
       //swiping right
     } else if (positionX > rightBound) {
-      var coords3 = { x: this.state.x, y: this.state.y }
-      var tween2 = new TWEEN.Tween(coords3)
-      tween2.to({ x: window.innerWidth+1000, y: 500 }, 2500)
-      tween2.onUpdate(function () {
-        card.setState({ x: coords3.x, y: coords3.y })
+      var coords = { x: this.state.x, y: this.state.y }
+      var tween = new TWEEN.Tween(coords)
+      tween.to({ x: window.innerWidth+1000, y: 500 }, 2500)
+      tween.onUpdate(function () {
+        card.setState({ x: coords.x, y: coords.y })
       })
-      tween2.start();
+      tween.start();
+      axios.get(`/api/isItAMatch?id=${this.props.dog.dog_id}&otherId=${this.props.cardDogId}`).then(res => {
+        console.log(res.data)
+        if (res.data === true) {
+          this.props.showModal({id: this.props.dog.dog_id, picture: this.props.dog.img1}, {id: this.props.cardDogId, name: this.props.name, picture: this.props.img1})
+        } 
+      })
       this.props.likeDog(this.props.dog.dog_id, this.props.cardDogId)
       setTimeout(() => {
         this.props.shiftCard()
@@ -84,12 +91,12 @@ class Card extends Component {
       //swiping left
     } else if (positionX < leftBound) {
       var coords = { x: this.state.x, y: this.state.y }
-      var tween3 = new TWEEN.Tween(coords)
-      tween3.to({ x: (window.innerWidth-window.innerWidth)-1000, y: 500 }, 2500)
-      tween3.onUpdate(function () {
+      var tween = new TWEEN.Tween(coords)
+      tween.to({ x: (window.innerWidth-window.innerWidth)-1000, y: 500 }, 2500)
+      tween.onUpdate(function () {
         card.setState({ x: coords.x, y: coords.y })
       })
-      tween3.start();
+      tween.start();
       this.props.unlikeDog(this.props.dog.dog_id, this.props.cardDogId)
       setTimeout(() => {
         this.props.shiftCard()
@@ -155,6 +162,7 @@ class Card extends Component {
   }
 
   render() {
+
     let { x, y } = this.state
     let cardStyle = {
       transform: 'translate(' + x + 'px, ' + y + 'px)',

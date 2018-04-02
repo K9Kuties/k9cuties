@@ -28,7 +28,14 @@ class EditInfo extends Component {
             name: '',
             breed: '',
             gender: '',
-            description: ''
+            description: '',
+            edit: false,
+            newName: '',
+            newBreed: '',
+            newBirthdate: '',
+            newGender: '',
+            newDescription: ''
+
         }
         this.save = this.save.bind(this)
     }
@@ -39,8 +46,12 @@ class EditInfo extends Component {
             axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
                 this.props.getDog(res.data[0])
                 for (var key in res.data[0]) {
+<<<<<<< HEAD
                     if (res.data[0][key]) { 
                         console.log(res.data[0][key], key)
+=======
+                    if (res.data[0][key]) {
+>>>>>>> master
                         this.setState({
                             [key]: res.data[0][key]
                         })
@@ -76,20 +87,30 @@ class EditInfo extends Component {
         }, .1);
     }
 
-    save() {
-        this.props.editDogDeets(this.props.dog.dog_id, this.state.name, this.state.breed, this.state.age, this.state.gender, this.state.description)
+    toggleEdit() {
         this.setState({
-            name: this.state.name,
-            breed: this.state.breed,
-            age: this.state.age,
-            gender: this.state.gender,
-            description: this.state.description
+            newName: this.state.name,
+            newBreed: this.state.breed,
+            newBirthdate: this.state.birthdate,
+            newGender: this.state.gender,
+            newDescription: this.state.description,
+            edit: !this.state.edit
+        })
+    }
+
+    save() {
+        this.props.editDogDeets(this.props.dog.dog_id, this.state.newName, this.state.newBreed, this.state.newBirthdate, this.state.newGender, this.state.newDescription)
+        this.setState({
+            edit: false,
+            name: this.state.newName,
+            breed: this.state.newBreed,
+            birthdate: this.state.newBirthdate,
+            gender: this.state.newGender,
+            description: this.state.newDescription
         })
     }
 
     render() {
-
-        console.log(this.props.dog.name)
 
         return (
             <div className='editInfo1'>
@@ -150,22 +171,42 @@ class EditInfo extends Component {
                         </label>
                     </div>
 
+                {(this.state.edit)
+                ?
+                <div className='editInfo2'>
+                    <div className='nameInput'>
+                        NAME: <input type='text' className='name_input' value={this.state.newName} onChange={(e) => this.setState({ newName: e.target.value })} />
+                    </div>
+                    <div className='breedInput'>
+                        Breed: <input type='text' className='breed_input' value={this.state.newBreed} onChange={(e) => this.setState({ newBreed: e.target.value })} />
+                    </div>
+                    <div className='ageInput'>
+                        Birthdate: <input type="date" min='1998-01-01' className='age_input' value={this.state.newBirthdate} onChange={(e) => this.setState({ newBirthdate: e.target.value })} />
+                    </div>
+                    <div className='genderInput'>
+                        GENDER: <input type='text' className='gender_input' value={this.state.newGender} onChange={(e) => this.setState({ newGender: e.target.value })} />
+                    </div>
+                    <div>
+                        Description: <input type='text' className='description_input' value={this.state.newDescription} onChange={(e) => this.setState({ newDescription: e.target.value })} />
+                    </div>
+                    <button onClick={this.save}>Save</button>
                 </div>
-
-                    <div className='editInfo2'>
-                        <div className='edit_info_inputs' >
-                            <input type='text' className='name_input' name='name' value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} />
-                            <hr className='edit_info_hr' />
-                            <input type='text' className='breed_input' name='breed' value={this.state.breed} onChange={(e) => this.setState({ breed: e.target.value })} />
-                            <hr className='edit_info_hr' />
-                            <input type='text' className='age_input' name='age' value={this.state.age} onChange={(e) => this.setState({ age: e.target.value })} />
-                            <hr className='edit_info_hr' />
-                            <input type='text' className='gender_input' name='gender' value={this.state.gender} onChange={(e) => this.setState({ gender: e.target.value })} />
-                            <hr className='edit_info_hr' />
-                            <textarea type='text' className='description_input' name='description' value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })} ></textarea>
-                            <hr className='edit_info_hr' />
-                        </div>
-                        <button className='edit_info_save' onClick={this.save}>Save</button>
+                :
+                <div className='editInfo2'>
+                    <div className='nameInput'>
+                        <div>NAME: {this.state.name}</div>
+                    </div>
+                    <div className='breedInput'>
+                        <div>Breed: {this.state.breed}</div>
+                    </div>
+                    <div className='ageInput'>
+                        <div>Birthdate: {this.state.birthdate}</div>
+                    </div>
+                    <div className='genderInput'>
+                        <div>GENDER: {this.state.gender}</div>
+                    </div>
+                    <div>
+                        <div>Description: {this.state.description}</div>
                     </div>
             </div>
         )
