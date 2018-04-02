@@ -13,9 +13,11 @@ class AddDogInfo extends Component {
             dogName: '',
             dogBreed: '',
             dogAge: 0,
+            dogBirthdate: 'Birthdate', 
             dogGender: '',
             latitude: '',
-            longitude: ''
+            longitude: '',
+            date: ''
         }
         this.submitNewDog = this.submitNewDog.bind(this);
         this.getMyLocation = this.getMyLocation.bind(this);
@@ -29,6 +31,10 @@ class AddDogInfo extends Component {
             } else {
                 this.props.getUser(res.data.user);
             }
+        })
+        var date = new Date().toISOString().slice(0,10);
+        this.setState({
+            date
         })
         this.getMyLocation();
     }
@@ -48,8 +54,16 @@ class AddDogInfo extends Component {
     }
 
     submitNewDog() {
-        console.log(this.props.userData.id)
-        this.props.submitNewDog({ userId: this.props.userData.id, dogName: this.state.dogName, dogBreed: this.state.dogBreed, dogAge: this.state.dogAge, dogGender: this.state.dogGender, latitude: this.state.latitude, longitude: this.state.longitude })
+        this.props.submitNewDog({ userId: this.props.userData.id, dogName: this.state.dogName, dogBreed: this.state.dogBreed, dogBirthdate: this.state.dogBirthdate, dogGender: this.state.dogGender, latitude: this.state.latitude, longitude: this.state.longitude })
+    }
+
+    onFocus(e) {
+        e.currentTarget.type = "date";
+    }
+
+    onBlur(e) {
+        e.currentTarget.type = "text";
+        e.currentTarget.placeholder = "Birthdate";
     }
 
     render() {
@@ -68,29 +82,7 @@ class AddDogInfo extends Component {
                     <hr />
                     <input className='add_dog_info_dog_breed_input' type='text' placeholder=' Breed' value={this.state.dogBreed} onChange={(e) => { this.setState({ dogBreed: e.target.value }) }} required />
                     <hr />
-                    <select className='add_dog_info_dog_age_select' value={this.state.dogAge} onChange={(e) => { this.setState({ dogAge: e.target.value }) }} required>
-                        <option default hidden >Age</option>
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
-                        <option value='4'>4</option>
-                        <option value='5'>5</option>
-                        <option value='6'>6</option>
-                        <option value='7'>7</option>
-                        <option value='8'>8</option>
-                        <option value='9'>9</option>
-                        <option value='10'>10</option>
-                        <option value='11'>11</option>
-                        <option value='12'>12</option>
-                        <option value='13'>13</option>
-                        <option value='14'>14</option>
-                        <option value='15'>15</option>
-                        <option value='16'>16</option>
-                        <option value='17'>17</option>
-                        <option value='18'>18</option>
-                        <option value='19'>19</option>
-                        <option value='20'>20</option>
-                    </select>
+                    <input className='add_dog_info_dog_birthdate_input' min='1998-01-01' max={this.state.date} onFocus = {this.onFocus} onBlur={this.onBlur} value={this.state.dogBirthdate} onChange={(e) => {this.setState({ dogBirthdate: e.target.value })}}/>
                     <hr />
                     <select className='add_dog_info_dog_gender_select' value={this.state.dogGender} onChange={(e) => { this.setState({ dogGender: e.target.value }) }} required>
                         <option default hidden>Gender</option>
