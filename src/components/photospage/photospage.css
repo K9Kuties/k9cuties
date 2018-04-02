@@ -67,7 +67,7 @@
     max-width: 100%;
 }
 .dogPics4 {
-    hmax-height: 100%;
+    max-height: 100%;
     max-width: 100%;
 }
 .dogPics5 {
@@ -97,32 +97,6 @@
     font-weight: 500;
     box-shadow: 0 1px 6px 0 #4014EC, 0 2px 10px 0 rgba(0, 0, 0, 0.385);
     cursor: pointer;
-}
-
-.add_dog_info_dots {
-    width: auto;
-    margin: 8vh auto auto auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.add_dog_info_dot_blue {
-    height: 10px;
-    width: 10px;
-    background-color: #4014EC;
-    border-radius: 50%;
-    border: none;
-    margin: 7px;
-}
-
-.add_dog_info_dot_grey {
-    height: 10px;
-    width: 10px;
-    background-color: #7D61EC;
-    border-radius: 50%;
-    border: none;
-    margin: 7px;
 }
 
 

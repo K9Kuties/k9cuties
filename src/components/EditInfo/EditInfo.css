@@ -13,6 +13,9 @@
     height: 55px;
     border-bottom: 2px solid rgba(128, 128, 128, 0.250);
     background: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .dog_icon {
@@ -23,21 +26,17 @@
 }
 
 .edit_info_header_logo {
-    width: 35px;
-    margin-top: 9px;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 18px;
 }
 
 .paw_logo {
     position: absolute;
     right: 2.5vw;
-    width: 35px;
+    width: .1px;
     margin-top: 9px;
-}
-
-.edit_profile_h1 {
-    color: black;
-    font-size: 22px;
-    margin-bottom: 0;
+    opacity: 0;
 }
 
 .edit_info_images {
@@ -90,33 +89,33 @@
     height: 25vw;
 }
 
-.dogPics1{
+.dogPics11{
    max-width: 95%;
    max-height: 95%;
 }
 
-.dogPics2{
+.dogPics22{
     max-width: 90%;
    max-height: 90%;
 }
 
-.dogPics3{
+.dogPics33{
     max-width: 90%;
    max-height: 90%;
     
 }
 
-.dogPics4{
+.dogPics44{
     max-width: 90%;
    max-height: 90%;
 }
 
-.dogPics5{
+.dogPics55{
     max-width: 90%;
    max-height: 90%;
 }
 
-.dogPics6{
+.dogPics66{
     max-width: 90%;
    max-height: 90%;
 }

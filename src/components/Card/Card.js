@@ -74,7 +74,7 @@ class Card extends Component {
       tween2.onUpdate(function () {
         card.setState({ x: coords3.x, y: coords3.y })
       })
-      tween.start();
+      tween2.start();
       this.props.likeDog(this.props.dog.dog_id, this.props.cardDogId)
       setTimeout(() => {
         this.props.shiftCard()
@@ -89,7 +89,7 @@ class Card extends Component {
       tween3.onUpdate(function () {
         card.setState({ x: coords.x, y: coords.y })
       })
-      tween.start();
+      tween3.start();
       this.props.unlikeDog(this.props.dog.dog_id, this.props.cardDogId)
       setTimeout(() => {
         this.props.shiftCard()
