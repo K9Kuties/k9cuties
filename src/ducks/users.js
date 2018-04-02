@@ -149,7 +149,6 @@ export function updateReason(id, reason) {
 
 export function getMatches(id) {
     const matches = axios.get(`/api/getMatches/${id}`).then(res => {
-        console.log(res.data)
         return res.data
     })
 
@@ -159,8 +158,10 @@ export function getMatches(id) {
     }
 }
 
-export function editDogDeets(id, name, breed, age, gender, description) {
-    const dog = axios.post(`/api/editDogDeets/${id}`, { name, breed, age, gender, description }).then(res => {
+export function editDogDeets(id, name, breed, birthdate, gender, description) {
+    console.log(birthdate)
+    const dog = axios.post(`/api/editDogDeets/${id}`, { name, breed, birthdate, gender, description }).then(res => {
+        console.log(res.data[0])
         return res.data[0]
     })
 

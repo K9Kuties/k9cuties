@@ -118,19 +118,23 @@ app.get('/api/messages/:userOne/:userTwo', (req, res) => {
 });
 
 app.post('/api/submitNewDog', (req, res) => {
-    let { userId, dogName, dogBreed, dogAge, dogGender, latitude, longitude } = req.body;
+    let { userId, dogName, dogBreed, dogBirthdate, dogGender, latitude, longitude } = req.body;
     let location =`SRID=4326;POINT(${longitude} ${latitude})`;
     const db = req.app.get('db');
-    db.submit_new_dog([userId, dogName, dogBreed, dogAge, dogGender, location, latitude, longitude]).then(response => {
+    db.submit_new_dog([userId, dogName, dogBreed, dogBirthdate, dogGender, location, latitude, longitude]).then(response => {
+        response[0].birthdate = JSON.stringify(response[0].birthdate)
+        response[0].birthdate = response[0].birthdate.substring(1).split('T')[0]
         res.status(200).send(response)
     })
 });
 
 app.post('/api/editDogDeets/:id', (req, res) => {
     let { id } = req.params;
-    let { name, breed, age, gender, description } = req.body;
+    let { name, breed, birthdate, gender, description } = req.body;
     const db = req.app.get('db');
-    db.edit_dog_deets([id, name, breed, age, gender, description]).then(response => {
+    db.edit_dog_deets([id, name, breed, birthdate, gender, description]).then(response => {
+        response[0].birthdate = JSON.stringify(response[0].birthdate)
+        response[0].birthdate = response[0].birthdate.substring(1).split('T')[0]
         res.status(200).send(response)
     })
 })
@@ -224,6 +228,8 @@ app.get('/api/getDog/:id', (req, res) => {
     let { id } = req.params;
     const db = req.app.get('db');
     db.get_dog([id]).then(response => {
+        response[0].birthdate = JSON.stringify(response[0].birthdate)
+        response[0].birthdate = response[0].birthdate.substring(1).split('T')[0]
         res.status(200).send(response)
     })
 })
@@ -257,6 +263,14 @@ app.post('/api/unlikeDog', (req, res) => {
     const db = req.app.get('db');
     db.unlike_dog([dogUnliking, dogBeingUnliked]).then(response => {
         res.status(200).send(response)
+    })
+})
+
+app.get('/api/isItAMatch', (req, res) => {
+    let { id, otherId } = req.query;
+    const db = req.app.get('db');
+    db.is_it_a_match([id, otherId]).then(response => {
+        res.status(200).send(response[0].exists)
     })
 })
 

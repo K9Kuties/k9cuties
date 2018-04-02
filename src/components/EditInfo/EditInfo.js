@@ -26,7 +26,7 @@ class EditInfo extends Component {
             edit: false,
             newName: '',
             newBreed: '',
-            newAge: '',
+            newBirthdate: '',
             newGender: '',
             newDescription: ''
         }
@@ -41,7 +41,6 @@ class EditInfo extends Component {
                 this.props.getDog(res.data[0])
                 for (var key in res.data[0]) {
                     if (res.data[0][key]) {
-                        console.log(res.data[0][key], key)
                         this.setState({
                             [key]: res.data[0][key]
                         })
@@ -81,7 +80,7 @@ class EditInfo extends Component {
         this.setState({
             newName: this.state.name,
             newBreed: this.state.breed,
-            newAge: this.state.age,
+            newBirthdate: this.state.birthdate,
             newGender: this.state.gender,
             newDescription: this.state.description,
             edit: !this.state.edit
@@ -89,20 +88,18 @@ class EditInfo extends Component {
     }
 
     save() {
-        this.props.editDogDeets(this.props.dog.dog_id, this.state.newName, this.state.newBreed, this.state.newAge, this.state.newGender, this.state.newDescription)
+        this.props.editDogDeets(this.props.dog.dog_id, this.state.newName, this.state.newBreed, this.state.newBirthdate, this.state.newGender, this.state.newDescription)
         this.setState({
             edit: false,
             name: this.state.newName,
             breed: this.state.newBreed,
-            age: this.state.newAge,
+            birthdate: this.state.newBirthdate,
             gender: this.state.newGender,
             description: this.state.newDescription
         })
     }
 
     render() {
-
-        console.log(this.props.dog.name)
 
         return (
             <div>
@@ -166,7 +163,7 @@ class EditInfo extends Component {
                         Breed: <input type='text' className='breed_input' value={this.state.newBreed} onChange={(e) => this.setState({ newBreed: e.target.value })} />
                     </div>
                     <div className='ageInput'>
-                        AGE: <input type='text' className='age_input' value={this.state.newAge} onChange={(e) => this.setState({ newAge: e.target.value })} />
+                        Birthdate: <input type="date" min='1998-01-01' className='age_input' value={this.state.newBirthdate} onChange={(e) => this.setState({ newBirthdate: e.target.value })} />
                     </div>
                     <div className='genderInput'>
                         GENDER: <input type='text' className='gender_input' value={this.state.newGender} onChange={(e) => this.setState({ newGender: e.target.value })} />
@@ -185,7 +182,7 @@ class EditInfo extends Component {
                         <div>Breed: {this.state.breed}</div>
                     </div>
                     <div className='ageInput'>
-                        <div>AGE: {this.state.age}</div>
+                        <div>Birthdate: {this.state.birthdate}</div>
                     </div>
                     <div className='genderInput'>
                         <div>GENDER: {this.state.gender}</div>

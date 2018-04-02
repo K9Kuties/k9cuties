@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 import interact from 'interactjs'
 import TWEEN from '@tweenjs/tween.js'
 import { connect } from 'react-redux';
@@ -75,6 +76,12 @@ class Card extends Component {
         card.setState({ x: coords.x, y: coords.y })
       })
       tween.start();
+      axios.get(`/api/isItAMatch?id=${this.props.dog.dog_id}&otherId=${this.props.cardDogId}`).then(res => {
+        console.log(res.data)
+        if (res.data === true) {
+          this.props.showModal({id: this.props.dog.dog_id, picture: this.props.dog.img1}, {id: this.props.cardDogId, name: this.props.name, picture: this.props.img1})
+        } 
+      })
       this.props.likeDog(this.props.dog.dog_id, this.props.cardDogId)
       setTimeout(() => {
         this.props.shiftCard()
@@ -155,6 +162,7 @@ class Card extends Component {
   }
 
   render() {
+
     let { x, y } = this.state
     let cardStyle = {
       transform: 'translate(' + x + 'px, ' + y + 'px)',
