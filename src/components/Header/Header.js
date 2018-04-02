@@ -9,7 +9,7 @@ class Header extends Component {
     render() {
         return (
             <header className='pooch_pals_header' >
-                <img src={PoochPals} className='poochpals_svg_header' />
+                <img src={PoochPals} className='poochpals_svg_header' alt='header logo' />
             </header>
         )
     }

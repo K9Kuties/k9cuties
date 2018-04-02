@@ -1,100 +1,222 @@
-/* .editInfo1{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 65px;
-    grid-row-gap: 2vh;
-    
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600');
+
+.editInfo1{
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
 }
-.editInfo2{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 65px;
-    grid-row-gap: 2vh;
-    
+
+.edit_info_header {
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    height: 55px;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.250);
+    background: white;
 }
+
+.dog_icon {
+    position: absolute;
+    left: 2.5vw;
+    width: 35px;
+    margin-top: 9px;
+}
+
+.edit_info_header_logo {
+    width: 35px;
+    margin-top: 9px;
+}
+
+.paw_logo {
+    position: absolute;
+    right: 2.5vw;
+    width: 35px;
+    margin-top: 9px;
+}
+
+.edit_profile_h1 {
+    color: black;
+    font-size: 22px;
+    margin-bottom: 0;
+}
+
+.edit_info_images {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 99vw;
+    margin: auto;
+    margin-top: 3vh;
+    justify-content: center;
+}
+
+.image1_image2_image3 {
+    display: flex;
+    flex-direction: row
+}
+
+.image1_image2 {
+    display: flex;
+    flex-direction: column;
+}
+
 .image1{
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 3;
-   
-    
-    
+    width: 50vw;
+    height: 50vw;
 }
+
+.image2 {
+    width: 25vw;
+    height: 25vw;
+}
+
+.image3 {
+    width: 25vw;
+    height: 25vw;
+}
+
+.image4 {
+    width: 25vw;
+    height: 25vw;
+}
+
+.image5 {
+    width: 25vw;
+    height: 25vw;
+}
+
+.image6 {
+    width: 25vw;
+    height: 25vw;
+}
+
 .dogPics1{
-    height: 95%;
-    width: 80%;
-    margin-top: 0px;
-    border-radius: 7px;
-    margin-left: 4vw;
+   max-width: 95%;
+   max-height: 95%;
 }
+
 .dogPics2{
-    height: 91.8%;
-    width: 70%;
-    border-radius: 7px;
-    margin-right: 8vw;
-   
+    max-width: 90%;
+   max-height: 90%;
 }
+
 .dogPics3{
-    height: 91.78%;
-    width: 70%;
-    border-radius: 7px;
-    margin-right: 8vw;
-    
-}
-.dogPics4{
-    height: 85%;
-    width: 70%;
-    border-radius: 7px;
-    margin-left: 8vw;
-}
-.dogPics5{
-    height: 85%;
-    width: 70%;
-    border-radius: 7px;
-    margin-right: 7vw;
-}
-.dogPics6{
-    height: 85%;
-    width: 70%;
-    border-radius: 7px;
-    margin-right: 8vw;
+    max-width: 90%;
+   max-height: 90%;
     
 }
 
-.nameInput {
-    grid-column-start: 1;
-    grid-column-end: 3;
+.dogPics4{
+    max-width: 90%;
+   max-height: 90%;
 }
-.breedInput {
-    grid-column-start: 1;
-    grid-column-end: 3;
+
+.dogPics5{
+    max-width: 90%;
+   max-height: 90%;
 }
-.ageInput {
-    grid-column-start: 1;
-    grid-column-end: 3;
+
+.dogPics6{
+    max-width: 90%;
+   max-height: 90%;
 }
-.genderInput {
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
+
+
+
+
 
 .name_input {
-    border: 1px solid black;
+    margin-left: 2.3vw;
+    width: 80vw;
+    height: 4vh;
+    outline: none;
+    border: none;
+    font-size: 2.5vh;
+    letter-spacing: 0px;
+    margin-top: 1vh;
+}
+
+.name_input:focus {
+    outline: none;
+}
+
+.name_input::placeholder {
+    color: black;
 }
 
 .breed_input {
-    border: 1px solid black;
+    margin-left: 2.3vw;
+    width: 80vw;
+    height: 4vh;
+    border: none;
+    outline: none;
+    font-size: 2.5vh;
+    letter-spacing: 0px;
+    margin-top: 1vh;
+    border: none;
+}
+
+.breed_input::placeholder {
+    color: black;
 }
 
 .age_input {
-    border: 1px solid black;
+    margin-left: 4.3vw;
+    width: 80vw;
+    height: 4vh;
+    border: none;
+    outline: none;
+    font-size: 2.5vh;
+    letter-spacing: 0px;
+    margin-top: 1vh;
+    border: none;
+    background: #FFFFFF;
+    -webkit-appearance: none;
 }
 
 .gender_input {
-    border: 1px solid black;
+    margin-left: 4.3vw;
+    width: 80vw;
+    height: 4vh;
+    outline: none;
+    border: none;
+    font-size: 2.5vh;
+    letter-spacing: 0px;
+    margin-top: 1vh;
+    border: none;
+    background: #FFFFFF;
+    -webkit-appearance: none;
+}
+
+input .gender_input::first-letter {
+    text-transform: uppercase;
 }
 
 .description_input {
-    border: 1px solid black;
-} */
+    display: inline-block;
+    margin-left: 4.3vw;
+    width: 80vw;
+    outline: none;
+    border: none;
+    font-size: 2.5vh;
+    letter-spacing: 0px;
+    margin-top: 1vh;
+    border: none;
+    background: #FFFFFF;
+    -webkit-appearance: none;
+}
+
+.edit_info_hr {
+    margin: 0px !important;
+}
+
+.edit_info_save {
+        height: 60px;
+        width: 166px;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 18px;
+        border-radius: 35px;
+        background-color: #4014EC;
+        box-shadow: 0 4px 16px 0 rgba(64,20,236,0.4), 0 4px 10px 0 rgba(0,0,0,0.1);
+}

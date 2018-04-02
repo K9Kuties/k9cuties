@@ -118,9 +118,10 @@ class Settings extends Component {
                     />
                 </div>
                 <form className='male_or_female'>
-                    <label className='male_or_female_label' >Male</label><input className='radio_button' type='radio' value='Male' checked={this.state.selectedType === 'Male'} onChange={this.handleInterestedInChange} />
-                    <label className='male_or_female_label'>Female</label><input className='radio_button' type='radio' value='Female' checked={this.state.selectedType === 'Female'} onChange={this.handleInterestedInChange} />
-                    <label className='male_or_female_label'>Both</label><input className='radio_button' type='radio' value='Both' checked={this.state.selectedType === 'Both'} onChange={this.handleInterestedInChange} />
+                    <h5 className='interested_in' >Interested in</h5>
+                    <label className='male_or_female_label' for='male' >Male</label><input className='radio_button' type='radio' value='Male' checked={this.state.selectedType === 'Male'} onChange={this.handleInterestedInChange} />
+                    <label className='male_or_female_label' for='female' >Female</label><input className='radio_button' type='radio' value='Female' checked={this.state.selectedType === 'Female'} onChange={this.handleInterestedInChange} />
+                    <label className='male_or_female_label' for='both' >Both</label><input className='radio_button' type='radio' value='Both' checked={this.state.selectedType === 'Both'} onChange={this.handleInterestedInChange} />
                 </form>
                 <div className='age_range' >
                     <h2 className='age_range_h2' >Age range </h2>
@@ -133,8 +134,9 @@ class Settings extends Component {
                         onChangeComplete={this.handleChangeAgeComplete} />
                 </div>
                 <form className='reason' >
-                    <label className='reason_label'>Play Dates</label><input className='radio_button' type='radio' value='Play dates' checked={this.state.reason === 'Play dates'} onChange={this.handleReasonChange} />
-                    <label className='reason_label'>Breeding</label><input className='radio_button' type='radio' value='Breeding' checked={this.state.reason === 'Breeding'} onChange={this.handleReasonChange} />
+                    <h5 className='reason_for' >Reason for PoochPals</h5>
+                    <label className='reason_label' for='play_dates' >Play Dates</label><input className='radio_button' type='radio' value='Play dates' checked={this.state.reason === 'Play dates'} onChange={this.handleReasonChange} />
+                    <label className='reason_label' for='breeding' >Breeding</label><input className='radio_button' type='radio' value='Breeding' checked={this.state.reason === 'Breeding'} onChange={this.handleReasonChange} />
                 </form>
                 <div className='delete_account_container'>
                     <button className='delete_account_button' onClick={() => { this.deleteAccount(this.props.dog.dog_id) }}>Delete my account</button>

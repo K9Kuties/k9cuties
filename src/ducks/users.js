@@ -1,4 +1,5 @@
 import axios from 'axios';
+import EditInfo from '../components/EditInfo/EditInfo';
 
 const initialState = {
     user: {},
@@ -217,6 +218,8 @@ export default function reducer(state = initialState, action) {
         case GET_USER:
             return Object.assign({}, state, { user: action.payload });
         case GET_DOG:
+            return Object.assign({}, state, { dog: action.payload });
+        case EDIT_DOG_DEETS:
             return Object.assign({}, state, { dog: action.payload });
         default:
         return state;
