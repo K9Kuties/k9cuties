@@ -112,7 +112,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { getUser, submitNewDog })(AddDogInfo);
-
-
-
-{/* <a href='http://localhost:3005/logout'><button>Logout</button></a> */ }

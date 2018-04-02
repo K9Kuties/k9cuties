@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './photospage.css';
-import poochpals from '../../@0.5xpoochpals.svg';
 import { connect } from 'react-redux';
 import { addImage, submitDescription, getUser, getDog } from './../../ducks/users';
 import Header from '../Header/Header';
@@ -76,42 +75,42 @@ class Photospage extends Component {
                     <div className='dogPics1_container' >
 
                         <label htmlFor='file-upload1' className='file-upload-container'>
-                            <img src={this.state.url1} id='img-preview' className='dogPics1' />
+                            <img src={this.state.url1} id='img-preview' className='dogPics1' alt='profile pics'  />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(1, event)} style={{ display: 'none' }} id='file-upload1' />
                         </label>
                     </div>
                     <div className='dogPics2_container'>
 
                         <label htmlFor='file-upload2' className='file-upload-container'>
-                            <img src={this.state.url2} id='img-preview' className='dogPics2' />
+                            <img src={this.state.url2} id='img-preview' className='dogPics2' alt='profile pics'  />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(2, event)} style={{ display: 'none' }} id='file-upload2' />
                         </label>
                     </div>
                     <div className='dogPics3_container'>
 
                         <label htmlFor='file-upload3' className='file-upload-container'>
-                            <img src={this.state.url3} id='img-preview' className='dogPics3' />
+                            <img src={this.state.url3} id='img-preview' className='dogPics3' alt='profile pics'  />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(3, event)} style={{ display: 'none' }} id='file-upload3' />
                         </label>
                     </div>
                     <div className='dogPics4_container'>
 
                         <label htmlFor='file-upload4' className='file-upload-container'>
-                            <img src={this.state.url4} id='img-preview' className='dogPics4' />
+                            <img src={this.state.url4} id='img-preview' className='dogPics4' alt='profile pics'  />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(4, event)} style={{ display: 'none' }} id='file-upload4' />
                         </label>
                     </div>
                     <div className='dogPics5_container'>
 
                         <label htmlFor='file-upload5' className='file-upload-container'>
-                            <img src={this.state.url5} id='img-preview' className='dogPics5' />
+                            <img src={this.state.url5} id='img-preview' className='dogPics5' alt='profile pics'  />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(5, event)} style={{ display: 'none' }} id='file-upload5' />
                         </label>
                     </div>
                     <div className='dogPics6_container'>
 
                         <label htmlFor='file-upload6' className='file-upload-container'>
-                            <img src={this.state.url6} id='img-preview' className='dogPics6' />
+                            <img src={this.state.url6} id='img-preview' className='dogPics6' alt='profile pics'  />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(6, event)} style={{ display: 'none' }} id='file-upload6' />
                         </label>
                     </div>

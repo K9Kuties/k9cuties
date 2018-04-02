@@ -126,8 +126,13 @@
 }
 
 .add_dog_info_dots {
-    width: auto;
-    margin: 8vh auto auto auto;
+    position: fixed;
+    bottom: 15px;
+    width: 100px;
+    right: 50%;
+    left: 50%;
+    margin-right: -50px;
+    margin-left: -50px;
     display: flex;
     flex-direction: row;
     justify-content: center;
