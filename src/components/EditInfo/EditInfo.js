@@ -46,12 +46,7 @@ class EditInfo extends Component {
             axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
                 this.props.getDog(res.data[0])
                 for (var key in res.data[0]) {
-<<<<<<< HEAD
-                    if (res.data[0][key]) { 
-                        console.log(res.data[0][key], key)
-=======
                     if (res.data[0][key]) {
->>>>>>> master
                         this.setState({
                             [key]: res.data[0][key]
                         })
@@ -208,6 +203,10 @@ class EditInfo extends Component {
                     <div>
                         <div>Description: {this.state.description}</div>
                     </div>
+                </div>
+                }
+                <button onClick={this.toggleEdit}>{(!this.state.edit) ? 'Edit' : 'Cancel'}</button>
+            </div>
             </div>
         )
     }
