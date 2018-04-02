@@ -66,13 +66,47 @@
     flex-direction: row;
     background: #FFFFFF;
     margin-bottom: 6.5%;
-    height: 9vh;
+    height: 6vh;
+    justify-content: space-around;
+    padding-top: 3vh;
+    padding-right: 4%;
+}
+
+.interested_in {
+    margin: auto;
+    margin-bottom: 6%;
+    font-size: 15.5px;
+    margin-left: 3.5%;
 }
 
 .male_or_female_label {
-    font-size: 17px;
+    font-size: 15px;
     margin-left: 3%;
 }
+
+input[type='radio'] {
+    opacity: 10;
+    width: 10;
+    margin: 0;
+    margin-top: 5px;
+    margin-left: 10px;
+    background: url('../../circle (1).svg') no-repeat;
+}
+
+/* label[for='male'], label[for='female'], label[for='both'], label[for='play_dates'], label[for='breeding'] {
+    padding-left: 25px;
+    background: url('../../circle (1).svg') no-repeat;
+    background-size: 18px;
+    background-position: 0 0;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+input[type='radio']:checked + label[for='male'], input[type='radio']:checked + label[for='female'], input[type='radio']:checked + label[for='both'], input[type='radio']:checked + label[for='breeding'], input[type='radio']:checked + label[for='pay_dates'], {
+    background: url('../../circle.svg') no-repeat;
+    background-size: 18px;
+    background-position: 0 0;
+} */
 
 .age_range {
     display: flex;
@@ -94,12 +128,21 @@
     display: flex;
     flex-direction: row;
     background: #FFFFFF;
-    height: 9vh;
+    height: 6vh;
     margin-bottom: 6.5%;;
+    padding-top: 3vh;
+    padding-right: 4%;
+}
+
+.reason_for {
+    margin: auto;
+    margin-bottom: 6%;
+    font-size: 13px;
+    margin-left: 3.5%;
 }
 
 .reason_label {
-    font-size: 17px;
+    font-size: 13px;
     margin-left: 3%;
 }
 

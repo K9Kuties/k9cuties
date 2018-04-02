@@ -34,6 +34,13 @@
     overflow-y: auto;
     overflow-x: hidden;
     top: 10%;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 }
 
 .chat_input {
@@ -73,6 +80,7 @@
     align-self: flex-end;
     position: relative;
     text-align: left;
+    hyphens: auto;
 }
 
 .chat_entry_me:before {
@@ -110,6 +118,7 @@
     align-self: flex-start;
     position: relative;
     text-align: left;
+    hyphens: auto;
 }
 
 .chat_entry_other:before {

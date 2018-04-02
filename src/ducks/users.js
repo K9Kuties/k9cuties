@@ -1,4 +1,5 @@
 import axios from 'axios';
+import EditInfo from '../components/EditInfo/EditInfo';
 
 const initialState = {
     user: {},
@@ -23,9 +24,9 @@ const UPDATE_INTERESTED_IN = 'UPDATE_INTERESTED_IN';
 const UPDATE_REASON = 'UPDATE_REASON';
 const UPDATE_RANGE = 'UPDATE_RANGE';
 const GET_MATCHES = 'GET_MATCHES';
+const EDIT_DOG_DEETS = 'EDIT_DOG_DEETS';
 
 export function getUser(user) {
-    console.log(user)
     return {
         type: GET_USER,
         payload: user
@@ -106,7 +107,6 @@ export function updateRadius(id, radius) {
 }
 
 export function getDog(dog) {
-    console.log(dog)
     return {
         type: GET_DOG,
         payload: dog
@@ -158,6 +158,17 @@ export function getMatches(id) {
     }
 }
 
+export function editDogDeets(id, name, breed, age, gender, description) {
+    const dog = axios.post(`/api/editDogDeets/${id}`, { name, breed, age, gender, description }).then(res => {
+        return res.data[0]
+    })
+
+    return {
+        type: EDIT_DOG_DEETS,
+        payload: dog
+    }
+}
+
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_MESSAGES + '_FULFILLED':
@@ -183,6 +194,8 @@ export default function reducer(state = initialState, action) {
         case GET_USER:
             return Object.assign({}, state, { user: action.payload });
         case GET_DOG:
+            return Object.assign({}, state, { dog: action.payload });
+        case EDIT_DOG_DEETS:
             return Object.assign({}, state, { dog: action.payload });
         default:
         return state;

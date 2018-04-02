@@ -51,7 +51,6 @@ export default class Card extends Component {
     let rightBound = window.innerWidth / 1.3
     console.log('rightBound', rightBound)
 
-
     //did not swipe
     if (positionX < rightBound && positionX > leftBound) {
       var coords2 = { x: this.state.x, y: this.state.y }
