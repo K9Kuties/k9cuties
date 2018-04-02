@@ -7,6 +7,7 @@ import PawLogo from '../../paw.svg';
 import { connect } from 'react-redux';
 import { addImage, editDogDeets, getUser, getDog } from './../../ducks/users';
 import './EditInfo.css'
+import BackArrow from '../../back-arrow.svg';
 
 
 const CLOUDINARYURL = 'https://api.cloudinary.com/v1_1/gexcloud/image/upload'
@@ -18,12 +19,12 @@ class EditInfo extends Component {
         super(props)
         this.state = {
             selectedFile: null,
-            img1: 'http://i67.tinypic.com/nd4dnl.jpg',
-            img2: 'http://i67.tinypic.com/nd4dnl.jpg',
-            img3: 'http://i67.tinypic.com/nd4dnl.jpg',
-            img4: 'http://i67.tinypic.com/nd4dnl.jpg',
-            img5: 'http://i67.tinypic.com/nd4dnl.jpg',
-            img6: 'http://i67.tinypic.com/nd4dnl.jpg',
+            img1: 'http://i68.tinypic.com/2z8pzwh.png',
+            img2: 'http://i63.tinypic.com/talyqt.png',
+            img3: 'http://i63.tinypic.com/talyqt.png',
+            img4: 'http://i63.tinypic.com/talyqt.png',
+            img5: 'http://i63.tinypic.com/talyqt.png',
+            img6: 'http://i63.tinypic.com/talyqt.png',
             name: '',
             breed: '',
             gender: '',
@@ -109,12 +110,10 @@ class EditInfo extends Component {
         return (
             <div className='editInfo1'>
                 <header className='edit_info_header' >
-                    <Link to='/profile' ><img src={dogicon} className='dog_icon' alt='dog_icon' /></Link>
-                    <img src={edit} className='edit_info_header_logo' alt='header logo' />
+                    <Link to='/profile' ><img src={BackArrow} className='dog_icon' alt='dog_icon' /></Link>
+                    <h3 className='edit_info_header_logo' >Edit Profile</h3>
                     <Link to='/swiping' ><img src={PawLogo} className='paw_logo' alt='paw_icon' /></Link>
                 </header>
-
-                <h1 className='edit_profile_h1' >Edit Profile</h1>
 
                 <div className='edit_info_images' >
 
@@ -122,7 +121,7 @@ class EditInfo extends Component {
                     <div className='image1_image2_image3' >
                         <div className='image1'>
                             <label htmlFor='file-upload1' className='file-upload-container1'>
-                                <img src={this.state.img1} id='img-preview' className='dogPics1' alt='Dog Pics' />
+                                <img src={this.state.img1} id='img-preview' className='dogPics11' alt='Dog Pics' />
                                 <input type='file' onChange={(event) => this.fileSelectedHandler(1, event)} style={{ display: 'none' }} id='file-upload1' />
                             </label>
                         </div>
@@ -131,7 +130,7 @@ class EditInfo extends Component {
                         <div className='image2_image3' >
                             <div className='image2'>
                                 <label htmlFor='file-upload2' className='file-upload-container2'>
-                                    <img src={this.state.img2} id='img-preview' className='dogPics2' alt='Dog Pics' />
+                                    <img src={this.state.img2} id='img-preview' className='dogPics22' alt='Dog Pics' />
                                     <input type='file' onChange={(event) => this.fileSelectedHandler(2, event)} style={{ display: 'none' }} id='file-upload2' />
                                 </label>
                             </div>
@@ -139,7 +138,7 @@ class EditInfo extends Component {
                             <div className='image3'>
 
                                 <label htmlFor='file-upload3' className='file-upload-container2'>
-                                    <img src={this.state.img3} id='img-preview' className='dogPics3' alt='Dog Pics' />
+                                    <img src={this.state.img3} id='img-preview' className='dogPics33' alt='Dog Pics' />
                                     <input type='file' onChange={(event) => this.fileSelectedHandler(3, event)} style={{ display: 'none' }} id='file-upload3' />
                                 </label>
                             </div>
@@ -148,21 +147,21 @@ class EditInfo extends Component {
 
                     <div className='image4'>
                         <label htmlFor='file-upload4' className='file-upload-container3'>
-                            <img src={this.state.img4} id='img-preview' className='dogPics4' alt='Dog Pics' />
+                            <img src={this.state.img4} id='img-preview' className='dogPics44' alt='Dog Pics' />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(4, event)} style={{ display: 'none' }} id='file-upload4' />
                         </label>
                     </div>
 
                     <div className='image5'>
                         <label htmlFor='file-upload5' className='file-upload-container3'>
-                            <img src={this.state.img5} id='img-preview' className='dogPics5' alt='Dog Pics' />
+                            <img src={this.state.img5} id='img-preview' className='dogPics55' alt='Dog Pics' />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(5, event)} style={{ display: 'none' }} id='file-upload5' />
                         </label>
                     </div>
 
                     <div className='image6'>
                         <label htmlFor='file-upload6' className='file-upload-container2'>
-                            <img src={this.state.img6} id='img-preview' className='dogPics6' alt='Dog Pics' />
+                            <img src={this.state.img6} id='img-preview' className='dogPics66' alt='Dog Pics' />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(6, event)} style={{ display: 'none' }} id='file-upload6' />
                         </label>
                     </div>
@@ -204,6 +203,10 @@ class EditInfo extends Component {
                     <div>
                         <div>Description: {this.state.description}</div>
                     </div>
+                </div>
+                }
+                <button onClick={this.toggleEdit}>{(!this.state.edit) ? 'Edit' : 'Cancel'}</button>
+            </div>
             </div>
         )
     }
