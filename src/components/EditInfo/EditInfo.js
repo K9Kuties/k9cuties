@@ -7,6 +7,8 @@ import PawLogo from '../../paw.svg';
 import { connect } from 'react-redux';
 import { addImage, editDogDeets, getUser, getDog } from './../../ducks/users';
 import './EditInfo.css'
+
+
 const CLOUDINARYURL = 'https://api.cloudinary.com/v1_1/gexcloud/image/upload'
     , CLOUDINARY_UPLOAD_PRESET = 'yltloitx'
     , imgPreview = document.getElementById('img-preview')
@@ -85,6 +87,9 @@ class EditInfo extends Component {
     }
 
     render() {
+
+        console.log(this.props.dog.name)
+
         return (
             <div className='editInfo1'>
                 <header className='edit_info_header' >
@@ -163,7 +168,6 @@ class EditInfo extends Component {
                         </div>
                         <button className='edit_info_save' onClick={this.save}>Save</button>
                     </div>
-
             </div>
         )
     }
@@ -176,4 +180,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { addImage, editDogDeets, getUser, getDog })(EditInfo)
+export default connect(mapStateToProps, { addImage, editDogDeets, getUser, getDog })(EditInfo);

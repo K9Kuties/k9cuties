@@ -1,22 +1,32 @@
 import React, { Component } from 'react'
 import interact from 'interactjs'
 import TWEEN from '@tweenjs/tween.js'
+import { connect } from 'react-redux';
+import { likeDog, unlikeDog } from './../../ducks/users';
+import heart from '../../heart.svg';
+import xButton from '../../x-button.svg';
 
 function animate(time) {
   requestAnimationFrame(animate);
   TWEEN.update(time);
 }
 
-export default class Card extends Component {
+class Card extends Component {
   constructor() {
     super()
     this.state = {
       x: 0,
-      y: 0
+      y: 0,
+      mainPicture: ''
     }
+    this.changePictureLeft = this.changePictureLeft.bind(this)
+    this.changePictureRight = this.changePictureRight.bind(this)
   }
 
   componentDidMount() {
+    this.setState({
+      mainPicture: this.props.img1
+    })
     let inter = interact('#poop' + this.props.idx)
     inter.draggable({
       inertia: {
@@ -32,7 +42,6 @@ export default class Card extends Component {
   }
 
   handleDrag(event) {
-    // console.log('handle drag', this.state)
     var x = (parseFloat(this.state.x) || 0) + event.dx,
       y = (parseFloat(this.state.y) || 0) + event.dy;
     // update the posiion attributes
@@ -40,16 +49,12 @@ export default class Card extends Component {
   }
 
   handleDragEnd(event) {
-    console.log('handle drag end', this.state)
     //event.pageX = where mouse is when unclicked
     let positionX = event.pageX;
-    console.log('event.pagex', event.pageX)
     let card = this
-    console.log('card', card)
     let leftBound = window.innerWidth / 4.65
     //window.innerWidth = width of screen
     let rightBound = window.innerWidth / 1.3
-    console.log('rightBound', rightBound)
 
     //did not swipe
     if (positionX < rightBound && positionX > leftBound) {
@@ -60,7 +65,6 @@ export default class Card extends Component {
         card.setState({ x: coords2.x, y: coords2.y })
       })
       tween.start();
-      console.log('did not swipe')
 
       //swiping right
     } else if (positionX > rightBound) {
@@ -71,6 +75,7 @@ export default class Card extends Component {
         card.setState({ x: coords3.x, y: coords3.y })
       })
       tween.start();
+      this.props.likeDog(this.props.dog.dog_id, this.props.cardDogId)
       setTimeout(() => {
         this.props.shiftCard()
       }, 2500); 
@@ -85,10 +90,67 @@ export default class Card extends Component {
         card.setState({ x: coords.x, y: coords.y })
       })
       tween.start();
+      this.props.unlikeDog(this.props.dog.dog_id, this.props.cardDogId)
       setTimeout(() => {
         this.props.shiftCard()
       }, 2500); 
       console.log('swiped left')
+    }
+  }
+
+  changePictureLeft() {
+    if (this.state.mainPicture === this.props.img1 && this.props.img1) {
+        this.setState({
+            mainPicture: this.props.img1
+        })
+    } else if (this.state.mainPicture === this.props.img2 && this.props.img1) {
+        this.setState({
+            mainPicture: this.props.img1
+        })
+    } else if (this.state.mainPicture === this.props.img3 && this.props.img2) {
+        this.setState({
+            mainPicture: this.props.img2
+        })
+    } else if (this.state.mainPicture === this.props.img4 && this.props.img3) {
+        this.setState({
+            mainPicture: this.props.img3
+        })
+    } else if (this.state.mainPicture === this.props.img5 && this.props.img4) {
+        this.setState({
+            mainPicture: this.props.img4
+        })
+    } else if (this.state.mainPicture === this.props.img6 && this.props.img5) {
+        this.setState({
+            mainPicture: this.props.img5
+        })
+    }
+  }
+
+  changePictureRight() {
+    if (this.state.mainPicture === this.props.img1 && this.props.img2) {
+        this.setState({
+            mainPicture: this.props.img2
+        })
+    } else if (this.state.mainPicture === this.props.img2 && this.props.img3) {
+        this.setState({
+            mainPicture: this.props.img3
+        })
+    } else if (this.state.mainPicture === this.props.img3 && this.props.img4) {
+        this.setState({
+            mainPicture: this.props.img4
+        })
+    } else if (this.state.mainPicture === this.props.img4 && this.props.img5) {
+        this.setState({
+            mainPicture: this.props.img5
+        })
+    } else if (this.state.mainPicture === this.props.img5 && this.props.img6) {
+        this.setState({
+            mainPicture: this.props.img6
+        })
+    } else if (this.state.mainPicture === this.props.img6 && this.props.img6) {
+        this.setState({
+            mainPicture: this.props.img6
+        })
     }
   }
 
@@ -99,8 +161,23 @@ export default class Card extends Component {
       touchAction: 'none'
     }
 
-    return <div id={"poop" + this.props.idx} className="Card" style={cardStyle} >
-      <img src={this.props.imgUrl} alt="me" />
-    </div>
+    return  <div id={"poop" + this.props.idx} className="Card" style={cardStyle} >
+            <img src={this.state.mainPicture} alt="me" />
+            <div className='left_picture' onClick={this.changePictureLeft} >Left</div>
+            <div className='right_picture' onClick={this.changePictureRight} >Right</div>
+            <div className='card_deets'>
+              <div>
+                <h2>{this.props.name}, {this.props.age}</h2>
+                <h3>{this.props.gender} - {this.props.breed}</h3>
+              </div>
+              <h2>I</h2>
+            </div>
+            <div className='like_unlike_buttons'>
+              <img src={xButton} alt="dislike button" height='100px' width='100px' onClick={() => {this.props.unlikeDog(this.props.dog.dog_id, this.props.cardDogId); this.props.shiftCard()}} />
+              <img src={heart} alt="like button" height='100px' width='100px' onClick={() => {this.props.likeDog(this.props.dog.dog_id, this.props.cardDogId); this.props.shiftCard()}} />
+            </div>
+          </div>   
   }
 }
+
+export default connect(null, { likeDog, unlikeDog })(Card);

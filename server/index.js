@@ -228,10 +228,10 @@ app.get('/api/getDog/:id', (req, res) => {
     })
 })
 
-app.get('/api/getSwipeArray/:id/:latitude/:longitude/:radius', (req, res) => {
-    let { id, latitude, longitude, radius } = req.params;
+app.get('/api/getSwipeArray', (req, res) => {
+    let { id, latitude, longitude, radius, interested_in, reason } = req.query;
     const db = req.app.get('db');
-    db.get_swipe_array([id, latitude, longitude, radius]).then(response => {
+    db.get_swipe_array([id, latitude, longitude, radius, interested_in, reason]).then(response => {
         res.status(200).send(response)
     })
 });
@@ -240,6 +240,22 @@ app.get('/api/getMatches/:id', (req, res) => {
     let { id } = req.params;
     const db = req.app.get('db');
     db.get_matches([id]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
+app.post('/api/likeDog', (req, res) => {
+    let { dogLiking, dogBeingLiked } = req.query;
+    const db = req.app.get('db');
+    db.like_dog([dogLiking, dogBeingLiked]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
+app.post('/api/unlikeDog', (req, res) => {
+    let { dogUnliking, dogBeingUnliked } = req.query;
+    const db = req.app.get('db');
+    db.unlike_dog([dogUnliking, dogBeingUnliked]).then(response => {
         res.status(200).send(response)
     })
 })
