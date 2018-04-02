@@ -24,6 +24,8 @@ const UPDATE_REASON = 'UPDATE_REASON';
 const UPDATE_RANGE = 'UPDATE_RANGE';
 const GET_MATCHES = 'GET_MATCHES';
 const EDIT_DOG_DEETS = 'EDIT_DOG_DEETS';
+const LIKE_DOG = 'LIKE_DOG';
+const UNLIKE_DOG = 'UNLIKE_DOG';
 
 export function getUser(user) {
     return {
@@ -168,6 +170,26 @@ export function editDogDeets(id, name, breed, age, gender, description) {
     }
 }
 
+export function likeDog(id, cardId) {
+    const dog = axios.post(`/api/likeDog?dogLiking=${id}&dogBeingLiked=${cardId}`).then(res => {
+        return res
+    })
+    return {
+        type: LIKE_DOG,
+        payload: dog
+    }
+}
+
+export function unlikeDog(id, cardId) {
+    const dog = axios.post(`/api/unlikeDog?dogUnliking=${id}&dogBeingUnliked=${cardId}`).then(res => {
+        return res
+    })
+    return {
+        type: UNLIKE_DOG,
+        payload: dog
+    }
+}
+
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_MESSAGES + '_FULFILLED':
@@ -191,7 +213,6 @@ export default function reducer(state = initialState, action) {
         case UPDATE_MESSAGES:
             return Object.assign({}, state, { messages: action.payload });
         case EDIT_DOG_DEETS + '_FULFILLED':
-        console.log(action.payload)
             return Object.assign({}, state, { dog: action.payload });
         case GET_USER:
             return Object.assign({}, state, { user: action.payload });
