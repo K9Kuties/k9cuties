@@ -148,6 +148,37 @@ app.put('/api/profileImage/:id', (req, res) => {
     })
 });
 
+app.put('/api/removeImage/:id', (req, res) => {
+    let { id } = req.params;
+    let { number } = req.body;
+    const db = req.app.get('db');
+    if (number === 1){
+        db.remove_profile_image([id]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 2) {
+        db.remove_image_two([id]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 3) {
+        db.remove_image_three([id]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 4) {
+        db.remove_image_four([id]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 5) {
+        db.remove_image_five([id]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 6) {
+        db.remove_image_six([id]).then(response => {
+            res.status(200).send(response)
+        })
+    }
+});
+
 app.put('/api/image/:id', (req, res) => {
     let { id } = req.params;
     let { number, url } = req.body;
@@ -177,7 +208,7 @@ app.put('/api/image/:id', (req, res) => {
             res.status(200).send(response)
         })
     }
-});
+})
 
 app.put('/api/description/:id', (req, res) => {
     let { id } = req.params;
