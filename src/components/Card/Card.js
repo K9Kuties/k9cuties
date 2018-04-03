@@ -181,8 +181,47 @@ class Card extends Component {
               <h2>I</h2>
             </div>
             <div className='like_unlike_buttons'>
-              <img src={xButton} alt="dislike button" height='100px' width='100px' onClick={() => {this.props.unlikeDog(this.props.dog.dog_id, this.props.cardDogId); this.props.shiftCard()}} />
-              <img src={heart} alt="like button" height='100px' width='100px' onClick={() => {this.props.likeDog(this.props.dog.dog_id, this.props.cardDogId); this.props.shiftCard()}} />
+              <img src={xButton} alt="dislike button" height='100px' width='100px' onClick={
+                (event) => {
+                  let positionX = event.pageX;
+                  let card = this
+                  let leftBound = window.innerWidth / 4.65
+                  let rightBound = window.innerWidth / 1.3
+                  var coords = { x: this.state.x, y: this.state.y }
+                  var tween = new TWEEN.Tween(coords)
+                  tween.to({ x: (window.innerWidth-window.innerWidth)-1000, y: 500 }, 2500)
+                  tween.onUpdate(function () {
+                    card.setState({ x: coords.x, y: coords.y })
+                  })
+                  tween.start();
+                  this.props.unlikeDog(this.props.dog.dog_id, this.props.cardDogId); 
+                  setTimeout(() => {
+                    this.props.shiftCard()
+                  }, 2500); 
+                }}/>
+              <img src={heart} alt="like button" height='100px' width='100px' onClick={
+                (event) => {
+                  let positionX = event.pageX;
+                  let card = this
+                  let leftBound = window.innerWidth / 4.65
+                  let rightBound = window.innerWidth / 1.3
+                  var coords = { x: this.state.x, y: this.state.y }
+                  var tween = new TWEEN.Tween(coords)
+                  tween.to({ x: window.innerWidth+1000, y: 500 }, 2500)
+                  tween.onUpdate(function () {
+                    card.setState({ x: coords.x, y: coords.y })
+                  })
+                  tween.start();
+                  axios.get(`/api/isItAMatch?id=${this.props.dog.dog_id}&otherId=${this.props.cardDogId}`).then(res => {
+                    if (res.data === true) {
+                      this.props.showModal({id: this.props.dog.dog_id, picture: this.props.dog.img1}, {id: this.props.cardDogId, name: this.props.name, picture: this.props.img1})
+                    } 
+                  })
+                  this.props.likeDog(this.props.dog.dog_id, this.props.cardDogId); 
+                  setTimeout(() => {
+                    this.props.shiftCard()
+                  }, 2500); 
+                }}/>
             </div>
           </div>   
   }

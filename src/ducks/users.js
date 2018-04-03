@@ -27,6 +27,7 @@ const GET_MATCHES = 'GET_MATCHES';
 const EDIT_DOG_DEETS = 'EDIT_DOG_DEETS';
 const LIKE_DOG = 'LIKE_DOG';
 const UNLIKE_DOG = 'UNLIKE_DOG';
+const REMOVE_IMAGE = 'REMOVE_IMAGE';
 
 export function getUser(user) {
     return {
@@ -83,6 +84,17 @@ export function addImage(id, number, url) {
     return {
         type: ADD_IMAGE,
         payload: dog
+    }
+}
+
+export function removeImage(id, number) {
+    const dog = axios.put(`/api/removeImage/${id}`, { number }).then(res => {
+        return res.data[0]
+    })
+
+    return {
+        type: REMOVE_IMAGE,
+        payload: id
     }
 }
 
@@ -160,9 +172,7 @@ export function getMatches(id) {
 }
 
 export function editDogDeets(id, name, breed, birthdate, gender, description) {
-    console.log(birthdate)
     const dog = axios.post(`/api/editDogDeets/${id}`, { name, breed, birthdate, gender, description }).then(res => {
-        console.log(res.data[0])
         return res.data[0]
     })
 
@@ -202,6 +212,8 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { dog: action.payload });
         case ADD_IMAGE + '_FULFILLED':
             return Object.assign({}, state, { dog: action.payload });
+        case REMOVE_IMAGE + '_FULFILLED':
+            return Object.assign({}, state, { dog: action.payload })
         case SUBMIT_DESCRIPTION + '_FULFILLED':
             return Object.assign({}, state, { dog: action.payload });
         case UPDATE_RADIUS + '_FULFILLED':
