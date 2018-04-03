@@ -5,9 +5,10 @@ import edit from '../../edit.svg';
 import dogicon from '../../dog_icon.png';
 import PawLogo from '../../paw.svg';
 import { connect } from 'react-redux';
-import { addImage, editDogDeets, getUser, getDog } from './../../ducks/users';
+import { addImage, removeImage, editDogDeets, getUser, getDog } from './../../ducks/users';
 import './EditInfo.css'
 import BackArrow from '../../back-arrow.svg';
+import cancelButton from '../../cancel-button.svg';
 
 
 const CLOUDINARYURL = 'https://api.cloudinary.com/v1_1/gexcloud/image/upload'
@@ -27,6 +28,7 @@ class EditInfo extends Component {
             img6: 'http://i63.tinypic.com/talyqt.png',
             name: '',
             breed: '',
+            birthdate: '',
             gender: '',
             description: '',
             edit: false,
@@ -37,6 +39,7 @@ class EditInfo extends Component {
             newDescription: ''
         }
         this.save = this.save.bind(this)
+        this.toggleEdit = this.toggleEdit.bind(this)
     }
 
     componentDidMount() {
@@ -119,6 +122,7 @@ class EditInfo extends Component {
 
                     <div className='image1_image2_image3' >
                         <div className='image1'>
+                            <img src={cancelButton} value='img1' onClick={(e) => {if (window.confirm('Are you sure you wish to delete this photo?')) {this.props.removeImage(this.props.dog.dog_id, 1); this.setState({img1: 'http://i68.tinypic.com/2z8pzwh.png'})}}} className='remove_photo_one' />
                             <label htmlFor='file-upload1' className='file-upload-container1'>
                                 <img src={this.state.img1} id='img-preview' className='dogPics11' alt='Dog Pics' />
                                 <input type='file' onChange={(event) => this.fileSelectedHandler(1, event)} style={{ display: 'none' }} id='file-upload1' />
@@ -128,15 +132,17 @@ class EditInfo extends Component {
 
                         <div className='image2_image3' >
                             <div className='image2'>
-                                <label htmlFor='file-upload2' className='file-upload-container2'>
+                            <img src={cancelButton} value='img2' onClick={(e) => {if (window.confirm('Are you sure you wish to delete this photo?')) {this.props.removeImage(this.props.dog.dog_id, 2); this.setState({img2: 'http://i68.tinypic.com/2z8pzwh.png'})}}} className='remove_photo' />
+                                    <label htmlFor='file-upload2' className='file-upload-container2'>
                                     <img src={this.state.img2} id='img-preview' className='dogPics22' alt='Dog Pics' />
                                     <input type='file' onChange={(event) => this.fileSelectedHandler(2, event)} style={{ display: 'none' }} id='file-upload2' />
                                 </label>
                             </div>
 
                             <div className='image3'>
-
+                            <img src={cancelButton} value='img3' onClick={(e) => {if (window.confirm('Are you sure you wish to delete this photo?')) {this.props.removeImage(this.props.dog.dog_id, 3); this.setState({img3: 'http://i68.tinypic.com/2z8pzwh.png'})}}} className='remove_photo' />
                                 <label htmlFor='file-upload3' className='file-upload-container2'>
+                                    
                                     <img src={this.state.img3} id='img-preview' className='dogPics33' alt='Dog Pics' />
                                     <input type='file' onChange={(event) => this.fileSelectedHandler(3, event)} style={{ display: 'none' }} id='file-upload3' />
                                 </label>
@@ -145,21 +151,27 @@ class EditInfo extends Component {
                     </div>
 
                     <div className='image4'>
+                    <img src={cancelButton} value='img4' onClick={(e) => {if (window.confirm('Are you sure you wish to delete this photo?')) {this.props.removeImage(this.props.dog.dog_id, 4); this.setState({img4: 'http://i68.tinypic.com/2z8pzwh.png'})}}} className='remove_photo' />
                         <label htmlFor='file-upload4' className='file-upload-container3'>
+                            
                             <img src={this.state.img4} id='img-preview' className='dogPics44' alt='Dog Pics' />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(4, event)} style={{ display: 'none' }} id='file-upload4' />
                         </label>
                     </div>
 
                     <div className='image5'>
+                    <img src={cancelButton} value='img5' onClick={(e) => {if (window.confirm('Are you sure you wish to delete this photo?')) {this.props.removeImage(this.props.dog.dog_id, 5); this.setState({img5: 'http://i68.tinypic.com/2z8pzwh.png'})}}} className='remove_photo' />
                         <label htmlFor='file-upload5' className='file-upload-container3'>
+                            
                             <img src={this.state.img5} id='img-preview' className='dogPics55' alt='Dog Pics' />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(5, event)} style={{ display: 'none' }} id='file-upload5' />
                         </label>
                     </div>
 
                     <div className='image6'>
+                    <img src={cancelButton} value='img6' onClick={(e) => {if (window.confirm('Are you sure you wish to delete this photo?')) {this.props.removeImage(this.props.dog.dog_id, 6); this.setState({img6: 'http://i68.tinypic.com/2z8pzwh.png'})}}} className='remove_photo' />
                         <label htmlFor='file-upload6' className='file-upload-container2'>
+                            
                             <img src={this.state.img6} id='img-preview' className='dogPics66' alt='Dog Pics' />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(6, event)} style={{ display: 'none' }} id='file-upload6' />
                         </label>
@@ -218,4 +230,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { addImage, editDogDeets, getUser, getDog })(EditInfo);
+export default connect(mapStateToProps, { addImage, removeImage, editDogDeets, getUser, getDog })(EditInfo);
