@@ -7,6 +7,6 @@ AND dog_id not in (select dog_being_unliked
 AND dog_id not in (select dog_being_liked
                         from liked 
                         where dog_liking = $1)
-AND interested_in = $5
+AND gender ~* $5
 AND reason = $6
 AND dog_id <> $1;

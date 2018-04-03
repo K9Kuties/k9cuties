@@ -86,8 +86,8 @@ class AddDogInfo extends Component {
                     <hr />
                     <select className='add_dog_info_dog_gender_select' value={this.state.dogGender} onChange={(e) => { this.setState({ dogGender: e.target.value }) }} required>
                         <option default hidden>Gender</option>
-                        <option value='male'>Male</option>
-                        <option value='female'>Female</option>
+                        <option value='Male'>Male</option>
+                        <option value='Female'>Female</option>
                     </select>
                     <hr />
                 </div>
