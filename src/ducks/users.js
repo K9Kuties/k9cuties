@@ -1,11 +1,13 @@
 import axios from 'axios';
+import EditInfo from '../components/EditInfo/EditInfo';
 
 const initialState = {
     user: {},
     messages: [],
     matches: [],
     dog: {},
-    dogsToDisplay: []
+    dogsToDisplay: [],
+    matches: []
 }
 
 const GET_USER = 'GET_USER';
@@ -21,9 +23,13 @@ const UPDATE_AGE = 'UPDATE_AGE';
 const UPDATE_INTERESTED_IN = 'UPDATE_INTERESTED_IN';
 const UPDATE_REASON = 'UPDATE_REASON';
 const UPDATE_RANGE = 'UPDATE_RANGE';
+const GET_MATCHES = 'GET_MATCHES';
+const EDIT_DOG_DEETS = 'EDIT_DOG_DEETS';
+const LIKE_DOG = 'LIKE_DOG';
+const UNLIKE_DOG = 'UNLIKE_DOG';
+const REMOVE_IMAGE = 'REMOVE_IMAGE';
 
 export function getUser(user) {
-    console.log(user)
     return {
         type: GET_USER,
         payload: user
@@ -81,6 +87,17 @@ export function addImage(id, number, url) {
     }
 }
 
+export function removeImage(id, number) {
+    const dog = axios.put(`/api/removeImage/${id}`, { number }).then(res => {
+        return res.data[0]
+    })
+
+    return {
+        type: REMOVE_IMAGE,
+        payload: id
+    }
+}
+
 export function submitDescription(id, desc) {
     const dog = axios.put(`/api/description/${id}`, { desc }).then(res => {
         return res.data[0]
@@ -104,7 +121,6 @@ export function updateRadius(id, radius) {
 }
 
 export function getDog(dog) {
-    console.log(dog)
     return {
         type: GET_DOG,
         payload: dog
@@ -144,6 +160,48 @@ export function updateReason(id, reason) {
     }
 }
 
+export function getMatches(id) {
+    const matches = axios.get(`/api/getMatches/${id}`).then(res => {
+        return res.data
+    })
+
+    return {
+        type: GET_MATCHES,
+        payload: matches
+    }
+}
+
+export function editDogDeets(id, name, breed, birthdate, gender, description) {
+    const dog = axios.post(`/api/editDogDeets/${id}`, { name, breed, birthdate, gender, description }).then(res => {
+        return res.data[0]
+    })
+
+    return {
+        type: EDIT_DOG_DEETS,
+        payload: dog
+    }
+}
+
+export function likeDog(id, cardId) {
+    const dog = axios.post(`/api/likeDog?dogLiking=${id}&dogBeingLiked=${cardId}`).then(res => {
+        return res
+    })
+    return {
+        type: LIKE_DOG,
+        payload: dog
+    }
+}
+
+export function unlikeDog(id, cardId) {
+    const dog = axios.post(`/api/unlikeDog?dogUnliking=${id}&dogBeingUnliked=${cardId}`).then(res => {
+        return res
+    })
+    return {
+        type: UNLIKE_DOG,
+        payload: dog
+    }
+}
+
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_MESSAGES + '_FULFILLED':
@@ -154,6 +212,8 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { dog: action.payload });
         case ADD_IMAGE + '_FULFILLED':
             return Object.assign({}, state, { dog: action.payload });
+        case REMOVE_IMAGE + '_FULFILLED':
+            return Object.assign({}, state, { dog: action.payload })
         case SUBMIT_DESCRIPTION + '_FULFILLED':
             return Object.assign({}, state, { dog: action.payload });
         case UPDATE_RADIUS + '_FULFILLED':
@@ -162,11 +222,17 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { dog: action.payload });
         case UPDATE_REASON + '_FULFILLED':
             return Object.assign({}, state, { dog: action.payload });
+        case GET_MATCHES + '_FULFILLED':
+            return Object.assign({}, state, { matches: action.payload })
         case UPDATE_MESSAGES:
             return Object.assign({}, state, { messages: action.payload });
+        case EDIT_DOG_DEETS + '_FULFILLED':
+            return Object.assign({}, state, { dog: action.payload });
         case GET_USER:
             return Object.assign({}, state, { user: action.payload });
         case GET_DOG:
+            return Object.assign({}, state, { dog: action.payload });
+        case EDIT_DOG_DEETS:
             return Object.assign({}, state, { dog: action.payload });
         default:
         return state;

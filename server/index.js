@@ -87,7 +87,7 @@ app.get('/auth/me', (req, res) => {
 
 app.get('/logout', (req, res) => {
     req.logOut();
-    res.redirect(process.env.REACT_APP_HOMEPAGE)
+    res.redirect('http://localhost:3000/#/')
 });
 
 io.on('connection', socket => {
@@ -118,13 +118,26 @@ app.get('/api/messages/:userOne/:userTwo', (req, res) => {
 });
 
 app.post('/api/submitNewDog', (req, res) => {
-    let { userId, dogName, dogBreed, dogAge, dogGender, latitude, longitude } = req.body;
+    let { userId, dogName, dogBreed, dogBirthdate, dogGender, latitude, longitude } = req.body;
     let location =`SRID=4326;POINT(${longitude} ${latitude})`;
     const db = req.app.get('db');
-    db.submit_new_dog([userId, dogName, dogBreed, dogAge, dogGender, location, latitude, longitude]).then(response => {
+    db.submit_new_dog([userId, dogName, dogBreed, dogBirthdate, dogGender, location, latitude, longitude]).then(response => {
+        response[0].birthdate = JSON.stringify(response[0].birthdate)
+        response[0].birthdate = response[0].birthdate.substring(1).split('T')[0]
         res.status(200).send(response)
     })
 });
+
+app.post('/api/editDogDeets/:id', (req, res) => {
+    let { id } = req.params;
+    let { name, breed, birthdate, gender, description } = req.body;
+    const db = req.app.get('db');
+    db.edit_dog_deets([id, name, breed, birthdate, gender, description]).then(response => {
+        response[0].birthdate = JSON.stringify(response[0].birthdate)
+        response[0].birthdate = response[0].birthdate.substring(1).split('T')[0]
+        res.status(200).send(response)
+    })
+})
 
 app.put('/api/profileImage/:id', (req, res) => {
     let { url } = req.body;
@@ -133,6 +146,37 @@ app.put('/api/profileImage/:id', (req, res) => {
     db.add_profile_image([id, url]).then(response => {
         res.status(200).send(response)
     })
+});
+
+app.put('/api/removeImage/:id', (req, res) => {
+    let { id } = req.params;
+    let { number } = req.body;
+    const db = req.app.get('db');
+    if (number === 1){
+        db.remove_profile_image([id]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 2) {
+        db.remove_image_two([id]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 3) {
+        db.remove_image_three([id]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 4) {
+        db.remove_image_four([id]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 5) {
+        db.remove_image_five([id]).then(response => {
+            res.status(200).send(response)
+        })
+    } else if (number === 6) {
+        db.remove_image_six([id]).then(response => {
+            res.status(200).send(response)
+        })
+    }
 });
 
 app.put('/api/image/:id', (req, res) => {
@@ -164,7 +208,7 @@ app.put('/api/image/:id', (req, res) => {
             res.status(200).send(response)
         })
     }
-});
+})
 
 app.put('/api/description/:id', (req, res) => {
     let { id } = req.params;
@@ -215,17 +259,67 @@ app.get('/api/getDog/:id', (req, res) => {
     let { id } = req.params;
     const db = req.app.get('db');
     db.get_dog([id]).then(response => {
+        var today = new Date();
+        var birthDate = new Date(response[0].birthdate);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+        {
+            age--;
+        }
+        response[0].age = age
+        response[0].birthdate = JSON.stringify(response[0].birthdate)
+        response[0].birthdate = response[0].birthdate.substring(1).split('T')[0]
+        res.status(200).send(response)
+    })
+})
+
+app.get('/api/getSwipeArray', (req, res) => {
+    let { id, latitude, longitude, radius, interested_in, reason } = req.query;
+    const db = req.app.get('db');
+    if (interested_in === "Both") {
+        interested_in = "(Male|Female)"
+    } else if (interested_in === "Male") {
+        interested_in = "(Male)"
+    } else if (interested_in === "Female") {
+        interested_in = "(Female)"
+    }
+    db.get_swipe_array([id, latitude, longitude, radius, interested_in, reason]).then(response => {
         res.status(200).send(response)
     })
 });
 
-app.get('/api/getSwipeArray/:id/:latitude/:longitude/:radius', (req, res) => {
-    let { id, latitude, longitude, radius } = req.params;
+app.get('/api/getMatches/:id', (req, res) => {
+    let { id } = req.params;
     const db = req.app.get('db');
-    db.get_swipe_array([id, latitude, longitude, radius]).then(response => {
+    db.get_matches([id]).then(response => {
         res.status(200).send(response)
     })
-});
+})
+
+app.post('/api/likeDog', (req, res) => {
+    let { dogLiking, dogBeingLiked } = req.query;
+    const db = req.app.get('db');
+    db.like_dog([dogLiking, dogBeingLiked]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
+app.post('/api/unlikeDog', (req, res) => {
+    let { dogUnliking, dogBeingUnliked } = req.query;
+    const db = req.app.get('db');
+    db.unlike_dog([dogUnliking, dogBeingUnliked]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
+app.get('/api/isItAMatch', (req, res) => {
+    let { id, otherId } = req.query;
+    const db = req.app.get('db');
+    db.is_it_a_match([id, otherId]).then(response => {
+        res.status(200).send(response[0].exists)
+    })
+})
 
 app.delete('/api/deleteAccount/:id', (req, res) => {
     let { id } = req.params;

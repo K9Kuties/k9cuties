@@ -1,96 +1,96 @@
 import React, { Component } from 'react';
 import './Swiping.css';
-import Swipeable from 'react-swipeable';
 import { connect } from 'react-redux';
 import { getUser, getDog } from './../../ducks/users';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import CardDeck from '../CardDeck/CardDeck';
+import Header from '../../components/Header/Header';
+import PoochPals from '../../@0.5xpoochpals.svg';
+import DogHead from '../../dog-head.svg';
+import SpeechBubbles from '../../speech-bubbles.svg';
+
 
 class Swiping extends Component {
   constructor() {
     super()
     this.state = {
-      swipeArray: ['Matt', 'Tanner', "Steven", "Dick", "Jane", "Gertrude", "Billy"],
-      currentSlide: 0
+      swipeArray: [],
+      currentSlide: 0,
+      modalShow: false,
+      matchDogOneId: 0,
+      matchDogTwoId: 0,
+      matchDogOnePicture: '',
+      matchDogTwoPicture: '',
+      matchDogTwoName: ''
     }
-    this.swiping = this.swiping.bind(this)
-    this.swipingRight = this.swipingRight.bind(this)
-    this.swipingLeft = this.swipingLeft.bind(this)
-    this.swiped = this.swiped.bind(this)
   }
 
   componentDidMount() {
     axios.get('/auth/me').then(res => {
       this.props.getUser(res.data.user);
       axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
-          this.props.getDog(res.data[0])
-          let swipeArray = axios.get(`/api/getSwipeArray/${res.data[0].dog_id}/${res.data[0].latitude}/${res.data[0].longitude}/${res.data[0].radius}`).then(res => {
-              console.log(res)
+        this.props.getDog(res.data[0])
+        let swipeArray = axios.get(`/api/getSwipeArray?id=${res.data[0].dog_id}&latitude=${res.data[0].latitude}&longitude=${res.data[0].longitude}&radius=${res.data[0].radius}&interested_in=${res.data[0].interested_in}&reason=${res.data[0].reason}`).then(res => {
+          this.setState({
+            swipeArray: res.data
           })
+        })
       })
     })
   }
 
-  swiping(e, deltaX, deltaY, absX, absY, velocity) {
-  
-  }
- 
-  swipingLeft(e, absX) {
-    // e.target.className = 'swipe-left';  
+  shiftCard() {
+    let cards = this.state.swipeArray.slice()
+    cards.splice(0, 1)
+    this.setState({
+      swipeArray: cards
+    })
   }
 
-  swipingRight(e, absX) {
-    // e.target.className = 'swipe-right';   
+  showModal(id, otherId) {
+    this.setState({
+      modalShow: true,
+      matchDogOneId: id.id,
+      matchDogTwoId: otherId.id,
+      matchDogOnePicture: id.picture,
+      matchDogTwoPicture: otherId.picture,
+      matchDogTwoName: otherId.name
+    })
   }
- 
-  swiped(e, deltaX, deltaY, isFlick, velocity) {
-    // if (isFlick) {
-      if (deltaX > 0) {
-        e.target.className = 'swipe-left';
-      } else if (deltaX < 0) {
-        e.target.className = 'swipe-right'; 
-      }
-      let id = e.target.id
-      console.log("You Swiped...", e, deltaX, deltaY, isFlick, velocity)
-      var tempArray = this.state.swipeArray.slice()
-      tempArray.splice(id, 1)
-      setTimeout(() => {
-        this.setState({
-          swipeArray: tempArray
-        })
-      }, 1000)
-    // }
-  }
-  
+
   render() {
 
-    this.cardStack = this.state.swipeArray.map((slide, index) => {
-          return (<Swipeable
-            className="card"
-            key={index}
-            id={index}
-            style={{zIndex: index}}
-            onSwiping={this.swiping}
-            onSwipingLeft={this.swipingLeft}
-            onSwipingRight={this.swipingRight}
-            onSwiped={this.swiped}
-            onSwipedUp={this.swipedRight} >
-              {slide}
-          </Swipeable>)
-      })
-
     return (
-      <div className="Swiping">
-        <header className="Swiping-header">
-          <h1 className="Swiping-title">Welcome to React</h1>
-        </header>
-        <p className="Swiping-intro">
-          To get started, edit <code>src/Swiping.js</code> and save to reload.
-        </p>
-        <div className="slide_container">
-          {this.cardStack}
-        </div>
+      <div>
+        {
+          (this.state.modalShow)
+            ?
+            <div className='modal'>
+              <Header />
+              <h1 className='a_match' >IT'S A MATCH!</h1>
+              <h5 className='match_names' >You and {this.state.matchDogTwoName} liked each other :)</h5>
+              <div className='modal_images'>
+                <img src={this.state.matchDogOnePicture} className='matchDogOnePicture' alt='your dog' />
+                <img src={this.state.matchDogTwoPicture} className='matchDogTwoPicture' alt='matched dog' />
+              </div>
+              <Link to={`/message/${this.state.matchDogOneId}/${this.state.matchDogTwoId}`}><button className='message_them_button' onClick={() => { this.setState({ modalShow: false }) }}>MESSAGE THEM</button></Link>
+              <button className='keep_swiping' onClick={() => { this.setState({ modalShow: false }) }}>KEEP SWIPING</button>
+            </div>
+            :
+            <div className="Swiping">
+              <div className='swiping_header' >
+                <Link to='/profile' ><img className='to_profile' src={DogHead} alt='to profile' /></Link>
+                <img className='swiping_header_img' src={PoochPals} alt='pooch pals' />
+                <Link to='/matches'><img className='to_matches' src={SpeechBubbles} alt='to matches' /></Link>
+              </div>
+              <div className="slide_container">
+                <CardDeck cards={this.state.swipeArray} dog={this.props.dog} shiftCard={this.shiftCard.bind(this)} showModal={this.showModal.bind(this)} />
+              </div>
+            </div>
+        }
       </div>
-    );
+    )
   }
 }
 

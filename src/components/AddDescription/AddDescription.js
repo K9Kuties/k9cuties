@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Header from '../Header/Header';
 import axios from 'axios';
 import './AddDescription.css';
@@ -31,19 +31,17 @@ class AddDescription extends Component {
         })
     }
 
-    render(){
+    render() {
 
-        return(
-            <div>
-                <div className='descMain'>
-                    <div>
-                        <Header/>
-                    </div>
-                    <div className='descDesc'>Add a description of your dog</div>
-                    <textarea name='text' className='descriptInput' placeholder='Example: Spike loves playing at the park and he loves long walks on the beach' value={this.state.description} onChange={(e) => { this.setState({ description: e.target.value }) }} />
-                    <Link to='/dogcreated'><button className='nextBut' onClick={this.submitDescription} >Next</button></Link>
-                    <Link to='/photospage'><button className='backBut'>Back</button></Link>
+        return (
+            <div className='descMain'>
+                <div>
+                    <Header />
                 </div>
+                <div className='descDesc'>Add a description of your dog</div>
+                <textarea name='text' className='descriptInput' placeholder='Example: Spike loves playing at the park and he loves long walks on the beach' value={this.state.description} onChange={(e) => { this.setState({ description: e.target.value }) }} />
+                <Link to='/dogcreated'><button className='nextBut' onClick={this.submitDescription} >Next</button></Link>
+
 
                 <div className='add_dog_info_dots' >
                     <div className='add_dog_info_dot_blue'></div>
@@ -52,6 +50,7 @@ class AddDescription extends Component {
                     <div className='add_dog_info_dot_blue'></div>
                 </div>
             </div>
+
         )
     }
 }

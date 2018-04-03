@@ -30,6 +30,7 @@
 }
 
 .upload_image_next_button {
+    outline: none;
     letter-spacing: 1px;
     height: 54px;
     width: 80vw;
@@ -49,30 +50,4 @@
     margin: auto;
     margin-top: 2vh;
     font-size: 16px;
-}
-
-  .add_dog_info_dots {
-    width: auto;
-    margin: 8vh auto auto auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.add_dog_info_dot_blue {
-    height: 10px;
-    width: 10px;
-    background-color: #4014EC;
-    border-radius: 50%;
-    border: none;
-    margin: 7px;
-}
-
-.add_dog_info_dot_grey {
-    height: 10px;
-    width: 10px;
-    background-color: #7D61EC;
-    border-radius: 50%;
-    border: none;
-    margin: 7px;
 }

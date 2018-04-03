@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './Message.css';
+import axios from 'axios';
 import {connect} from 'react-redux';
-import { getMessages, updateMessages } from './../../ducks/users';
+import { getMessages, updateMessages, getUser, getDog } from './../../ducks/users';
 import io from 'socket.io-client';
 
 class Message extends Component {
-    constructor() {
-      super()
+    constructor(props) {
+      super(props)
       this.state = {
         message: ''
       }
@@ -18,6 +18,15 @@ class Message extends Component {
     }
 
   componentDidMount() {
+    axios.get('/auth/me').then(res => {
+      this.props.getUser(res.data.user);
+      axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
+          if (res.data[0].dog_id !== +this.props.match.params.userOne) {
+            this.props.history.push('/')
+          }
+          this.props.getDog(res.data[0])
+      })
+  })
     this.props.getMessages(this.props.match.params.userOne, this.props.match.params.userTwo)
     this.socket = io('/');
     this.socket.on('message dispatched', this.updateMessages);
@@ -101,7 +110,7 @@ class Message extends Component {
           <p>Monica</p>
           <button>Settings</button>
         </div>
-        <div className="chat_window" ref={(div) => {this.messageList = div}} >
+        <div className="chat_window" ref={(div) => {this.messageList = div}}>
           {messagesToDisplay}
         </div>
         <div className="chat_input">
@@ -119,4 +128,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getMessages, updateMessages })(Message);
+export default connect(mapStateToProps, { getMessages, updateMessages, getUser, getDog })(Message);

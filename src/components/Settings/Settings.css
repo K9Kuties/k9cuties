@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500');
-
 .Settings {
     width: 100vw;
     height: 100vh;
@@ -8,25 +7,22 @@
     background: #F2F4FC;
     font-family: 'Montserrat', sans-serif;
 }
-
 .settings_header {
     position: sticky;
     top: 0;
     width: 100vw;
-    height: 55px;
+    height: 60px;
     border-bottom: 2px solid rgba(128, 128, 128, 0.250);
     background: white;
     z-index: 10;
 }
-
 .back_arrow_svg {
     position: absolute;
-    left: 7px;
-    top: 7px;
+    left: 2.5vw;
+    margin-top: 8.5px;
     width: 40px;
     height: 40px;
 }
-
 .settings_header_h1 {
     color: black;
     font-size: 15px;
@@ -34,25 +30,27 @@
     margin-top: 20px;
     letter-spacing: .8px;
 }
-
 .my_location {
     margin-top: 6.5%;
     height: 9vh;
     background: #FFFFFF;
-    margin-bottom: 6.5%;;;
+    margin-bottom: 6.5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
-
 .my_location_title {
     margin-top: 4.9%;
+    margin-right: 4%;
+    font-weight: 400;
+    color: #75798C;
 }
-
 .radius {
     display: flex;
     background: #FFFFFF;
     height: 9vh;
     margin-bottom: 6.5%;;;
 }
-
 .radius_h2 {
     font-size: 15px;
     margin-top: 3vh;
@@ -60,18 +58,52 @@
     width: auto;
     height: 3.5vh;
 }
-
 .male_or_female {
     display: flex;
     flex-direction: row;
     background: #FFFFFF;
     margin-bottom: 6.5%;
-    height: 9vh;
+    height: 6vh;
+    justify-content: space-around;
+    padding-top: 3vh;
+    padding-right: 4%;
+}
+.interested_in {
+    margin: auto;
+    margin-bottom: 8.5%;
+    font-size: 15px;
+    margin-left: 3.5%;
+}
+.male_or_female_label {
+    font-size: 13px;
+    margin-left: 3%;
+    color: #75798C;
+}
+input[type=radio] {
+    display: none;
+}
+label {
+    font-family: inherit;
 }
 
-.male_or_female_label {
-    font-size: 17px;
-    margin-left: 3%;
+input[type=radio] + label {
+    background: url('https://lh3.googleusercontent.com/CSygHWUdWSpIIfoPv3gwc0PctzOTVFGSCcSel4lOtxBBofmpt1QJxOF8MwrXbi0lIxxnKw2Cj6btMFTJZIGxWpkNpHZL41cOa5sgeSgtlsmat7YjkQlrU2XbmhPrxZwElMf9hucSAfEgF0VRLQy58ATRdf1mQULv5VcfnWFyus03KF8Egtg_pwW1_LRnklFEAUUZ_TyzEqFM3cp6G_aDyQpNCKxNvoLWkrcV-tgxqxQGAqC45JAkWWNXSxKgXD8TINX_xO1oml6fh_qVC32SwSQZqkk8Mkhvi2V3DSME0BzcS7wlku5tUK9ijkksro3Wp9kS7Ng4kyPDpkhZAh0kaiKXe4vUXfpZhhXuVjMwaP04HmMFJ7tjKt7bKvIHo0LcKv1zbbQsJ5ZTbI9wRabnUk9dWZtKE0w9BwiNbHuw1JrJBzmSCon9aQZD2DCD72DZEgaUchpdWKi-jShqHvrhaUYUeOUQiImDmo9NBKocQIW76p69uns8tbm1XXohE6tc-PKj8Cx66YtZLm4oUsvppee7Sw92GBFNvMPP9BGZSvxZmpV6TV5rNga1JBJOCMKw76SuYRNob9jCPmjzVMYjmFN8GknmaqOti7kh-QP7IlTUleyq=w25-h24-no') left top no-repeat;
+    display: block;
+    min-height: 25px;
+    padding-left: 30px;
+    background-size: 22px;
+}
+
+input[type=radio]:checked + label {
+    background: url('http://i68.tinypic.com/34pgnc7.png') left top no-repeat;
+    display: block;
+    min-height: 25px;
+    padding-left: 30px;
+    background-size: 22px;
+}
+
+input .radio_button {
+    width: 30px!important;
 }
 
 .age_range {
@@ -80,7 +112,6 @@
     height: 9vh;
     margin-bottom: 6.5%;;;
 }
-
 .age_range_h2 {
     font-size: 15px;
     margin-top: 3vh;
@@ -89,26 +120,32 @@
     height: 3.5vh;
     margin-right: 6%;
 }
-
 .reason {
     display: flex;
     flex-direction: row;
     background: #FFFFFF;
-    height: 9vh;
+    height: 6vh;
     margin-bottom: 6.5%;;
+    padding-top: 3vh;
+    padding-right: 4%;
 }
-
+.reason_for {
+    margin: auto;
+    margin-bottom: 6%;
+    font-size: 15px;
+    margin-left: 3.5%;
+}
 .reason_label {
-    font-size: 17px;
+    font-size: 13px;
     margin-left: 3%;
+    color: #75798C;
 }
-
 .delete_account_container {
     margin-top: 5%;
 }
-
 .delete_account_button {
     margin-bottom: 10%;
+    margin-top: 6%;
     height: 54px;
     width: 87vw;
     border: solid 3px #FF4553;
@@ -119,7 +156,6 @@
     border-radius: 35px;
     background-color: #FFFFFF;
 }
-
 .radiusRange {
     position: absolute;
     right: 10%;
@@ -128,7 +164,6 @@
     font-size: 13px;
     margin-top: 0;
 }
-
 .ageRange {
     position: absolute;
     right: 8%;
@@ -137,7 +172,6 @@
     font-size: 13px;
     margin-top: -1.75%;
 }
-
 .agerange {
     position: absolute;
     right: 55%;
@@ -146,4 +180,12 @@
     font-size: 13px;
     margin-top: -2%;
 }
-
+.placeholder_svg {
+    width: 17px;
+    height: 17px;
+}
+.location_h1 {
+    font-size: 15px;
+    margin-top: 5.3%;
+    margin-left: 3%;
+}
