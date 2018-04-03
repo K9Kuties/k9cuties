@@ -21,7 +21,6 @@ class Message extends Component {
     axios.get('/auth/me').then(res => {
       this.props.getUser(res.data.user);
       axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
-          console.log(res.data[0].dog_id, +this.props.match.params.userOne)
           if (res.data[0].dog_id !== +this.props.match.params.userOne) {
             this.props.history.push('/')
           }

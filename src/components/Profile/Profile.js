@@ -34,7 +34,7 @@ class Profile extends Component {
                 <div className='profile_header' >
                     <h1 className='invisible' ></h1>
                     <h1 className='profile_header_h1' >Profile</h1>
-                    <Link to='/profile' ><img className='paw2' src={paw2} alt='back arrow logo' /></Link>
+                    <Link to='/swiping' ><img className='paw2' src={paw2} alt='back arrow logo' /></Link>
                 </div>
 
                 <div className='profile_information' >
