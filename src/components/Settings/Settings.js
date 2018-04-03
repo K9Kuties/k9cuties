@@ -146,8 +146,8 @@ class Settings extends Component {
                 </div>
                 <form className='reason' >
                     <h5 className='reason_for' >Looking for</h5>
-                    <label className='reason_label' for='play_dates' >Play Dates</label><input className='radio_button' type='radio' value='Play dates' checked={this.state.reason === 'Play dates'} onChange={this.handleReasonChange} />
-                    <label className='reason_label' for='breeding' >Breeding</label><input className='radio_button' type='radio' value='Breeding' checked={this.state.reason === 'Breeding'} onChange={this.handleReasonChange} />
+                    <input className='radio_button' type='radio' name='process' value='Play dates' id='play dates' checked={this.state.reason === 'Play dates'} onChange={this.handleReasonChange} /><label className='reason_label' for='play dates' >Play Dates</label>
+                    <input className='radio_button' type='radio' name='process' value='Breeding' id='breeding' checked={this.state.reason === 'Breeding'} onChange={this.handleReasonChange} /><label className='reason_label' for='breeding' >Breeding</label>
                 </form>
                 <div className='delete_account_container'>
                     <button className='delete_account_button' onClick={() => { this.deleteAccount(this.props.dog.dog_id) }}>Delete my account</button>

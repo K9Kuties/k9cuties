@@ -228,6 +228,15 @@ app.get('/api/getDog/:id', (req, res) => {
     let { id } = req.params;
     const db = req.app.get('db');
     db.get_dog([id]).then(response => {
+        var today = new Date();
+        var birthDate = new Date(response[0].birthdate);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+        {
+            age--;
+        }
+        response[0].age = age
         response[0].birthdate = JSON.stringify(response[0].birthdate)
         response[0].birthdate = response[0].birthdate.substring(1).split('T')[0]
         res.status(200).send(response)
@@ -237,6 +246,13 @@ app.get('/api/getDog/:id', (req, res) => {
 app.get('/api/getSwipeArray', (req, res) => {
     let { id, latitude, longitude, radius, interested_in, reason } = req.query;
     const db = req.app.get('db');
+    if (interested_in === "Both") {
+        interested_in = "(Male|Female)"
+    } else if (interested_in === "Male") {
+        interested_in = "(Male)"
+    } else if (interested_in === "Female") {
+        interested_in = "(Female)"
+    }
     db.get_swipe_array([id, latitude, longitude, radius, interested_in, reason]).then(response => {
         res.status(200).send(response)
     })

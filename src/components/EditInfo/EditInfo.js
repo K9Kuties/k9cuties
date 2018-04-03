@@ -35,7 +35,6 @@ class EditInfo extends Component {
             newBirthdate: '',
             newGender: '',
             newDescription: ''
-
         }
         this.save = this.save.bind(this)
     }
