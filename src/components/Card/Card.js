@@ -171,8 +171,8 @@ class Card extends Component {
 
     return  <div id={"poop" + this.props.idx} className="Card" style={cardStyle} >
             <img src={this.state.mainPicture} alt="me" />
-            <div className='left_picture' onClick={this.changePictureLeft} >Left</div>
-            <div className='right_picture' onClick={this.changePictureRight} >Right</div>
+            <div className='left_picture1' onClick={this.changePictureLeft} ></div>
+            <div className='right_picture1' onClick={this.changePictureRight} ></div>
             <div className='card_deets'>
               <div>
                 <h2>{this.props.name}, {this.props.age}</h2>

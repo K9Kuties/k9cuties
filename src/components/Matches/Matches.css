@@ -12,7 +12,7 @@
     position: sticky;
     top: 0;
     width: 100vw;
-    height: 55px;
+    height: 60px;
     border-bottom: 2px solid rgba(128, 128, 128, 0.250);
     background: white;
 }
@@ -20,7 +20,7 @@
 .paw_svg {
     position: absolute;
     left: 7px;
-    top: 5px;
+    margin-top: 8.5px;
     width: 40px;
     height: 40px;
 }  

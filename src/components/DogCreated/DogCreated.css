@@ -136,3 +136,19 @@
     width: 19%;
     height: 42%;
 }
+
+.left_picture1 {
+    position: absolute;
+    left: 0vw;
+    top: 0;
+    width: 22%;
+    height: 69%;
+}
+
+.right_picture1 {
+    position: absolute;
+    right: 0vw;
+    top: 0;
+    width: 22%;
+    height: 69%;
+}
