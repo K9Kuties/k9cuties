@@ -93,6 +93,7 @@
     border-right:20px solid rgb(71, 25, 255);
     border-bottom-left-radius: 16px 14px;
     -webkit-transform:translate(0, -2px);
+    transform:translate(0, -2px);
 }
 
 .chat_entry_me:after {
@@ -106,6 +107,7 @@
     background:white;
     border-bottom-left-radius: 10px;
     -webkit-transform:translate(-30px, -2px);
+    transform:translate(-30px, -2px);
 }
 
 .chat_entry_other {
@@ -131,6 +133,7 @@
     border-left:20px solid #E5E5EA;
     border-bottom-right-radius: 16px 14px;
     -webkit-transform:translate(0, -2px);
+    transform:translate(0, -2px);
 }
 
 .chat_entry_other:after {
@@ -144,6 +147,7 @@
     background:white;
     border-bottom-right-radius: 10px;
     -webkit-transform:translate(-30px, -2px);
+    transform:translate(-30px, -2px);
 }
 
 .chat_entry_me p,

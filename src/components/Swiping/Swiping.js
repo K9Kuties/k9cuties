@@ -89,6 +89,9 @@ class Swiping extends Component {
               </div>
             </div>
         }
+        <div className='no_more_dogs' >
+          <h4 className='no_more_dogs_h4' >No more dogs :(</h4>
+        </div>
       </div>
     )
   }
