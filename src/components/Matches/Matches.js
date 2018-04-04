@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Matches.css';
 import axios from 'axios';
-import ChatLogo from '../../chat.svg';
+import SpeechBubbles from '../../speech-bubbles.svg';
 import PawLogo from '../../paw.svg';
 import NoDogs from '../../no-dogs.svg';
 import { Link } from 'react-router-dom';
@@ -29,7 +29,7 @@ class Matches extends Component {
     }
 
     render() {
-        
+        console.log('this.props.matches', this.props.matches.length)
         var matches = this.props.matches.map( (val, i) => {
             return (
                 <Link key={i} to={`/message/${this.props.dog.dog_id}/${val.dog_id}`}><div className='matches_container' >
@@ -42,13 +42,22 @@ class Matches extends Component {
         return (
            
             <div className="Matches">
-
+                
                 <div className='matches_header' >
                         <Link to='/swiping'><img className='paw_svg' src={PawLogo} alt='paw logo' /></Link>
-                        <img className='chat_svg' src={ChatLogo} alt='chat logo' />
+                        <img className='chat_svg' src={SpeechBubbles} alt='chat logo' />
                 </div>
 
+                { this.props.matches.length ? 
+
                 <div>{matches}</div>
+                :
+                 <div className='no_matches' >
+                    <h3 className='no_matches_h3' >No matches yet, get swiping!</h3>
+                    <Link to='/swiping'><button className='no_matches_button' >Find new dogs</button></Link>
+                 </div>
+
+                }
             </div>
 
         )
