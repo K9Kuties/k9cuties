@@ -49,7 +49,7 @@ class Profile extends Component {
                     <Link to='/settings' ><button className='profileBut'>Settings</button></Link>
                 </div>
 
-                <a href='http://localhost:3005/logout' ><button className='profile_logBut' >Logout</button></a>
+                <a href={`${process.env.REACT_APP_LOCALHOST_3005}/logout`} ><button className='profile_logBut' >Logout</button></a>
 
             </div>
         )
