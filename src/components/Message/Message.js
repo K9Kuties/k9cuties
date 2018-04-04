@@ -19,6 +19,7 @@ class Message extends Component {
       this.handleKeyPress = this.handleKeyPress.bind(this)
       this.updateMessages = this.updateMessages.bind(this)
       this.joinRoom = this.joinRoom.bind(this)
+      this.unmatch = this.unmatch.bind(this)
     }
 
   componentDidMount() {
@@ -95,6 +96,11 @@ class Message extends Component {
     }
   }
 
+  unmatch() {
+    axios.post(`/api/unmatch`, { userOne: this.props.match.params.userOne, userTwo: this.props.match.params.userTwo })
+    this.props.history.push('/matches')
+  }
+
   render() {
     var messagesToDisplay = this.props.messages.map((message, index) => {
       if (message.sending_user_id === +this.props.match.params.userOne) {
@@ -118,7 +124,7 @@ class Message extends Component {
           <Link to='/matches' ><img className='chat_svg' src={SpeechBubbles} alt='chat logo' /></Link>
           <img className='dog2Pic' src={this.state.dog2Pic} />
           <p>{this.state.dog2Name}</p>
-          <button>Unmatch</button>
+          <button onClick={this.unmatch} >Unmatch</button>
         </div>
         <div className="chat_window" ref={(div) => {this.messageList = div}}>
           {messagesToDisplay}

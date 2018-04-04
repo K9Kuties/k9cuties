@@ -322,6 +322,14 @@ app.post('/api/unlikeDog', (req, res) => {
     })
 })
 
+app.post('/api/unmatch', (req, res) => {
+    let { userOne, userTwo } = req.body;
+    const db = req.app.get('db');
+    db.unmatch([userOne, userTwo]).then(response => {
+        res.status(200).send('dog unmatched')
+    })
+})
+
 app.get('/api/isItAMatch', (req, res) => {
     let { id, otherId } = req.query;
     const db = req.app.get('db');
