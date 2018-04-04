@@ -43,8 +43,6 @@ class Settings extends Component {
                 this.props.getDog(res.data[0])
             }).then(res=>{
                 axios.get(`http://api.geonames.org/findNearbyPlaceNameJSON?lat=${this.props.dog.latitude}&lng=${this.props.dog.longitude}&username=sgueck9`).then(response =>{
-                    console.log('response', response)
-                    console.log('latitude', this.props.dog.latitude)
                     this.setState({ currentState : response.data.geonames[0].adminCode1, city: response.data.geonames[0].toponymName })
                 })
             }) 
@@ -73,8 +71,6 @@ class Settings extends Component {
     }
 
     handleChangeAgeComplete = () => {
-        console.log('Change Age Finished')
-        console.log(this.state.value)
         this.props.updateRange(this.props.dog.dog_id, this.state.value)
     }
     //End of Age Slider functions
