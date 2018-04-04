@@ -40,8 +40,7 @@ class Profile extends Component {
                 <div className='profile_information' >
                     <img className='profilePic' src={this.state.pictureImg} alt='Profile Pic' />
                     <div className='NameAndAge' >
-                        <div className='nameAnd'>{this.props.dog.name}, </div>
-                        <div className='ageAnd' >{this.props.dog.age}</div> 
+                        <div className='nameAnd'>{this.props.dog.name}, {this.props.dog.age}</div>
                     </div>
                 </div>
 
