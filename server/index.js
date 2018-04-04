@@ -274,6 +274,14 @@ app.get('/api/getDog/:id', (req, res) => {
     })
 })
 
+app.get('/api/getDogByDogId/:id', (req, res) => {
+    let { id } = req.params;
+    const db = req.app.get('db');
+    db.get_dog_by_id([id]).then(response => {
+        res.status(200).send(response)
+    })
+})
+
 app.get('/api/getSwipeArray', (req, res) => {
     let { id, latitude, longitude, radius, interested_in, reason } = req.query;
     const db = req.app.get('db');
