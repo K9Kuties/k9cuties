@@ -107,3 +107,21 @@
   margin-top: 11.5px;
   margin-right: 8px;
 }
+
+.no_more_dogs {
+  position: absolute;
+  top: 20.5vh;
+  right: 15vw;
+  left: 15vw;
+  margin: auto;
+  width: 70vw;
+  height: 70vw;
+  background-color: #DDE0EE;
+  border-radius: 35vw;
+  z-index: -1;
+}
+
+.no_more_dogs_h4 {
+  font-size: 4.4vw;
+  margin-top: 44%;
+}

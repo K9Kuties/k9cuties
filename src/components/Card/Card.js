@@ -71,7 +71,7 @@ class Card extends Component {
     } else if (positionX > rightBound) {
       var coords = { x: this.state.x, y: this.state.y }
       var tween = new TWEEN.Tween(coords)
-      tween.to({ x: window.innerWidth+1000, y: 500 }, 2500)
+      tween.to({ x: window.innerWidth+1000, y: 500 }, 2000)
       tween.onUpdate(function () {
         card.setState({ x: coords.x, y: coords.y })
       })
@@ -92,7 +92,7 @@ class Card extends Component {
     } else if (positionX < leftBound) {
       var coords = { x: this.state.x, y: this.state.y }
       var tween = new TWEEN.Tween(coords)
-      tween.to({ x: (window.innerWidth-window.innerWidth)-1000, y: 500 }, 2500)
+      tween.to({ x: (window.innerWidth-window.innerWidth)-1000, y: 500 }, 2000)
       tween.onUpdate(function () {
         card.setState({ x: coords.x, y: coords.y })
       })
@@ -189,7 +189,7 @@ class Card extends Component {
                   let rightBound = window.innerWidth / 1.3
                   var coords = { x: this.state.x, y: this.state.y }
                   var tween = new TWEEN.Tween(coords)
-                  tween.to({ x: (window.innerWidth-window.innerWidth)-1000, y: 500 }, 2500)
+                  tween.to({ x: (window.innerWidth-window.innerWidth)-1000, y: 500 }, 2000)
                   tween.onUpdate(function () {
                     card.setState({ x: coords.x, y: coords.y })
                   })
@@ -207,7 +207,7 @@ class Card extends Component {
                   let rightBound = window.innerWidth / 1.3
                   var coords = { x: this.state.x, y: this.state.y }
                   var tween = new TWEEN.Tween(coords)
-                  tween.to({ x: window.innerWidth+1000, y: 500 }, 2500)
+                  tween.to({ x: window.innerWidth+1000, y: 500 }, 2000)
                   tween.onUpdate(function () {
                     card.setState({ x: coords.x, y: coords.y })
                   })
@@ -220,7 +220,7 @@ class Card extends Component {
                   this.props.likeDog(this.props.dog.dog_id, this.props.cardDogId); 
                   setTimeout(() => {
                     this.props.shiftCard()
-                  }, 2500); 
+                  }, 2000); 
                 }}/>
             </div>
           </div>   
