@@ -275,7 +275,7 @@ app.get('/api/getDog/:id', (req, res) => {
 })
 
 app.get('/api/getSwipeArray', (req, res) => {
-    let { id, latitude, longitude, radius, interested_in, reason } = req.query;
+    let { id, latitude, longitude, radius, interested_in, reason, age_begin, age_end } = req.query;
     const db = req.app.get('db');
     if (interested_in === "Both") {
         interested_in = "(Male|Female)"
@@ -284,7 +284,8 @@ app.get('/api/getSwipeArray', (req, res) => {
     } else if (interested_in === "Female") {
         interested_in = "(Female)"
     }
-    db.get_swipe_array([id, latitude, longitude, radius, interested_in, reason]).then(response => {
+    let date = new Date()
+    db.get_swipe_array([id, latitude, longitude, radius, interested_in, reason, age_begin, age_end]).then(response => {
         res.status(200).send(response)
     })
 });
