@@ -98,7 +98,7 @@ class Settings extends Component {
     }
 
     render() {
-
+        console.log('city and state', this.state.city, this.state.currentState)
         return (
             <div className="Settings">
                 <div className='settings_header' >
