@@ -46,6 +46,8 @@
 .NameAndAge {
     display: flex;
     flex-direction: row;
+    margin: auto;
+    text-align: center;
 }
 
 .nameAnd {
