@@ -20,6 +20,8 @@ const express = require('express'),
     app = express(),
     io = socket(app.listen(SERVER_PORT, () => { console.log(`Listening on port: ${SERVER_PORT}`);}));
 
+app.use( express.static( `${__dirname}/../build` ) );
+
 app.use(bodyParser.json());
 
 app.use(session({
@@ -71,7 +73,7 @@ passport.deserializeUser((id, done) => {
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/adddoginfo'
+    successRedirect: `${process.env.REACT_APP_LOCALHOST_3000}/#/adddoginfo`
 }));
 
 app.get('/auth/me', (req, res) => {
@@ -87,7 +89,7 @@ app.get('/auth/me', (req, res) => {
 
 app.get('/logout', (req, res) => {
     req.logOut();
-    res.redirect('http://localhost:3000/#/')
+    res.redirect(`${process.env.REACT_APP_LOCALHOST_3000}/#/`)
 });
 
 io.on('connection', socket => {
