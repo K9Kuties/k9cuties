@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Settings.css';
 import axios from 'axios';
 import Slider from 'react-rangeslider'
-import 'react-rangeslider/lib/index.css';
+import '../../react-rangeslider.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateRadius, updateInterestedIn, updateReason, updateRange, getUser, getDog } from './../../ducks/users';
@@ -98,7 +98,7 @@ class Settings extends Component {
     }
 
     render() {
-
+        console.log('city and state', this.state.city, this.state.currentState)
         return (
             <div className="Settings">
                 <div className='settings_header' >
