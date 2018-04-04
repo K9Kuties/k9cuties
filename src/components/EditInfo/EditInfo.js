@@ -30,16 +30,10 @@ class EditInfo extends Component {
             breed: '',
             birthdate: '',
             gender: '',
-            description: '',
-            edit: false,
-            newName: '',
-            newBreed: '',
-            newBirthdate: '',
-            newGender: '',
-            newDescription: ''
+            description: ''
         }
-        this.save = this.save.bind(this)
-        this.toggleEdit = this.toggleEdit.bind(this)
+        this.save = this.save.bind(this);
+        this.cancel = this.cancel.bind(this);
     }
 
     componentDidMount() {
@@ -84,31 +78,29 @@ class EditInfo extends Component {
         }, .1);
     }
 
-    toggleEdit() {
+
+    save() {
+        this.props.editDogDeets(this.props.dog.dog_id, this.state.name, this.state.breed, this.state.birthdate, this.state.gender, this.state.description)
         this.setState({
-            newName: this.state.name,
-            newBreed: this.state.breed,
-            newBirthdate: this.state.birthdate,
-            newGender: this.state.gender,
-            newDescription: this.state.description,
-            edit: !this.state.edit
+            name: this.state.name,
+            breed: this.state.breed,
+            birthdate: this.state.birthdate,
+            gender: this.state.gender,
+            description: this.state.description
         })
     }
 
-    save() {
-        this.props.editDogDeets(this.props.dog.dog_id, this.state.newName, this.state.newBreed, this.state.newBirthdate, this.state.newGender, this.state.newDescription)
+    cancel() {
         this.setState({
-            edit: false,
-            name: this.state.newName,
-            breed: this.state.newBreed,
-            birthdate: this.state.newBirthdate,
-            gender: this.state.newGender,
-            description: this.state.newDescription
+            name: this.props.dog.name,
+            breed: this.props.dog.breed,
+            birthdate: this.props.dog.birthdate,
+            gender: this.props.dog.gender,
+            description: this.props.dog.description
         })
     }
 
     render() {
-
         return (
             <div className='editInfo1'>
                 <header className='edit_info_header' >
@@ -122,7 +114,7 @@ class EditInfo extends Component {
 
                     <div className='image1_image2_image3' >
                         <div className='image1'>
-                            <img src={cancelButton} value='img1' onClick={(e) => {if (window.confirm('Are you sure you wish to delete this photo?')) {this.props.removeImage(this.props.dog.dog_id, 1); this.setState({img1: 'http://i68.tinypic.com/2z8pzwh.png'})}}} className='remove_photo_one' />
+                            <img src={cancelButton} value='img1' onClick={(e) => { if (window.confirm('Are you sure you wish to delete this photo?')) { this.props.removeImage(this.props.dog.dog_id, 1); this.setState({ img1: 'http://i68.tinypic.com/2z8pzwh.png' }) } }} className='remove_photo_one' />
                             <label htmlFor='file-upload1' className='file-upload-container1'>
                                 <img src={this.state.img1} id='img-preview' className='dogPics11' alt='Dog Pics' />
                                 <input type='file' onChange={(event) => this.fileSelectedHandler(1, event)} style={{ display: 'none' }} id='file-upload1' />
@@ -132,17 +124,17 @@ class EditInfo extends Component {
 
                         <div className='image2_image3' >
                             <div className='image2'>
-                            <img src={cancelButton} value='img2' onClick={(e) => {if (window.confirm('Are you sure you wish to delete this photo?')) {this.props.removeImage(this.props.dog.dog_id, 2); this.setState({img2: 'http://i68.tinypic.com/2z8pzwh.png'})}}} className='remove_photo' />
-                                    <label htmlFor='file-upload2' className='file-upload-container2'>
+                                <img src={cancelButton} value='img2' onClick={(e) => { if (window.confirm('Are you sure you wish to delete this photo?')) { this.props.removeImage(this.props.dog.dog_id, 2); this.setState({ img2: 'http://i68.tinypic.com/2z8pzwh.png' }) } }} className='remove_photo' />
+                                <label htmlFor='file-upload2' className='file-upload-container2'>
                                     <img src={this.state.img2} id='img-preview' className='dogPics22' alt='Dog Pics' />
                                     <input type='file' onChange={(event) => this.fileSelectedHandler(2, event)} style={{ display: 'none' }} id='file-upload2' />
                                 </label>
                             </div>
 
                             <div className='image3'>
-                            <img src={cancelButton} value='img3' onClick={(e) => {if (window.confirm('Are you sure you wish to delete this photo?')) {this.props.removeImage(this.props.dog.dog_id, 3); this.setState({img3: 'http://i68.tinypic.com/2z8pzwh.png'})}}} className='remove_photo' />
+                                <img src={cancelButton} value='img3' onClick={(e) => { if (window.confirm('Are you sure you wish to delete this photo?')) { this.props.removeImage(this.props.dog.dog_id, 3); this.setState({ img3: 'http://i68.tinypic.com/2z8pzwh.png' }) } }} className='remove_photo' />
                                 <label htmlFor='file-upload3' className='file-upload-container2'>
-                                    
+
                                     <img src={this.state.img3} id='img-preview' className='dogPics33' alt='Dog Pics' />
                                     <input type='file' onChange={(event) => this.fileSelectedHandler(3, event)} style={{ display: 'none' }} id='file-upload3' />
                                 </label>
@@ -151,73 +143,53 @@ class EditInfo extends Component {
                     </div>
 
                     <div className='image4'>
-                    <img src={cancelButton} value='img4' onClick={(e) => {if (window.confirm('Are you sure you wish to delete this photo?')) {this.props.removeImage(this.props.dog.dog_id, 4); this.setState({img4: 'http://i68.tinypic.com/2z8pzwh.png'})}}} className='remove_photo' />
+                        <img src={cancelButton} value='img4' onClick={(e) => { if (window.confirm('Are you sure you wish to delete this photo?')) { this.props.removeImage(this.props.dog.dog_id, 4); this.setState({ img4: 'http://i68.tinypic.com/2z8pzwh.png' }) } }} className='remove_photo' />
                         <label htmlFor='file-upload4' className='file-upload-container3'>
-                            
+
                             <img src={this.state.img4} id='img-preview' className='dogPics44' alt='Dog Pics' />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(4, event)} style={{ display: 'none' }} id='file-upload4' />
                         </label>
                     </div>
 
                     <div className='image5'>
-                    <img src={cancelButton} value='img5' onClick={(e) => {if (window.confirm('Are you sure you wish to delete this photo?')) {this.props.removeImage(this.props.dog.dog_id, 5); this.setState({img5: 'http://i68.tinypic.com/2z8pzwh.png'})}}} className='remove_photo' />
+                        <img src={cancelButton} value='img5' onClick={(e) => { if (window.confirm('Are you sure you wish to delete this photo?')) { this.props.removeImage(this.props.dog.dog_id, 5); this.setState({ img5: 'http://i68.tinypic.com/2z8pzwh.png' }) } }} className='remove_photo' />
                         <label htmlFor='file-upload5' className='file-upload-container3'>
-                            
+
                             <img src={this.state.img5} id='img-preview' className='dogPics55' alt='Dog Pics' />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(5, event)} style={{ display: 'none' }} id='file-upload5' />
                         </label>
                     </div>
 
                     <div className='image6'>
-                    <img src={cancelButton} value='img6' onClick={(e) => {if (window.confirm('Are you sure you wish to delete this photo?')) {this.props.removeImage(this.props.dog.dog_id, 6); this.setState({img6: 'http://i68.tinypic.com/2z8pzwh.png'})}}} className='remove_photo' />
+                        <img src={cancelButton} value='img6' onClick={(e) => { if (window.confirm('Are you sure you wish to delete this photo?')) { this.props.removeImage(this.props.dog.dog_id, 6); this.setState({ img6: 'http://i68.tinypic.com/2z8pzwh.png' }) } }} className='remove_photo' />
                         <label htmlFor='file-upload6' className='file-upload-container2'>
-                            
+
                             <img src={this.state.img6} id='img-preview' className='dogPics66' alt='Dog Pics' />
                             <input type='file' onChange={(event) => this.fileSelectedHandler(6, event)} style={{ display: 'none' }} id='file-upload6' />
                         </label>
                     </div>
+                </div>
 
-                {(this.state.edit)
-                ?
+
                 <div className='editInfo2'>
                     <div className='nameInput'>
-                        NAME: <input type='text' className='name_input' value={this.state.newName} onChange={(e) => this.setState({ newName: e.target.value })} />
+                        NAME: <input type='text' className='name_input' value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} />
                     </div>
                     <div className='breedInput'>
-                        Breed: <input type='text' className='breed_input' value={this.state.newBreed} onChange={(e) => this.setState({ newBreed: e.target.value })} />
+                        Breed: <input type='text' className='breed_input' value={this.state.breed} onChange={(e) => this.setState({ breed: e.target.value })} />
                     </div>
                     <div className='ageInput'>
-                        Birthdate: <input type="date" min='1998-01-01' className='age_input' value={this.state.newBirthdate} onChange={(e) => this.setState({ newBirthdate: e.target.value })} />
+                        Birthdate: <input type="date" min='1998-01-01' className='age_input' value={this.state.birthdate} onChange={(e) => this.setState({ birthdate: e.target.value })} />
                     </div>
                     <div className='genderInput'>
-                        GENDER: <input type='text' className='gender_input' value={this.state.newGender} onChange={(e) => this.setState({ newGender: e.target.value })} />
+                        GENDER: <input type='text' className='gender_input' value={this.state.gender} onChange={(e) => this.setState({ gender: e.target.value })} />
                     </div>
                     <div>
-                        Description: <input type='text' className='description_input' value={this.state.newDescription} onChange={(e) => this.setState({ newDescription: e.target.value })} />
+                        Description: <input type='text' className='description_input' value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })} />
                     </div>
-                    <button onClick={this.save}>Save</button>
+                    <button  className='edit_info_cancel_button' onClick={this.cancel}>Cancel</button>
+                    <button className='edit_info_save_button' onClick={this.save}>Save</button>
                 </div>
-                :
-                <div className='editInfo2'>
-                    <div className='nameInput'>
-                        <div>NAME: {this.state.name}</div>
-                    </div>
-                    <div className='breedInput'>
-                        <div>Breed: {this.state.breed}</div>
-                    </div>
-                    <div className='ageInput'>
-                        <div>Birthdate: {this.state.birthdate}</div>
-                    </div>
-                    <div className='genderInput'>
-                        <div>GENDER: {this.state.gender}</div>
-                    </div>
-                    <div>
-                        <div>Description: {this.state.description}</div>
-                    </div>
-                </div>
-                }
-                <button onClick={this.toggleEdit}>{(!this.state.edit) ? 'Edit' : 'Cancel'}</button>
-            </div>
             </div>
         )
     }
