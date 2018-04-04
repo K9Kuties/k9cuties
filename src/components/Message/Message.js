@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import './Message.css';
 import axios from 'axios';
+import SpeechBubbles from '../../speech-bubbles.svg';
 import {connect} from 'react-redux';
 import { getMessages, updateMessages, getUser, getDog } from './../../ducks/users';
 import io from 'socket.io-client';
+import { Link } from 'react-router-dom';
 
 class Message extends Component {
     constructor(props) {
       super(props)
       this.state = {
-        message: ''
+        message: '',
+        dog2Name: '',
+        dog2Pic: ''
       }
       this.submitMessage = this.submitMessage.bind(this)
       this.handleKeyPress = this.handleKeyPress.bind(this)
@@ -25,6 +29,12 @@ class Message extends Component {
             this.props.history.push('/')
           }
           this.props.getDog(res.data[0])
+      })
+      axios.get(`/api/getDogByDogId/${this.props.match.params.userTwo}`).then( res => {
+        this.setState({
+          dog2Name: res.data[0].name,
+          dog2Pic: res.data[0].img1
+        })
       })
   })
     this.props.getMessages(this.props.match.params.userOne, this.props.match.params.userTwo)
@@ -86,7 +96,6 @@ class Message extends Component {
   }
 
   render() {
-
     var messagesToDisplay = this.props.messages.map((message, index) => {
       if (message.sending_user_id === +this.props.match.params.userOne) {
         return (
@@ -106,9 +115,10 @@ class Message extends Component {
     return (
       <div className="message">
         <div className="chat_header">
-          <button>Back</button>
-          <p>Monica</p>
-          <button>Settings</button>
+          <Link to='/matches' ><img className='chat_svg' src={SpeechBubbles} alt='chat logo' /></Link>
+          <img className='dog2Pic' src={this.state.dog2Pic} />
+          <p>{this.state.dog2Name}</p>
+          <button>Unmatch</button>
         </div>
         <div className="chat_window" ref={(div) => {this.messageList = div}}>
           {messagesToDisplay}
