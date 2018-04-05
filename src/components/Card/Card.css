@@ -1,29 +1,29 @@
 .Card {
     border-radius: 8px;
-    margin-top: -25px;
     width: 80vw;
+    height: auto;
 }
 
 .dislike_button1 {
     width: 90px !important;
     height: 90px !important;
-    margin-top: 4%;
+    margin-top: 3.5%;
     padding-left: 10px;
 }
 
 .like_button1 {
     width: 90px !important;
     height: 90px !important;
-    margin-top: 4%;
+    margin-top: 3.5%;
     padding-right: 10px;
 }
 
 .card_deets {
     width: 100%;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    border-top: 2px solid rgba(128, 128, 128, 0.463);
-    border-bottom: 2px solid rgba(128, 128, 128, 0.463);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 2px solid rgba(128, 128, 128, 0.308);
+    border-bottom: 2px solid rgba(128, 128, 128, 0.308);
 }
 
 .card_dogs_info {
