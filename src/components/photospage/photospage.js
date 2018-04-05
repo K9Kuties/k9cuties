@@ -34,6 +34,7 @@ class Photospage extends Component {
                 })
             })
         })
+        this.setState({ url1: 'http://i63.tinypic.com/talyqt.png', url2: 'http://i63.tinypic.com/talyqt.png', url3: 'http://i63.tinypic.com/talyqt.png', url4: 'http://i63.tinypic.com/talyqt.png', url5: 'http://i63.tinypic.com/talyqt.png', url6: 'http://i63.tinypic.com/talyqt.png'})
     }
 
     fileSelectedHandler = (number, event) => {
