@@ -64,12 +64,21 @@
     width: 80vw;
     height: 5vh;
     border: none;
-    outline: none;
     font-size: 2.5vh;
     letter-spacing: 0px;
     margin-top: 1vh;
-    border: none;
 }
+
+input[type="date"]::before { 
+	content: attr(data-placeholder);
+	width: 100%;
+}
+
+/* hide our custom/fake placeholder text when in focus to show the default
+ * 'mm/dd/yyyy' value and when valid to show the users' date of birth value.
+ */
+input[type="date"]:focus::before,
+input[type="date"]:valid::before { display: none }
 
 .add_dog_info_dog_birthdate_input::placeholder {
     color: black;
