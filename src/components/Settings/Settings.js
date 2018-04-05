@@ -43,7 +43,6 @@ class Settings extends Component {
                 this.props.getDog(res.data[0])
             }).then(res=>{
                 axios.get(`https://us1.locationiq.org/v1/reverse.php?key=99139580186bb2&lat=${this.props.dog.latitude}&lon=${this.props.dog.longitude}&format=json`).then(response => {
-                    console.log(response)
                     this.setState({ currentState: response.data.address.state, city: response.data.address.city})
                 })
             }) 
