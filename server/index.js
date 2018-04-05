@@ -73,11 +73,7 @@ passport.deserializeUser((id, done) => {
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0', {
-<<<<<<< HEAD
-    successRedirect: process.env.REACT_APP_ADD_DOG_INFO
-=======
     successRedirect: `${process.env.REACT_APP_LOCALHOST_3000}/#/adddoginfo`
->>>>>>> master
 }));
 
 app.get('/auth/me', (req, res) => {
