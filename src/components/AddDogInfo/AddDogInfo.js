@@ -72,7 +72,7 @@ class AddDogInfo extends Component {
                     ?
                     <input type='date' className='add_dog_info_dog_birthdate_input' min='1998-01-01' max={this.state.date} value={this.state.dogBirthdate} onChange={(e) => {this.setState({ dogBirthdate: e.target.value })}}/>
                     :
-                    <input type='text' className='add_dog_info_dog_birthdate_input' placeholder='Birthdate' onFocus={() => {this.setState({ showDatePicker: true })}} />
+                    <input type='text' className='add_dog_info_dog_birthdate_input' placeholder='Birthdate' onClick={() => {this.setState({ showDatePicker: true })}} onFocus={() => {this.setState({ showDatePicker: true })}} />
                     }
                     <hr />
                     <select className='add_dog_info_dog_gender_select' value={this.state.dogGender} onChange={(e) => { this.setState({ dogGender: e.target.value }) }} required>
