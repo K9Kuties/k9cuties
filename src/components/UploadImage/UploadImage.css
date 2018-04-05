@@ -35,7 +35,7 @@
     height: 54px;
     width: 80vw;
     font-size: 18px;
-    margin-top: 5vh;
+    margin-top: 7vh;
     background-color: #4014EC;
     color: #FFFFFF;
     border-radius: 35px;
@@ -43,11 +43,4 @@
     font-weight: 500;
     box-shadow: 0 1px 6px 0 #4014EC, 0 2px 10px 0 rgba(0, 0, 0, 0.385);
     cursor: pointer;
-}
-
-.upload_image_back_button {
-    color: rgba(0,0,0,0.3);
-    margin: auto;
-    margin-top: 2vh;
-    font-size: 16px;
 }
