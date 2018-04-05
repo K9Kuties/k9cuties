@@ -59,6 +59,7 @@ class AddDogInfo extends Component {
 
     onFocus(e) {
         e.currentTarget.type = "date";
+        e.currentTarget.placeholder = "11/11/1111";
     }
 
     onBlur(e) {
