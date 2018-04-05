@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import './Login.css';
 import PoochPalsTitle from '../../poochpals.svg';
+import WhiteLogo from '../../white-logo.svg';
+import DogVideo from '../../DogVideo.mp4';
+
 
 export default class Login extends Component {
     render() {
         return (
             <div className='Login'>
+                <video autoPlay muted loop className='video' >
+                    <source src={DogVideo} type="video/mp4" />
+                </video>
                 <div className='logo_container' >
-                    <img className='pooch_pals_title' src={PoochPalsTitle} alt='pooch pals logo' />
+                    <img className='pooch_pals_title' src={WhiteLogo} alt='pooch pals logo' />
                     <h1 className='connect_your_pooches' >Connect your pooches</h1>
                 </div>
                 <div className='login_container' >
