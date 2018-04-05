@@ -12,11 +12,12 @@ class AddDogInfo extends Component {
             dogName: '',
             dogBreed: '',
             dogAge: 0,
-            dogBirthdate: 'Birthdate', 
+            dogBirthdate: '', 
             dogGender: '',
             latitude: '',
             longitude: '',
-            date: ''
+            date: '',
+            showDatePicker: false
         }
         this.submitNewDog = this.submitNewDog.bind(this);
         this.getMyLocation = this.getMyLocation.bind(this);
@@ -32,7 +33,8 @@ class AddDogInfo extends Component {
         })
         var date = new Date().toISOString().slice(0,10);
         this.setState({
-            date
+            date: date,
+            dogBirthdate: date
         })
         this.getMyLocation();
     }
@@ -53,13 +55,7 @@ class AddDogInfo extends Component {
     submitNewDog() {
         this.props.submitNewDog({ userId: this.props.userData.id, dogName: this.state.dogName, dogBreed: this.state.dogBreed, dogBirthdate: this.state.dogBirthdate, dogGender: this.state.dogGender, latitude: this.state.latitude, longitude: this.state.longitude })
     }
-    onFocus(e) {
-        e.currentTarget.type = "date";
-    }
-    onBlur(e) {
-        e.currentTarget.type = "text";
-        e.currentTarget.placeholder = "Birthdate";
-    }
+
     render() {
         return (
             <div className='AddDogInfo' >
@@ -72,7 +68,12 @@ class AddDogInfo extends Component {
                     <hr />
                     <input className='add_dog_info_dog_breed_input' type='text' placeholder=' Breed' value={this.state.dogBreed} onChange={(e) => { this.setState({ dogBreed: e.target.value }) }} required />
                     <hr />
-                    <input className='add_dog_info_dog_birthdate_input' min='1998-01-01' max={this.state.date} onFocus = {this.onFocus} onBlur={this.onBlur} value={this.state.dogBirthdate} onChange={(e) => {this.setState({ dogBirthdate: e.target.value })}}/>
+                    {(this.state.showDatePicker)
+                    ?
+                    <input type='date' className='add_dog_info_dog_birthdate_input' min='1998-01-01' max={this.state.date} value={this.state.dogBirthdate} onBlur={() => {this.setState({ showDatePicker: false })}} onChange={(e) => {this.setState({ dogBirthdate: e.target.value })}}/>
+                    :
+                    <input type='text' className='add_dog_info_dog_birthdate_input' placeholder='Birthdate' onClick={() => {this.setState({ showDatePicker: true })}} onFocus={() => {this.setState({ showDatePicker: true })}} />
+                    }
                     <hr />
                     <select className='add_dog_info_dog_gender_select' value={this.state.dogGender} onChange={(e) => { this.setState({ dogGender: e.target.value }) }} required>
                         <option default hidden>Gender</option>

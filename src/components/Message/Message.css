@@ -34,13 +34,6 @@
     overflow-y: auto;
     overflow-x: hidden;
     top: 9%;
-    word-wrap: break-word;
-    -ms-word-break: break-all;
-    word-break: break-all;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
 }
 
 .chat_input {
@@ -152,6 +145,9 @@
 .chat_entry_me p,
 .chat_entry_other p {
     margin: 0;
+    hyphens: auto;
+    width: 100%;
+    word-wrap: break-word;
 }
 
 .dog2Pic {

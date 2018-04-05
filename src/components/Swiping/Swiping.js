@@ -31,6 +31,7 @@ class Swiping extends Component {
     axios.get('/auth/me').then(res => {
       this.props.getUser(res.data.user);
       axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
+        this.getMyLocation(res.data[0].dog_id)
         this.props.getDog(res.data[0])
         let swipeArray = axios.get(`/api/getSwipeArray?id=${res.data[0].dog_id}&latitude=${res.data[0].latitude}&longitude=${res.data[0].longitude}&radius=${res.data[0].radius}&interested_in=${res.data[0].interested_in}&reason=${res.data[0].reason}&age_begin=${res.data[0].age_begin}&age_end=${res.data[0].age_end}`).then(res => {
           this.setState({
@@ -39,6 +40,15 @@ class Swiping extends Component {
         })
       })
     })
+  }
+
+  getMyLocation(id) {
+    const location = window.navigator && window.navigator.geolocation
+        if (location) {
+            location.getCurrentPosition((position) => {
+            axios.put(`/api/updateLocation/${id}`, {latitude: position.coords.latitude, longitude: position.coords.longitude})
+          })
+        }
   }
 
   shiftCard() {
