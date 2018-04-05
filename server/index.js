@@ -212,6 +212,16 @@ app.put('/api/image/:id', (req, res) => {
     }
 })
 
+app.put('/api/updateLocation/:id', (req, res) => {
+    let { id } = req.params;
+    let { latitude, longitude } = req.body;
+    let location =`SRID=4326;POINT(${longitude} ${latitude})`;
+    const db = req.app.get('db');
+    db.update_location([id, location, latitude, longitude]).then(response => {
+        res.status(200).send(response)
+    })
+});
+
 app.put('/api/description/:id', (req, res) => {
     let { id } = req.params;
     let { desc } = req.body;
