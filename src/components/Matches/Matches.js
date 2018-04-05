@@ -45,7 +45,7 @@ class Matches extends Component {
                 
                 <div className='matches_header' >
                         <Link to='/swiping'><img className='paw_svg' src={PawLogo} alt='paw logo' /></Link>
-                        <img className='chat_svg' src={SpeechBubbles} alt='chat logo' />
+                        <h4 className='matches_h4' >Matches</h4> 
                 </div>
 
                 { this.props.matches.length ? 

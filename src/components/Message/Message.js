@@ -2,42 +2,43 @@ import React, { Component } from 'react';
 import './Message.css';
 import axios from 'axios';
 import SpeechBubbles from '../../speech-bubbles.svg';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { getMessages, updateMessages, getUser, getDog } from './../../ducks/users';
 import io from 'socket.io-client';
+import UpArrow from '../../up-arrow.svg';
 import { Link } from 'react-router-dom';
 
 class Message extends Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        message: '',
-        dog2Name: '',
-        dog2Pic: ''
-      }
-      this.submitMessage = this.submitMessage.bind(this)
-      this.handleKeyPress = this.handleKeyPress.bind(this)
-      this.updateMessages = this.updateMessages.bind(this)
-      this.joinRoom = this.joinRoom.bind(this)
-      this.unmatch = this.unmatch.bind(this)
+  constructor(props) {
+    super(props)
+    this.state = {
+      message: '',
+      dog2Name: '',
+      dog2Pic: ''
     }
+    this.submitMessage = this.submitMessage.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.updateMessages = this.updateMessages.bind(this)
+    this.joinRoom = this.joinRoom.bind(this)
+    this.unmatch = this.unmatch.bind(this)
+  }
 
   componentDidMount() {
     axios.get('/auth/me').then(res => {
       this.props.getUser(res.data.user);
       axios.get(`/api/getDog/${res.data.user.id}`).then(res => {
-          if (res.data[0].dog_id !== +this.props.match.params.userOne) {
-            this.props.history.push('/')
-          }
-          this.props.getDog(res.data[0])
+        if (res.data[0].dog_id !== +this.props.match.params.userOne) {
+          this.props.history.push('/')
+        }
+        this.props.getDog(res.data[0])
       })
-      axios.get(`/api/getDogByDogId/${this.props.match.params.userTwo}`).then( res => {
+      axios.get(`/api/getDogByDogId/${this.props.match.params.userTwo}`).then(res => {
         this.setState({
           dog2Name: res.data[0].name,
           dog2Pic: res.data[0].img1
         })
       })
-  })
+    })
     this.props.getMessages(this.props.match.params.userOne, this.props.match.params.userTwo)
     this.socket = io('/');
     this.socket.on('message dispatched', this.updateMessages);
@@ -97,9 +98,11 @@ class Message extends Component {
   }
 
   unmatch() {
+    if (window.confirm(`Are you sure you wish to unmatch with ${this.state.dog2Name}?`)) {
     axios.post(`/api/unmatch`, { userOne: this.props.match.params.userOne, userTwo: this.props.match.params.userTwo })
     this.props.history.push('/matches')
   }
+}
 
   render() {
     var messagesToDisplay = this.props.messages.map((message, index) => {
@@ -108,30 +111,30 @@ class Message extends Component {
           <div key={index} className="chat_entry_me">
             <p>{message.message_body}</p>
           </div>
-        ) 
+        )
       } else {
-          return (
-            <div key={index} className="chat_entry_other">
-              <p>{message.message_body}</p>
-            </div>
-          )
-        }
+        return (
+          <div key={index} className="chat_entry_other">
+            <p>{message.message_body}</p>
+          </div>
+        )
+      }
     })
 
     return (
       <div className="message">
         <div className="chat_header">
-          <Link to='/matches' ><img className='chat_svg' src={SpeechBubbles} alt='chat logo' /></Link>
+          <Link to='/matches' ><img className='chat_svg1' src={SpeechBubbles} alt='chat logo' /></Link>
           <img className='dog2Pic' src={this.state.dog2Pic} />
           <p>{this.state.dog2Name}</p>
-          <button onClick={this.unmatch} >Unmatch</button>
+          <button className='unmatch_button' onClick={this.unmatch} >Unmatch</button>
         </div>
-        <div className="chat_window" ref={(div) => {this.messageList = div}}>
+        <div className="chat_window" ref={(div) => { this.messageList = div }}>
           {messagesToDisplay}
         </div>
         <div className="chat_input">
-          <input className="chat_message" placeholder="Type a message" value={this.state.message} onChange={(e) => this.setState({message: e.target.value})} onKeyPress={this.handleKeyPress}/>
-          <button onClick={this.submitMessage}>Send</button>
+          <input className="chat_message" placeholder="Type a message" value={this.state.message} onChange={(e) => this.setState({ message: e.target.value })} onKeyPress={this.handleKeyPress} />
+          <img src={UpArrow} className='up_arrow' onClick={this.submitMessage} />
         </div>
       </div>
     );

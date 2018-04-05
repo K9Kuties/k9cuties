@@ -10,6 +10,7 @@
   height: 100vh;
   width: 100vw;
   font-family: 'Montserrat', sans-serif;
+  background-color: #FFFFFF;
 }
 
 .a_match {
@@ -92,25 +93,25 @@
 .to_profile {
   width: 30px;
   height: 30px;
-  margin-top: 11.5px;
+  margin-top: 14px;
   margin-left: 8px;
 }
 
 .swiping_header_img {
-  width: 190px;
+  width: 145px;
   margin-top: 0px;
 }
 
 .to_matches {
   width: 30px;
   height: 30px;
-  margin-top: 11.5px;
+  margin-top: 14px;
   margin-right: 8px;
 }
 
 .no_more_dogs {
   position: absolute;
-  top: 20.5vh;
+  top: 21.5vh;
   right: 15vw;
   left: 15vw;
   margin: auto;

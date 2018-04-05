@@ -20,6 +20,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    z-index: 11;
 }
 
 .dog_icon {
@@ -30,9 +31,9 @@
 }
 
 .edit_info_header_logo {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
-    margin-top: 18px;
+    margin-top: 21px;
 }
 
 .paw_logo {
@@ -49,8 +50,9 @@
     flex-wrap: wrap;
     width: 99vw;
     margin: auto;
-    margin-top: 3vh;
+    padding-top: 3vh;
     justify-content: center;
+    padding-bottom: 2vh;
 }
 
 .image1_image2_image3 {
@@ -133,12 +135,14 @@
 .name_input {
     margin-left: 2.3vw;
     width: 80vw;
-    height: 4vh;
+    height: 3vh;
     outline: none;
     border: none;
     font-size: 2.5vh;
     letter-spacing: 0px;
     margin-top: 1vh;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .name_input:focus {
@@ -152,13 +156,15 @@
 .breed_input {
     margin-left: 2.3vw;
     width: 80vw;
-    height: 4vh;
+    height: 3vh;
     border: none;
     outline: none;
     font-size: 2.5vh;
     letter-spacing: 0px;
     margin-top: 1vh;
     border: none;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .breed_input::placeholder {
@@ -166,9 +172,9 @@
 }
 
 .age_input {
-    margin-left: 4.3vw;
+    margin-left: 2.3vw;
     width: 80vw;
-    height: 4vh;
+    height: 3vh;
     border: none;
     outline: none;
     font-size: 2.5vh;
@@ -179,10 +185,16 @@
     -webkit-appearance: none;
 }
 
+input[type=date] {
+    font-size: 2.5vh;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
 .gender_input {
-    margin-left: 4.3vw;
+    margin-left: 2.3vw;
     width: 80vw;
-    height: 4vh;
+    height: 3vh;
     outline: none;
     border: none;
     font-size: 2.5vh;
@@ -191,6 +203,8 @@
     border: none;
     background: #FFFFFF;
     -webkit-appearance: none;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
 }
 
 input .gender_input::first-letter {
@@ -198,17 +212,19 @@ input .gender_input::first-letter {
 }
 
 .description_input {
-    display: inline-block;
-    margin-left: 4.3vw;
+    margin-left: 2.3vw;
     width: 80vw;
     outline: none;
     border: none;
-    font-size: 2.5vh;
+    font-size: 2vh;
     letter-spacing: 0px;
     margin-top: 1vh;
     border: none;
     background: #FFFFFF;
     -webkit-appearance: none;
+    height: 13vh;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .edit_info_hr {
@@ -255,6 +271,7 @@ input .gender_input::first-letter {
 }
 
 .edit_info_save_button {
+    margin-top: 3vh;
     margin-left: 3.25vw;
     color: white;
     font-size: 15px;
@@ -262,10 +279,12 @@ input .gender_input::first-letter {
     width: 40vw;
     border-radius: 35px;
     background-color: #4014EC;
+    margin-bottom: 2vh;
     box-shadow: 0 4px 16px 0 rgba(64,20,236,0.4), 0 4px 10px 0 rgba(0,0,0,0.1);
 }
 
 .edit_info_cancel_button {
+    margin-top: 3vh;
     margin-right: 3.25vw;
     border: 4px solid #FF4553;
     color: #FF4553;
@@ -274,4 +293,19 @@ input .gender_input::first-letter {
     width: 40vw;
     border-radius: 35px;
     background-color: #FFFFFF;
+    margin-bottom: 2vh;
+}
+
+.hrrr {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.hrrrr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.descriptionInput {
+    
 }

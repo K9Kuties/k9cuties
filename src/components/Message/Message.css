@@ -4,7 +4,7 @@
     width: 100vw;
     height: 100vh;
     font-size: 20px;
-    font-family: ‘Montserrat’, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .chat_header {
@@ -27,13 +27,13 @@
 
 .chat_window {
     width: 100%;
-    height: 80%;
+    height: 81%;
     display: flex;
     flex-direction: column;
     position: fixed;
     overflow-y: auto;
     overflow-x: hidden;
-    top: 10%;
+    top: 9%;
     word-wrap: break-word;
     -ms-word-break: break-all;
     word-break: break-all;
@@ -48,7 +48,7 @@
     height: 10%;
     display: flex;
     flex-direction: row;
-    background-color: rgba(238, 237, 237, 0.925);
+    background-color: rgba(238, 237, 237, 0.596);
     align-items: center;
     justify-content: space-around;
     position: fixed;
@@ -58,16 +58,13 @@
 
 .chat_input input {
     height: 60%;
-    width: 75%;
-    border-radius: 10px;
+    width: 80%;
+    border-radius: 35px;
     padding-left: 8px;
     border: 2px solid lightgray;
+    margin-left: 1.5vw;
     font-size: 20px;
-    font-family: ‘Montserrat’, sans-serif;
-}
-
-.chat_input button {
-    height: 50%;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .chat_entry_me {
@@ -81,6 +78,7 @@
     position: relative;
     text-align: left;
     hyphens: auto;
+    font-size: 16px;
 }
 
 .chat_entry_me:before {
@@ -121,6 +119,7 @@
     position: relative;
     text-align: left;
     hyphens: auto;
+    font-size: 16px;
 }
 
 .chat_entry_other:before {
@@ -156,7 +155,33 @@
 }
 
 .dog2Pic {
-    width: 12vw;
-    height: 12vw;
-    border-radius: 6vw;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.unmatch_button {
+    width: 15vw;
+    height: 26px !important;
+    margin-right: 3vw;
+    margin-left: 14vw;
+    border-radius: 6vw; 
+    background-color: #4014EC;
+    color: #FFFFFF;
+    letter-spacing: .4px;
+    font-size: 2.4vw;
+    border: none;
+}
+
+.chat_svg1 {
+    width: 30px;
+    margin-left: 3vw;
+    margin-right: 20vw;
+}
+
+.up_arrow {
+    width: 9vw;
+    margin: none;
+    margin-right: 1.6vw;
+    margin-bottom: .2vh;
 }

@@ -6,6 +6,7 @@
     text-align: center;
     display: flex;
     flex-wrap: wrap;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .matches_header {
@@ -15,13 +16,14 @@
     height: 60px;
     border-bottom: 2px solid rgba(128, 128, 128, 0.250);
     background: white;
+    z-index: 50;
 }
 
 .paw_svg {
     position: absolute;
-    left: 7px;
+    left: 8px;
     margin-top: 8.5px;
-    width: 40px;
+    width: 35px;
     height: 40px;
 }  
 
@@ -38,35 +40,36 @@ a .paw_svg {
 .matches_container {
     display: flex;
     flex-direction: row;
-    height: 80px;
+    height: 15vh;
     width: 100vw;
+    border-bottom: 1.5px solid rgba(189, 189, 189, 0.801);
 }
 
 .user_image {
     margin-top: auto;
     margin-bottom: auto;
     background-color: rgba(128, 128, 128, 0.61);
-    width: 60px;
-    height: 60px;
+    width: 20vw;
+    height: 20vw;
     border-radius: 50%;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 4.5vw;
+    margin-right: 4vw;
 }
 
 .user_name {
     margin-top: auto;
     margin-bottom: auto;
     width: auto;
-    height: 22px;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    color: black;
 }
 
-hr {
-    width: 100vw;
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(128, 128, 128, 0.250);
-    border-bottom: 1px solid rgba(128, 128, 128, 0.250);
+.matches_h4 {
+    font-size: 19px;
+    margin-top: 18px;
+    margin-bottom: 0;
 }
 
 .no_matches {
