@@ -15,7 +15,7 @@ import EditInfo from './components/EditInfo/EditInfo';
 import DogCreated from './components/DogCreated/DogCreated'
 import AddDescription from './components/AddDescription/AddDescription'
 import Geonames from './geonames'
-import ItsAMatch from './components/ItsAMatch/ItsAMatch'
+
 
 class App extends Component {
   render() {
@@ -35,11 +35,6 @@ class App extends Component {
             <Route path='/editinfo' component={EditInfo}/>
             <Route path='/dogcreated' component={DogCreated}/>
             <Route path='/adddescription' component={AddDescription}/>
-<<<<<<< HEAD
-            <Route path='/geonames' component={Geonames}/>
-            <Route path='/itsamatch' component={ItsAMatch}/>
-=======
->>>>>>> master
           </Switch>
        
       </div>
