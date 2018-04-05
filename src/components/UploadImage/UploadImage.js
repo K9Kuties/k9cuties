@@ -26,6 +26,7 @@ class Photos extends Component {
                 this.props.getDog(res.data[0])
             })
         })
+        this.setState({ url: 'http://i67.tinypic.com/nd4dnl.jpg' })
     }
 
     fileSelectedHandler = event => {
