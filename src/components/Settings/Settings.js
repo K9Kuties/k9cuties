@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Settings.css';
 import axios from 'axios';
 import Slider from 'react-rangeslider'
-import 'react-rangeslider/lib/index.css';
+import '../../react-rangeslider.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateRadius, updateInterestedIn, updateReason, updateRange, getUser, getDog } from './../../ducks/users';
@@ -42,8 +42,9 @@ class Settings extends Component {
                 })
                 this.props.getDog(res.data[0])
             }).then(res=>{
-                axios.get(`http://api.geonames.org/findNearbyPlaceNameJSON?lat=${this.props.dog.latitude}&lng=${this.props.dog.longitude}&username=sgueck9`).then(response =>{
-                    this.setState({ currentState : response.data.geonames[0].adminCode1, city: response.data.geonames[0].toponymName })
+                axios.get(`https://us1.locationiq.org/v1/reverse.php?key=99139580186bb2&lat=${this.props.dog.latitude}&lon=${this.props.dog.longitude}&format=json`).then(response => {
+                    console.log(response)
+                    this.setState({ currentState: response.data.address.state, city: response.data.address.city})
                 })
             }) 
         })
@@ -98,7 +99,7 @@ class Settings extends Component {
     }
 
     render() {
-
+        console.log('city and state', this.state.city, this.state.currentState)
         return (
             <div className="Settings">
                 <div className='settings_header' >

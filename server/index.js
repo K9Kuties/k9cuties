@@ -20,6 +20,8 @@ const express = require('express'),
     app = express(),
     io = socket(app.listen(SERVER_PORT, () => { console.log(`Listening on port: ${SERVER_PORT}`);}));
 
+app.use( express.static( `${__dirname}/../build` ) );
+
 app.use(bodyParser.json());
 
 app.use(session({
@@ -71,7 +73,11 @@ passport.deserializeUser((id, done) => {
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0', {
+<<<<<<< HEAD
     successRedirect: process.env.REACT_APP_ADD_DOG_INFO
+=======
+    successRedirect: `${process.env.REACT_APP_LOCALHOST_3000}/#/adddoginfo`
+>>>>>>> master
 }));
 
 app.get('/auth/me', (req, res) => {
@@ -87,7 +93,7 @@ app.get('/auth/me', (req, res) => {
 
 app.get('/logout', (req, res) => {
     req.logOut();
-    res.redirect('http://localhost:3000/#/')
+    res.redirect(`${process.env.REACT_APP_LOCALHOST_3000}/#/`)
 });
 
 io.on('connection', socket => {
@@ -319,6 +325,14 @@ app.post('/api/unlikeDog', (req, res) => {
     const db = req.app.get('db');
     db.unlike_dog([dogUnliking, dogBeingUnliked]).then(response => {
         res.status(200).send(response)
+    })
+})
+
+app.post('/api/unmatch', (req, res) => {
+    let { userOne, userTwo } = req.body;
+    const db = req.app.get('db');
+    db.unmatch([userOne, userTwo]).then(response => {
+        res.status(200).send('dog unmatched')
     })
 })
 

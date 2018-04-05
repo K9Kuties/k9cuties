@@ -1,7 +1,7 @@
 //UNIT TESTING
 
 
-const testingUrl = 'http://localhost:3000/#';
+const testingUrl = `${process.env.REACT_APP_LOCALHOST_3000}/#`;
 
 
 // describe('Login Page Test', function () {

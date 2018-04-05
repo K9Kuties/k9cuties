@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600');
 
 .Swiping {
   height: 100vh;
@@ -10,6 +10,7 @@
   height: 100vh;
   width: 100vw;
   font-family: 'Montserrat', sans-serif;
+  background-color: #FFFFFF;
 }
 
 .a_match {
@@ -92,18 +93,48 @@
 .to_profile {
   width: 30px;
   height: 30px;
-  margin-top: 11.5px;
+  margin-top: 14px;
   margin-left: 8px;
 }
 
 .swiping_header_img {
-  width: 190px;
+  width: 145px;
   margin-top: 0px;
 }
 
 .to_matches {
-  width: 30px;
-  height: 30px;
-  margin-top: 11.5px;
+  width: 24px;
+  height: 24px;
+  margin-top: 19px;
   margin-right: 8px;
+}
+
+.no_more_dogs {
+  position: absolute;
+  top: 23.5vh;
+  right: 10vw;
+  left: 10vw;
+  margin: auto;
+  width: 80vw;
+  height: 80vw;
+  z-index: -1;
+}
+
+.dog_avatar {
+  width: 34vw;
+}
+
+.no_more_dogs_h4 {
+  font-size: 7.2vw;
+  margin-top: 4%;
+  margin-bottom: 0; 
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.no_more_dogs_p {
+  margin-top: 4%;
+  font-size: 4.6vw;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
 }

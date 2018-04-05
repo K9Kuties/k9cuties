@@ -7,8 +7,9 @@ import axios from 'axios';
 import CardDeck from '../CardDeck/CardDeck';
 import Header from '../../components/Header/Header';
 import PoochPals from '../../@0.5xpoochpals.svg';
-import DogHead from '../../dog-head.svg';
-import SpeechBubbles from '../../speech-bubbles.svg';
+import DogBlack from '../../dog-black.svg';
+import MessageBlack from '../../message-black.svg';
+import DogAvatar from '../../dog-avatar.svg';
 
 
 class Swiping extends Component {
@@ -60,7 +61,6 @@ class Swiping extends Component {
   }
 
   render() {
-
     return (
       <div>
         {
@@ -80,15 +80,20 @@ class Swiping extends Component {
             :
             <div className="Swiping">
               <div className='swiping_header' >
-                <Link to='/profile' ><img className='to_profile' src={DogHead} alt='to profile' /></Link>
+                <Link to='/profile' ><img className='to_profile' src={DogBlack} alt='to profile' /></Link>
                 <img className='swiping_header_img' src={PoochPals} alt='pooch pals' />
-                <Link to='/matches'><img className='to_matches' src={SpeechBubbles} alt='to matches' /></Link>
+                <Link to='/matches'><img className='to_matches' src={MessageBlack} alt='to matches' /></Link>
               </div>
               <div className="slide_container">
                 <CardDeck cards={this.state.swipeArray} dog={this.props.dog} shiftCard={this.shiftCard.bind(this)} showModal={this.showModal.bind(this)} />
               </div>
             </div>
         }
+        <div className='no_more_dogs' >
+        <img src={DogAvatar} className='dog_avatar' />
+          <h4 className='no_more_dogs_h4' >Sorry, no more dogs</h4>
+          <p className='no_more_dogs_p' >We are sorry. There aren't any more pooches in your area.</p>
+        </div>
       </div>
     )
   }
