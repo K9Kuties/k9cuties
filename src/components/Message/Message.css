@@ -73,7 +73,7 @@
     color: white;
     background: rgb(71, 25, 255);
     border-radius: 22px;
-    margin: 10px 20px 10px 0;
+    margin: 5px 20px 5px 0;
     align-self: flex-end;
     position: relative;
     text-align: left;
@@ -114,7 +114,7 @@
     background:#E5E5EA;
     border-radius: 25px;
     color: black;
-    margin: 10px 0 10px 20px;
+    margin: 5px 0 5px 20px;
     align-self: flex-start;
     position: relative;
     text-align: left;
@@ -161,22 +161,17 @@
 }
 
 .unmatch_button {
-    width: 15vw;
-    height: 26px !important;
+    width: 40px;
     margin-right: 3vw;
-    margin-left: 14vw;
-    border-radius: 6vw; 
-    background-color: #4014EC;
-    color: #FFFFFF;
-    letter-spacing: .4px;
-    font-size: 2.4vw;
-    border: none;
+    margin-left: 15.5vw;
 }
 
 .chat_svg1 {
-    width: 30px;
+    width: 24px;
+    height: 24px;
     margin-left: 3vw;
     margin-right: 20vw;
+    margin-top: 7px;
 }
 
 .up_arrow {

@@ -48,7 +48,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 99vw;
+    width: 91vw;
     margin: auto;
     padding-top: 3vh;
     justify-content: center;
@@ -67,69 +67,69 @@
 
 .image1{
     position: relative;
-    width: 50vw;
-    height: 50vw;
+    width: 46vw;
+    height: 46vw;
 }
 
 .image2 {
     position: relative;
-    width: 25vw;
-    height: 25vw;
+    width: 23vw;
+    height: 23vw;
 }
 
 .image3 {
     position: relative;
-    width: 25vw;
-    height: 25vw;
+    width: 23vw;
+    height: 23vw;
 }
 
 .image4 {
     position: relative;
-    width: 25vw;
-    height: 25vw;
+    width: 23vw;
+    height: 23vw;
 }
 
 .image5 {
     position: relative;
-    width: 25vw;
-    height: 25vw;
+    width: 23vw;
+    height: 23vw;
 }
 
 .image6 {
     position: relative;
-    width: 25vw;
-    height: 25vw;
+    width: 23vw;
+    height: 23vw;
 }
 
 .dogPics11{
-   max-width: 95%;
-   max-height: 95%;
+   max-width: 98%;
+   max-height: 98%;
 }
 
 .dogPics22{
-    max-width: 90%;
-   max-height: 90%;
+    max-width: 95%;
+   max-height: 95%;
 }
 
 .dogPics33{
-    max-width: 90%;
-   max-height: 90%;
+    max-width: 95%;
+   max-height: 95%;
     
 }
 
 .dogPics44{
-    max-width: 90%;
-   max-height: 90%;
+    max-width: 95%;
+   max-height: 95%;
 }
 
 .dogPics55{
-    max-width: 90%;
-   max-height: 90%;
+    max-width: 95%;
+   max-height: 95%;
 }
 
 .dogPics66{
-    max-width: 90%;
-   max-height: 90%;
+    max-width: 95%;
+   max-height: 95%;
 }
 
 .name_input {
@@ -211,22 +211,6 @@ input .gender_input::first-letter {
     text-transform: uppercase;
 }
 
-.description_input {
-    margin-left: 2.3vw;
-    width: 80vw;
-    outline: none;
-    border: none;
-    font-size: 2vh;
-    letter-spacing: 0px;
-    margin-top: 1vh;
-    border: none;
-    background: #FFFFFF;
-    -webkit-appearance: none;
-    height: 13vh;
-    font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
-}
-
 .edit_info_hr {
     margin: 0px !important;
 }
@@ -245,7 +229,7 @@ input .gender_input::first-letter {
 .remove_photo_one {
     position: absolute;
     background: white;
-    border: 1vw solid white;
+    border: 1.35vw solid white;
     border-radius: 50%;
     margin-left: 78%;
     margin-top: 78%;
@@ -257,10 +241,10 @@ input .gender_input::first-letter {
 .remove_photo {
     position: absolute;
     background: white;
-    border: 1vw solid white;
+    border: 1.05vw solid white;
     border-radius: 50%;
-    margin-left: 71%;
-    margin-top: 71%;
+    margin-left: 73%;
+    margin-top: 73%;
     font-size: .7rem;
     width: 4vw;
     height: 4vw;
@@ -307,5 +291,24 @@ input .gender_input::first-letter {
 }
 
 .descriptionInput {
-    
+    display: flex;
+    flex-direction: column;
+    min-height: 2vh;
+}
+
+.description_input {
+    margin-left: 10.9vw;
+    width: 80vw;
+    outline: none;
+    border: none;
+    font-size: 2vh;
+    letter-spacing: 0px;
+    margin-top: 1vh;
+    border: none;
+    background: #FFFFFF;
+    -webkit-appearance: none;
+    min-height: 2vh;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    resize: none;
 }

@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import './Matches.css';
 import axios from 'axios';
 import SpeechBubbles from '../../speech-bubbles.svg';
-import PawLogo from '../../paw.svg';
+import PawPrint from '../../paw-print.svg';
 import NoDogs from '../../no-dogs.svg';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getMatches, getUser, getDog } from './../../ducks/users';
+import DogAvatar from '../../dog-avatar.svg';
 
 
 class Matches extends Component {
@@ -44,7 +45,7 @@ class Matches extends Component {
             <div className="Matches">
                 
                 <div className='matches_header' >
-                        <Link to='/swiping'><img className='paw_svg' src={PawLogo} alt='paw logo' /></Link>
+                        <Link to='/swiping'><img className='paw_svg' src={PawPrint} alt='paw logo' /></Link>
                         <h4 className='matches_h4' >Matches</h4> 
                 </div>
 
@@ -53,6 +54,7 @@ class Matches extends Component {
                 <div>{matches}</div>
                 :
                  <div className='no_matches' >
+                    <img src={DogAvatar} className='dog_avatar' />
                     <h3 className='no_matches_h3' >No matches yet, get swiping!</h3>
                     <Link to='/swiping'><button className='no_matches_button' >Find new dogs</button></Link>
                  </div>

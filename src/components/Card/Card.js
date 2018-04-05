@@ -4,8 +4,9 @@ import interact from 'interactjs'
 import TWEEN from '@tweenjs/tween.js'
 import { connect } from 'react-redux';
 import { likeDog, unlikeDog } from './../../ducks/users';
-import heart from '../../heart.svg';
-import xButton from '../../x-button.svg';
+import LikeButton from '../../like-button.svg';
+import DislikeButton from '../../dislike-button.svg';
+import './Card.css';
 
 function animate(time) {
   requestAnimationFrame(animate);
@@ -163,25 +164,34 @@ class Card extends Component {
 
   render() {
 
+    var today = new Date();
+       var birthDate = new Date(this.props.birthdate);
+       var age = today.getFullYear() - birthDate.getFullYear();
+       var m = today.getMonth() - birthDate.getMonth();
+       if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
+       {
+           age--;
+       }
+
     let { x, y } = this.state
     let cardStyle = {
       transform: 'translate(' + x + 'px, ' + y + 'px)',
       touchAction: 'none'
     }
-
     return  <div id={"poop" + this.props.idx} className="Card" style={cardStyle} >
-            <img src={this.state.mainPicture} alt="me" />
+            <img src={this.state.mainPicture} alt="me" className='mainPic' />
             <div className='left_picture1' onClick={this.changePictureLeft} ></div>
             <div className='right_picture1' onClick={this.changePictureRight} ></div>
             <div className='card_deets'>
-              <div>
-                <h2>{this.props.name}, {this.props.age}</h2>
-                <h3>{this.props.gender} - {this.props.breed}</h3>
+              <div className='card_dogs_info' >
+                <h2 className='card_name_h2' >{this.props.name}</h2>
+                <h2 className='card_name_h2' >{age}</h2>
+                <h3 className='card_gender_h2' >{this.props.gender}</h3>
+                <h3 className='card_gender_h2' >{this.props.breed}</h3>
               </div>
-              <h2>I</h2>
             </div>
             <div className='like_unlike_buttons'>
-              <img src={xButton} alt="dislike button" height='100px' width='100px' onClick={
+              <img className='dislike_button1' src={DislikeButton} alt="dislike button" onClick={
                 (event) => {
                   let positionX = event.pageX;
                   let card = this
@@ -199,7 +209,7 @@ class Card extends Component {
                     this.props.shiftCard()
                   }, 2500); 
                 }}/>
-              <img src={heart} alt="like button" height='100px' width='100px' onClick={
+              <img className='like_button1' src={LikeButton} alt="like button" onClick={
                 (event) => {
                   let positionX = event.pageX;
                   let card = this

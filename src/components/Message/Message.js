@@ -7,6 +7,8 @@ import { getMessages, updateMessages, getUser, getDog } from './../../ducks/user
 import io from 'socket.io-client';
 import UpArrow from '../../up-arrow.svg';
 import { Link } from 'react-router-dom';
+import MessageBlack from '../../message-black.svg';
+import UnMatch from '../../unmatch.svg';
 
 class Message extends Component {
   constructor(props) {
@@ -124,10 +126,10 @@ class Message extends Component {
     return (
       <div className="message">
         <div className="chat_header">
-          <Link to='/matches' ><img className='chat_svg1' src={SpeechBubbles} alt='chat logo' /></Link>
+          <Link to='/matches' ><img className='chat_svg1' src={MessageBlack} alt='chat logo' /></Link>
           <img className='dog2Pic' src={this.state.dog2Pic} />
           <p>{this.state.dog2Name}</p>
-          <button className='unmatch_button' onClick={this.unmatch} >Unmatch</button>
+          <img src={UnMatch} className='unmatch_button' onClick={this.unmatch} />
         </div>
         <div className="chat_window" ref={(div) => { this.messageList = div }}>
           {messagesToDisplay}
