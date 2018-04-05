@@ -135,13 +135,9 @@ input[type="date"]:valid::before { display: none }
 }
 
 .add_dog_info_dots {
-    position: fixed;
-    bottom: 15px;
+    margin: auto;
+    margin-top: 9vh;
     width: 100px;
-    right: 50%;
-    left: 50%;
-    margin-right: -50px;
-    margin-left: -50px;
     display: flex;
     flex-direction: row;
     justify-content: center;

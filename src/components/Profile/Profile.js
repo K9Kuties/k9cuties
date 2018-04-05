@@ -4,7 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getUser, getDog } from './../../ducks/users';
-import paw2 from '../../paw (2).svg'
+import PawPrint from '../../paw-print.svg';
 
 class Profile extends Component {
     constructor() {
@@ -34,7 +34,7 @@ class Profile extends Component {
                 <div className='profile_header' >
                     <h1 className='invisible' ></h1>
                     <h1 className='profile_header_h1' >Profile</h1>
-                    <Link to='/swiping' ><img className='paw2' src={paw2} alt='back arrow logo' /></Link>
+                    <Link to='/swiping' ><img className='paw2' src={PawPrint} alt='back arrow logo' /></Link>
                 </div>
 
                 <div className='profile_information' >

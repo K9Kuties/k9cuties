@@ -88,6 +88,7 @@ class EditInfo extends Component {
             gender: this.state.gender,
             description: this.state.description
         })
+        window.alert("Changes Saved!");
     }
 
     cancel() {
@@ -172,21 +173,27 @@ class EditInfo extends Component {
 
 
                 <div className='editInfo2'>
+                <hr className='hrrrr' />
                     <div className='nameInput'>
-                        NAME: <input type='text' className='name_input' value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} />
+                        <input type='text' className='name_input' value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} />
                     </div>
+                    <hr className='hrrr' />
                     <div className='breedInput'>
-                        Breed: <input type='text' className='breed_input' value={this.state.breed} onChange={(e) => this.setState({ breed: e.target.value })} />
+                        <input type='text' className='breed_input' value={this.state.breed} onChange={(e) => this.setState({ breed: e.target.value })} />
                     </div>
+                    <hr className='hrrr' />
                     <div className='ageInput'>
-                        Birthdate: <input type="date" min='1998-01-01' className='age_input' value={this.state.birthdate} onChange={(e) => this.setState({ birthdate: e.target.value })} />
+                        <input type="date" min='1998-01-01' className='age_input' value={this.state.birthdate} onChange={(e) => this.setState({ birthdate: e.target.value })} />
                     </div>
+                    <hr className='hrrr' />
                     <div className='genderInput'>
-                        GENDER: <input type='text' className='gender_input' value={this.state.gender} onChange={(e) => this.setState({ gender: e.target.value })} />
+                        <input type='text' className='gender_input' value={this.state.gender} onChange={(e) => this.setState({ gender: e.target.value })} />
                     </div>
-                    <div>
-                        Description: <input type='text' className='description_input' value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })} />
+                    <hr className='hrrr' />
+                    <div className='descriptionInput' >
+                        <textarea className='description_input' value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })} />
                     </div>
+                    <hr className='hrrr' />
                     <button  className='edit_info_cancel_button' onClick={this.cancel}>Cancel</button>
                     <button className='edit_info_save_button' onClick={this.save}>Save</button>
                 </div>
