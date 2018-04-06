@@ -13,6 +13,7 @@
     height: 90px !important;
     margin-top: 3.5%;
     padding-left: 10px;
+    z-index: 500;
 }
 
 .like_button1 {
@@ -20,6 +21,7 @@
     height: 90px !important;
     margin-top: 3.5%;
     padding-right: 10px;
+    z-index: 500;
 }
 
 .card_deets {
