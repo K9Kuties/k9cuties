@@ -6,10 +6,6 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-/* .editInfo2 {
-    
-} */
-
 .edit_info_header {
     position: sticky;
     top: 0;
@@ -26,8 +22,8 @@
 .dog_icon {
     position: absolute;
     left: 2.5vw;
-    width: 40px;
-    margin-top: 8.5px;
+    width: 35px;
+    margin-top: 10.5px;
 }
 
 .edit_info_header_logo {

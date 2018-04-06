@@ -19,13 +19,13 @@
 .back_arrow_svg {
     position: absolute;
     left: 2.5vw;
-    margin-top: 8.5px;
-    width: 40px;
-    height: 40px;
+    margin-top: 10.5px;
+    width: 35px;
+    height: 35px;
 }
 .settings_header_h1 {
     color: black;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 500;
     margin-top: 20px;
     letter-spacing: .8px;
