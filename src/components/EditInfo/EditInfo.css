@@ -295,6 +295,7 @@ input .gender_input::first-letter {
 .description_input {
     margin-left: 10.9vw;
     width: 80vw;
+    height: 6.3vh;
     outline: none;
     border: none;
     font-size: 2vh;
