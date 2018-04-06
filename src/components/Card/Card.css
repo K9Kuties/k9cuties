@@ -1,7 +1,11 @@
 .Card {
     border-radius: 8px;
-    width: 80vw;
+    width: 79vw;
     height: auto;
+}
+
+.mainPic {
+    width: 100% !important;
 }
 
 .dislike_button1 {
