@@ -190,6 +190,7 @@ class Card extends Component {
                 <h3 className='card_gender_h2' >{this.props.breed}</h3>
               </div>
             </div>
+            <textarea placeholder="No Description Added" className='abc'>{this.props.description}</textarea>
             <div className='like_unlike_buttons'>
               <img className='dislike_button1' src={DislikeButton} alt="dislike button" onClick={
                 (event) => {
