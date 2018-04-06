@@ -9,7 +9,7 @@ export default class Login extends Component {
     render() {
         return (
             <div className='Login'>
-                <video autoPlay muted loop controls="true" className='video' >
+                <video autoPlay muted loop playsinline className='video' >
                     <source src={DogVideo} type="video/mp4" />
                 </video>
                 <div className='logo_container' >

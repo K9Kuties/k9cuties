@@ -193,6 +193,7 @@ class Card extends Component {
             <div className='like_unlike_buttons'>
               <img className='dislike_button1' src={DislikeButton} alt="dislike button" onClick={
                 (event) => {
+                  event.stopPropagation();
                   let positionX = event.pageX;
                   let card = this
                   let leftBound = window.innerWidth / 4.65
@@ -211,6 +212,7 @@ class Card extends Component {
                 }}/>
               <img className='like_button1' src={LikeButton} alt="like button" onClick={
                 (event) => {
+                  event.stopPropagation();
                   let positionX = event.pageX;
                   let card = this
                   let leftBound = window.innerWidth / 4.65
